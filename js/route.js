@@ -1,8 +1,8 @@
-$( document ).bind( "mobileinit", function() {
-    // Make your jQuery Mobile framework configuration changes here!
-    $.support.cors=true;
-    $.mobile.allowCrossDomainPages = true;
-});
+document.addEventListener("deviceready", function() {
+    angular.bootstrap(document.documentElement, ['app']);
+}, false);
+
+
 
 var app = angular.module("app", []);
 app.config(function($locationProvider) {

@@ -12,6 +12,20 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="libs/jquery.mobile-1.3.1.css"/>
     <script src="libs/jquery-1.9.1.min.js"></script>
+    <script>
+        $(document).bind("mobileinit", function() {
+            // Setting default page and dialog transition to none
+            $.mobile.defaultPageTransition = 'none';
+            $.mobile.defaultDialogTransition = 'none';
+            // PhoneGap Support options
+            $.mobile.allowCrossDomainPages = true;
+            $.support.cors = true;
+            // DOM caching
+            $.mobile.page.prototype.options.domCache = true;
+        });
+    </script>
+
+
     <script src="libs/jquery.mobile-1.3.1.min.js"></script>
     <script src="libs/angular.min.js"></script>
     <script src="libs/jquery-mobile-angular-adapter.min.js"></script>
@@ -29,7 +43,7 @@
 <div id="pagemain" data-position="fixed" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
     <header data-role="header">
         <h1>云库商务</h1>
-        <a href="#!/login" id="goLogin" class="ui-btn-right" data-icon="arrow-r" data-role="button" ngm-vclick="">登录</a>
+        <a href="index.html#!/login" id="goLogin" class="ui-btn-right" data-icon="arrow-r" data-role="button" ngm-vclick="">登录</a>
     </header>
 
     <section data-role="content">
@@ -52,48 +66,6 @@
 </div>
 <!--首页结束-->
 
-
-<!--TODO 登录-->
-<div ng-controller="loginCtrl" id="pagelogin" data-position="fixed" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
-    <header data-role="header">
-        <a data-rel="back" class="ui-btn-left" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
-        <h1>用户登录</h1>
-        <a href="#!/register" id="goRegister" class="ui-btn-right" data-icon="edit" data-role="button" ngm-vclick="">注册</a>
-    </header>
-
-    <section data-role="content">
-
-        <form ng-submit="submit()">
-            <div data-role="fieldcontain">
-                <label for="name">用户名:</label>
-                <input type="text" name="name" ng-model="userprams.name" id="name" value="" required placeholder="请填写一个名字"/>
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="psw">密码:</label>
-                <input type="password" name="psw" ng-model="userprams.psw" id="psw" required placeholder="请填写密码"/>
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="flip-1">记住登录信息:</label>
-                <select ng-init='remember="on"' ng-model="remember" name="flip-1" id="flip-1" data-role="slider">
-                    <option value="off">不记住</option>
-                    <option value="on">记住</option>
-                </select>
-            </div>
-
-            <input type="button" ngm-vclick="submit()" value="提交" />
-
-        </form>
-
-    </section>
-
-    <div ng-init="pop={}" data-role="popup" id="popupCloseRight" data-opened="pop.content" class="ui-content" style="max-width:80%">
-        <a href="#" ngm-vclick="pop.content=null" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        <p>{{pop.content}}</p>
-    </div>
-</div>
-<!--登录结束-->
 
 
 
