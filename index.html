@@ -53,7 +53,6 @@
 <!--首页结束-->
 
 
-
 <!--TODO 登录-->
 <div ng-controller="loginCtrl" id="pagelogin" data-position="fixed" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
     <header data-role="header">
@@ -64,7 +63,7 @@
 
     <section data-role="content">
 
-        <form ng-submit="submit()" data-ajax="false">
+        <form ng-submit="submit()">
             <div data-role="fieldcontain">
                 <label for="name">用户名:</label>
                 <input type="text" name="name" ng-model="userprams.name" id="name" value="" required placeholder="请填写一个名字"/>
@@ -83,7 +82,7 @@
                 </select>
             </div>
 
-            <input type="submit" value="提交" />
+            <input type="button" ngm-vclick="submit()" value="提交" />
 
         </form>
 
@@ -95,6 +94,8 @@
     </div>
 </div>
 <!--登录结束-->
+
+
 
 </body>
 </html>
