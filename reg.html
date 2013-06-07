@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<!--TODO 注册-->
+<div ng-controller="regCtrl" id="pageReg" data-position="fixed" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+    <header data-role="header">
+        <a href="#!/login" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+        <h1>用户注册</h1>
+    </header>
+
+    <section data-role="content">
+        <form ng-submit="regSubmit()" data-ajax="false">
+            <div data-role="fieldcontain">
+                <label for="name">注册用户名:</label>
+                <input type="text" name="name" ng-model="userprams.name" id="name" value=""  placeholder="请填写一个名字"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="psw">创建密码:</label>
+                <input type="password" name="psw" ng-model="userprams.psw" id="psw"  placeholder="请填写密码"/>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="psw">再次输入密码:</label>
+                <input type="password" name="psw" ng-model="userprams.psw" id="psw"  placeholder="请填写密码"/>
+            </div>
+
+
+            <input ng-init="subBtn={isOff:false,submitText:'注册'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+
+        </form>
+
+    </section>
+
+    <div ng-init="pop={content:null}" data-role="popup" id="popupCloseRight" data-opened="pop.content" class="ui-content" style="max-width:80%;">
+        <a href="#" ngm-vclick="pop.content=null" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <p>{{pop.content}}</p>
+    </div>
+</div>
+<!--注册结束-->
+</body>
+</html>

@@ -1,27 +1,25 @@
-document.addEventListener("deviceready", function() {
-    angular.bootstrap(document.documentElement, ['app']);
-}, false);
-
-
-
 var app = angular.module("app", []);
 app.config(function($locationProvider) {
     $locationProvider.html5Mode(false);
 });
 
 app.config(function($routeProvider) {
-    $routeProvider.when('/login', {
-        templateUrl: 'login.html',
+    $routeProvider.
+        when('/reg', {
+            templateUrl: '#pageReg',
+            jqmOptions: {transition: 'slideup'}
+        }).
+        when('/login', {
+        templateUrl: '#pagelogin',
         jqmOptions: {transition: 'slideup'},
-        onActivate:"prefill()",
-
+        onActivate:"prefill()"
     }).
-        when('/', {
+        when('/index.html', {
             templateUrl: '#pagemain',
             jqmOptions: {transition: 'slidedown'},
-
+            onActivate:"pre()"
         }).
-        otherwise({redirectTo:"/"});
+        otherwise({redirectTo:"/index.html"});
 
 });
 
