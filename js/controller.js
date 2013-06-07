@@ -43,7 +43,7 @@ app.controller("loginCtrl", function ($scope,$rootScope, localStorageService,$ht
 
                         changeBtn("登录成功...",false);
                         setTimeout(function(){
-                            window.location.href="index.html";
+                            window.location.href="main.html";
                         },500);
 
                     }else{
@@ -109,7 +109,7 @@ app.controller("regCtrl", function ($scope,$element,localStorageService,userInfo
                     localStorageService.add("userLogininfo",regp);
                     changeBtn("注册成功...",false);
                     setTimeout(function(){
-                        window.location.href="index.html#!/login";
+                        window.location.href="main.html#!/login";
                     },500);
 
                 }else{

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>云库商务</title>
+
+    <link rel="apple-touch-icon-precomposed" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="云库商务" />
+
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="libs/jquery.mobile-1.3.1.css"/>
+    <script src="libs/jquery-1.9.1.min.js"></script>
+    <script>
+        $(document).bind("mobileinit", function() {
+            // Setting default page and dialog transition to none
+            $.mobile.defaultPageTransition = 'none';
+            $.mobile.defaultDialogTransition = 'none';
+            // PhoneGap Support options
+            $.mobile.allowCrossDomainPages = true;
+            $.support.cors = true;
+            // DOM caching
+            //$.mobile.page.prototype.options.domCache = true;
+        });
+    </script>
+
+
+    <script src="libs/jquery.mobile-1.3.1.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/jquery-mobile-angular-adapter.min.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <script src="js/config.js"></script>
+    <script src="js/route.js"></script>
+    <script src="js/localStorageService.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/controller.js"></script>
+</head>
+<body>
+
+<!--TODO 首页-->
+<div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
+    <header data-role="header" data-position="fixed">
+        <h1>云库商务</h1>
+        <a ng-init="loginBtnShow=true" ng-show="loginBtnShow" href="#!/login" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button" ngm-vclick="">登录</a>
+    </header>
+
+    <section data-role="content">
+        {{mainpageContent}}
+
+            <!--<div ngm-if="pager.hasMore">-->
+                <!--<a href="#" ngm-vclick="pager.loadMore()" data-role="button">Load more</a>-->
+            <!--</div>-->
+
+    </section>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="grid">Summary</a></li>
+                <li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>
+                <li><a href="#" data-icon="gear">Setup</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div>
+<!--首页结束-->
+
+
+
+<!--TODO 登录-->
+<div ng-controller="loginCtrl" id="pagelogin" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
+    <header data-role="header" data-position="fixed">
+        <a href="#!/" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+        <h1>用户登录</h1>
+        <a href="#!/reg" class="ui-btn-right" data-icon="edit" data-role="button" ngm-vclick="">注册</a>
+    </header>
+
+    <section data-role="content">
+
+        <form ng-submit="submit()" data-ajax="false">
+            <div data-role="fieldcontain">
+                <label for="name">用户名:</label>
+                <input type="text" name="name" ng-model="userprams.name" required id="name" value=""  placeholder="请填写一个名字"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="psw">密码:</label>
+                <input type="password" name="psw" ng-model="userprams.psw" required id="psw"  placeholder="请填写密码"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="flip-1">记住登录信息:</label>
+                <select ng-init='remember="on"' ng-model="remember" name="flip-1" id="flip-1" data-role="slider">
+                    <option value="off">不记住</option>
+                    <option value="on">记住</option>
+                </select>
+            </div>
+
+            <input id="loginSubmit" ng-init="subBtn={isOff:false,submitText:'提交'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+
+        </form>
+
+    </section>
+
+    <div ng-init="pop={content:null}" data-role="popup" id="popupCloseRight" data-opened="pop.content" class="ui-content" style="max-width:80%;">
+        <a href="#" ngm-vclick="pop.content=null" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <p>{{pop.content}}</p>
+    </div>
+</div>
+<!--登录结束-->
+
+
+<!--TODO 注册-->
+<div ng-controller="regCtrl" id="pageReg" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+    <header data-role="header" data-position="fixed">
+        <a href="#!/login" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+        <h1>用户注册</h1>
+    </header>
+
+    <section data-role="content">
+
+        <form ng-submit="regSubmit()" data-ajax="false">
+            <ul data-role="listview" data-inset="true">
+                <li data-role="fieldcontain">
+                    <label for="name">注册用户名:</label>
+                    <input type="text" name="name" ng-model="regprams.name" required id="name" value=""  placeholder="请填写一个名字"/>
+                </li>
+                <li data-role="fieldcontain">
+                    <label for="psw">创建密码:</label>
+                    <input type="password" name="psw" ng-model="regprams.psw" required placeholder="请填写密码"/>
+                </li>
+                <li data-role="fieldcontain" ng-class="errorClass">
+                    <label for="psw">确认此密码:</label>
+                    <input type="password" name="psw2" ng-model="psw2" required placeholder="请再次填写密码"/>
+                    <span class="formErrotip">{{comparePsw(regprams.psw,psw2)}}</span>
+                </li>
+
+                <li data-role="fieldcontain" style="text-align: center">
+                <input ng-init="subBtn={isOff:false,submitText:'注册'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+                </li>
+            </ul>
+        </form>
+
+    </section>
+
+    <div ng-init="pop={content:null}" data-role="popup" id="popupCloseRight" data-opened="pop.content" class="ui-content" style="max-width:80%;">
+        <a href="#" ngm-vclick="pop.content=null" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <p>{{pop.content}}</p>
+    </div>
+</div>
+<!--注册结束-->
+
+</body>
+</html>

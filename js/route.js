@@ -15,7 +15,7 @@ app.config(function($routeProvider) {
         onActivate:"prefill()"
     }).
         when('/', {
-            templateUrl: 'index.html',
+            templateUrl: 'main.html',
             jqmOptions: {transition: 'slidedown'},
             onActivate:"pre()"
         }).
