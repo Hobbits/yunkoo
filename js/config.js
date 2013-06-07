@@ -5,7 +5,12 @@ var appConfig={
 
 }
 
-var head = document.getElementsByTagName('head')[0];
+<script>
+window.isPhone = !document.URL.match(/^https?:/);
+if (window.isPhone) {
+    var head = document.getElementsByTagName('head')[0];
     var base = document.createElement('base')
     base.href = window.location.href;
     head.appendChild(base);
+    }
+</script>

@@ -14,12 +14,12 @@ app.config(function($routeProvider) {
         jqmOptions: {transition: 'slideup'},
         onActivate:"prefill()"
     }).
-        when('/index.html', {
-            templateUrl: '#pagemain',
+        when('/', {
+            templateUrl: 'index.html',
             jqmOptions: {transition: 'slidedown'},
             onActivate:"pre()"
         }).
-        otherwise({redirectTo:"/index.html"});
+        otherwise({redirectTo:"/"});
 
 });
 
