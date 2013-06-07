@@ -29,17 +29,18 @@
 
 
 </head>
-<body>
+<body ng-controller="rootC">
 
 <!--TODO 首页-->
 <div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
     <header data-role="header" data-position="fixed">
         <h1>云库商务</h1>
-        <a ng-init="loginBtnShow=true" ng-show="loginBtnShow" href="main.html#!/login" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button" ngm-vclick="">登录</a>
+        <a ng-init="loginBtnShow=true" ng-show="loginBtnShow" ngm-vclick="linkTo('/login')" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button" ngm-vclick="">登录</a>
     </header>
 
     <section data-role="content">
         {{mainpageContent}}
+
 
             <!--<div ngm-if="pager.hasMore">-->
                 <!--<a href="#" ngm-vclick="pager.loadMore()" data-role="button">Load more</a>-->
@@ -63,9 +64,9 @@
 <!--TODO 登录-->
 <div ng-controller="loginCtrl" id="pagelogin" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
     <header data-role="header" data-position="fixed">
-        <a href="main.html#!/" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+        <a ngm-vclick="linkTo('/')" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
         <h1>用户登录</h1>
-        <a href="main.html#!/reg" class="ui-btn-right" data-icon="edit" data-role="button" ngm-vclick="">注册</a>
+        <a ngm-vclick="linkTo('/reg')" class="ui-btn-right" data-icon="edit" data-role="button" ngm-vclick="">注册</a>
     </header>
 
     <section data-role="content">
@@ -106,7 +107,7 @@
 <!--TODO 注册-->
 <div ng-controller="regCtrl" id="pageReg" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
     <header data-role="header" data-position="fixed">
-        <a href="#!/login" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+        <a ngm-vclick="linkTo('/login')" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
         <h1>用户注册</h1>
     </header>
 

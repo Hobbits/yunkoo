@@ -1,4 +1,11 @@
-app.controller("mainCtrl", function ($scope,localStorageService,userInfo) {
+app.controller("rootC", function ($rootScope,$location) {
+    $rootScope.linkTo=function(str){
+        $location.path(str);
+    }
+})
+
+
+app.controller("mainCtrl", function ($scope,$location,localStorageService,userInfo) {
     $scope.pre=function(){
         if(userInfo){
             $scope.loginBtnShow=false;
@@ -6,10 +13,11 @@ app.controller("mainCtrl", function ($scope,localStorageService,userInfo) {
         }else{
             $scope.mainpageContent="你还没登录。"
         }
-    }
+    };
+
 });
 
-app.controller("loginCtrl", function ($scope,$rootScope, localStorageService,$http,$element) {
+app.controller("loginCtrl", function ($scope,$rootScope,$location, localStorageService,$http,$element) {
     $scope.prefill = function () {
         var userLogininfo = localStorageService.get('userLogininfo');
         if (userLogininfo) {
@@ -43,7 +51,7 @@ app.controller("loginCtrl", function ($scope,$rootScope, localStorageService,$ht
 
                         changeBtn("登录成功...",false);
                         setTimeout(function(){
-                            window.location.href="main.html";
+                            $location.path="main.html";
                         },500);
 
                     }else{
