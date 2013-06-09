@@ -60,12 +60,14 @@ app.factory('$pop', function($window){
         open:function(str){
 
             this.targettext.html(str);
+            this.target.show();
             this.target.popup();
             this.target.trigger("create");
             this.target.popup("open");
         },
         close:function(){
             this.target.popup("close");
+            this.target.hide();
         }
     }
 

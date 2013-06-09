@@ -60,13 +60,6 @@ app.controller("shopCtrl",function($scope,JSONP,$location,Obj2Arr,localStorageSe
         });
     }
 
-    $scope.aPost=function(){
-        $.post(appConfig.shop_newShop, {a:"嘿嘿"},
-            function(data){
-                alert("成功")
-            }, "json");
-    }
-
 
     $scope.shopSubmit=function(){
         var logoImg=document.getElementById("logoImg");
@@ -74,7 +67,7 @@ app.controller("shopCtrl",function($scope,JSONP,$location,Obj2Arr,localStorageSe
         var  shopPrams=$scope.shopPrams;
 
         var p = {
-            userid:userInfo.userid,
+            userid:userInfo.get().userid,
             shopname: shopPrams.shopname,
             email: shopPrams.email,
             contact: shopPrams.contact,

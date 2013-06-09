@@ -1,4 +1,7 @@
+
 var app = angular.module("app", []);
+
+
 app.config(function($locationProvider) {
     $locationProvider.html5Mode(false);
 });
@@ -6,7 +9,7 @@ app.config(function($locationProvider) {
 app.config(function($routeProvider) {
     $routeProvider.
         when('/shop', {
-            templateUrl: '#pageshop',
+            templateUrl: 'temp/shop.html',
             jqmOptions: {transition: 'slide'},
             onActivate:"preGet()",
             resolve:validateLogon
@@ -36,9 +39,8 @@ var validateLogon = {
         if(userInfo.get()){
             deferred.resolve(userInfo.get().userid);
         }else{
-            $location.path('/login');
-            deferred.reject();
-
+            //deferred.reject();
+            deferred.resolve();
         }
 
 
