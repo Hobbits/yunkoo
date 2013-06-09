@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="css/main.css"/>
     <script src="libs/jquery-2.0.2.min.js"></script>
     <script>
-        $(document).bind("mobileinit", function() {
-            // Setting default page and dialog transition to none
-            $.mobile.defaultPageTransition = 'none';
-            $.mobile.defaultDialogTransition = 'none';
+        $(document).on("mobileinit", function() {
             // PhoneGap Support options
             $.mobile.allowCrossDomainPages = true;
             $.support.cors = true;
+            // Setting default page and dialog transition to none
+            $.mobile.defaultPageTransition = 'none';
+            $.mobile.defaultDialogTransition = 'none';
             // DOM caching
             $.mobile.page.prototype.options.domCache = true;
         });
@@ -119,8 +119,8 @@
         <form ng-submit="regSubmit()" data-ajax="false">
             <ul data-role="listview" data-inset="true">
                 <li data-role="fieldcontain">
-                    <label for="name">注册用户名:</label>
-                    <input type="text" name="name" ng-model="regprams.name" required id="name" value=""  placeholder="请填写一个名字"/>
+                    <label for="regname">注册用户名:</label>
+                    <input type="text" name="name" ng-model="regprams.name" required id="regname" value=""  placeholder="请填写一个名字"/>
                 </li>
                 <li data-role="fieldcontain">
                     <label for="psw">创建密码:</label>
@@ -145,6 +145,91 @@
 <!--注册结束-->
 
 
+
+<!--TODO 创建/修改店铺-->
+<div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+    <header data-role="header" data-position="fixed">
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
+        <h1>店铺管理</h1>
+    </header>
+
+    <section data-role="content">
+
+        <form ng-submit="shopSubmit()" data-ajax="false">
+
+            <div data-role="fieldcontain">
+                <label for="s_shopname">店铺名:</label>
+                <input type="text" name="name" ng-model="shopPrams.shopname" required id="s_shopname" value=""  placeholder="请填写一个名字"/>
+            </div>
+            <div data-role="fieldcontain">
+                <fieldset id="area" data-role="controlgroup" data-type="horizontal">
+                    <legend>地区:</legend>
+                    <label for="s_sheng">省</label>
+                    <select ng-model="shopPrams.prov" ng-change="getCityList()" ng-options="p.provName for p in provList" id="s_sheng">
+                        <option selected="selected">请选择省</option>
+                    </select>
+                    <label ng-show="cityList" for="s_shi">市</label>
+                    <select ng-model="shopPrams.city" ng-show="cityList" id="s_shi" ng-options="c.cityName for c in cityList" >
+                        <option selected="selected">请选择市</option>
+                    </select>
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain" >
+                <fieldset id="ind" data-role="controlgroup" data-type="horizontal">
+                    <legend>所属行业:</legend>
+                    <label for="s_hy">大行业</label>
+                    <select id="s_hy" required ng-model="shopPrams.ind1" ng-change="getin2List()" ng-options="il1.ind1Name for il1 in ind1List" >
+
+                    </select>
+                    <label for="s_xhy">小行业:</label>
+                    <select id="s_xhy" required ng-model="shopPrams.ind2" ng-show="ind2List" ng-model="shopPrams.ind2" ng-options="il2.ind2Name for il2 in ind2List">
+
+                    </select>
+                </fieldset>
+            </div>
+
+            <div data-role="fieldcontain" >
+                <label for="s_jj">简介:</label>
+                <textarea id="s_jj" ng-mode="shopPrams.introduction"></textarea>
+            </div>
+            <div data-role="fieldcontain" >
+                <label for="s_yy">经营范围:</label>
+                <textarea id="s_yy" ng-model="shopPrams.management" ></textarea>
+            </div>
+            <div data-role="fieldcontain" >
+                <label for="s_dz">公司地址:</label>
+                <input id="s_dz" ng-model="shopPrams.address" type="text" />
+            </div>
+
+            <div data-role="fieldcontain" >
+                <label for="s_contact">联系人:</label>
+                <input id="s_contact" ng-model="shopPrams.contact" type="text" />
+            </div>
+            <div data-role="fieldcontain" >
+                <label for="s_mail">电子邮箱:</label>
+                <input id="s_mail" required ng-model="shopPrams.email" type="email" />
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_phone">电话:</label>
+                <input id="s_phone" ng-model="shopPrams.tel" type="tel" />
+            </div>
+
+            <div data-role="fieldcontain" >
+                <label for="s_logo">Logo:</label>
+                <input id="s_logo" type="file" onchange="changeFile(this)" accept='image/*'/>
+            </div>
+
+            <div data-role="fieldcontain" style="text-align: center">
+                <input id="logoImg" ng-init="subBtn={isOff:false,submitText:'修改店铺'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+            </div>
+        </form>
+
+    </section>
+
+
+</div>
+<!--创建/修改店铺结束-->
 
 
 
