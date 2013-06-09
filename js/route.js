@@ -5,18 +5,24 @@ app.config(function($locationProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
+        when('/shop', {
+            templateUrl: '#pageshop',
+            jqmOptions: {transition: 'slide'},
+            onActivate:"preGet()",
+            resolve:validateLogon
+        }).
         when('/reg', {
             templateUrl: '#pageReg',
-            jqmOptions: {transition: 'slideup'}
+            jqmOptions: {transition: 'flip'}
         }).
         when('/login', {
         templateUrl: '#pagelogin',
-        jqmOptions: {transition: 'slideup'},
+        jqmOptions: {transition: 'flip'},
         onActivate:"prefill()"
     }).
         when('/', {
-            templateUrl: 'main.html',
-            jqmOptions: {transition: 'slidedown'},
+            templateUrl: '#pagemain',
+            jqmOptions: {transition: 'none'},
             onActivate:"pre()"
         }).
         otherwise({redirectTo:"/"});
@@ -24,5 +30,19 @@ app.config(function($routeProvider) {
 });
 
 
+var validateLogon = {
+    storge: function($q,$rootScope,userInfo,$location) {
+        var deferred = $q.defer();
+        if(userInfo.get()){
+            deferred.resolve(userInfo.get().userid);
+        }else{
+            $location.path('/login');
+            deferred.reject();
 
+        }
+
+
+        return deferred.promise;
+    }
+};
 
