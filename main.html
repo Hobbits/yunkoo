@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/main.css"/>
     <script src="libs/jquery-2.0.2.min.js"></script>
     <script>
-        $(document).on("mobileinit", function() {
+        $(document).bind("mobileinit", function() {
             // PhoneGap Support options
             $.mobile.allowCrossDomainPages = true;
             $.support.cors = true;
@@ -24,6 +24,7 @@
             $.mobile.defaultDialogTransition = 'none';
             // DOM caching
             $.mobile.page.prototype.options.domCache = true;
+            $.support.dynamicBaseTag=true;
         });
     </script>
     <script src="js/config.js"></script>
