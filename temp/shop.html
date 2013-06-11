@@ -18,7 +18,7 @@
 
     <section data-role="content">
 
-        <form ng-submit="shopSubmit()" data-ajax="false">
+        <form ng-submit="shopSubmit()" data-ajax="false" src="">
 
             <div data-role="fieldcontain">
                 <label for="s_shopname">店铺名:</label>
@@ -44,8 +44,8 @@
                     <select id="s_hy" required ng-model="shopPrams.ind1" ng-change="getin2List()" ng-options="il1.ind1Name for il1 in ind1List" >
 
                     </select>
-                    <label for="s_hy">小行业:</label>
-                    <select id="s_hy" required ng-model="shopPrams.ind2" ng-show="ind2List" ng-model="shopPrams.ind2" ng-options="il2.ind2Name for il2 in ind2List">
+                    <label for="s_xhy">小行业:</label>
+                    <select id="s_xhy" required ng-model="shopPrams.ind2" ng-show="ind2List" ng-model="shopPrams.ind2" ng-options="il2.ind2Name for il2 in ind2List">
 
                     </select>
                 </fieldset>

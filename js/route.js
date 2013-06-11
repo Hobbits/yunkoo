@@ -15,11 +15,11 @@ app.config(function($routeProvider) {
             resolve:validateLogon
         }).
         when('/reg', {
-            templateUrl: '#pageReg',
+            templateUrl: 'temp/reg.html',
             jqmOptions: {transition: 'flip'}
         }).
         when('/login', {
-        templateUrl: '#pagelogin',
+        templateUrl: 'temp/login.html',
         jqmOptions: {transition: 'flip'},
         onActivate:"prefill()"
     }).

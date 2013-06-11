@@ -6,25 +6,26 @@
 </head>
 <body>
 
+
 <!--TODO 登录-->
-<div ng-controller="loginCtrl" id="pagelogin" data-position="fixed" data-role="page" ngm-pagebeforeshow="refreshTodos()" ngm-swipeleft="showSettings()">
-    <header data-role="header">
-        <a data-rel="back" class="ui-btn-left" data-icon="arrow-l" data-role="button" ngm-vclick="">后退</a>
+<div ng-controller="loginCtrl" id="pagelogin" data-role="page">
+    <header data-role="header" data-position="fixed">
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>用户登录</h1>
-        <a href="#!/register" id="goRegister" class="ui-btn-right" data-icon="edit" data-role="button" ngm-vclick="">注册</a>
+        <a href="#!/reg" class="ui-btn-right" data-icon="edit" data-role="button">注册</a>
     </header>
 
     <section data-role="content">
 
-        <form ng-submit="submit()">
+        <form ng-submit="submit()" data-ajax="false" src="">
             <div data-role="fieldcontain">
                 <label for="name">用户名:</label>
-                <input type="text" name="name" ng-model="userprams.name" id="name" value="" required placeholder="请填写一个名字"/>
+                <input type="text" name="name" ng-model="userprams.name" required id="name" value=""  placeholder="请填写一个名字"/>
             </div>
 
             <div data-role="fieldcontain">
                 <label for="psw">密码:</label>
-                <input type="password" name="psw" ng-model="userprams.psw" id="psw" required placeholder="请填写密码"/>
+                <input type="password" name="psw" ng-model="userprams.psw" required id="psw"  placeholder="请填写密码"/>
             </div>
 
             <div data-role="fieldcontain">
@@ -35,16 +36,13 @@
                 </select>
             </div>
 
-            <input type="button" ngm-vclick="submit()" value="提交" />
+            <input id="loginSubmit" ng-init="subBtn={isOff:false,submitText:'提交'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
 
         </form>
 
     </section>
 
-    <div ng-init="pop={}" data-role="popup" id="popupCloseRight" data-opened="pop.content" class="ui-content" style="max-width:80%">
-        <a href="#" ngm-vclick="pop.content=null" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        <p>{{pop.content}}</p>
-    </div>
+
 </div>
 <!--登录结束-->
 

@@ -5,3 +5,10 @@ form .formErrotip{
     float: right;
 
 }
+.myPanel .ui-panel-inner{
+    margin-top: 1em;
+    margin-right: 1em;
+}
+.myPanel .ui-li{
+    background-image: none;
+}

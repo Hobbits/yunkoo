@@ -13,7 +13,7 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="libs/jquery.mobile-1.3.1.css"/>
     <link rel="stylesheet" href="css/main.css"/>
-    <script src="libs/jquery-2.0.2.min.js"></script>
+    <script src="libs/jquery-1.10.1.min.js"></script>
     <script>
         $(document).bind("mobileinit", function() {
             // PhoneGap Support options
@@ -23,8 +23,8 @@
             $.mobile.defaultPageTransition = 'none';
             $.mobile.defaultDialogTransition = 'none';
             // DOM caching
-            $.mobile.page.prototype.options.domCache = true;
-            $.support.dynamicBaseTag=true;
+            $.mobile.page.prototype.options.domCache = false;
+            //$.support.dynamicBaseTag=true;
         });
     </script>
     <script src="js/config.js"></script>
@@ -37,9 +37,32 @@
 </head>
 <body ng-controller="rootC">
 
+
 <!--TODO 首页-->
 <div id="pagemain" ng-init="loginBtnShow=true" ng-controller="mainCtrl" data-role="page">
+
+    <div data-role="panel" class="myPanel" id="mainPanel" data-position="left" data-display="reveal">
+        <ul data-role="listview" data-inset="false" data-split-theme="h">
+           <li>
+               <a>首页</a>
+           </li>
+            <li>
+                <a>账号管理</a>
+            </li>
+            <li>
+                <a href="#!/shop">店铺管理</a>
+            </li>
+            <li>
+                <a>新消息</a>
+                <span class="ui-li-count">55</span>
+            </li>
+        </ul>
+
+    </div>
+
+
     <header data-role="header" data-position="fixed">
+        <a ngm-vclick="openPanel('#mainPanel')" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
         <h1>云库商务</h1>
         <a href="#!/login" ng-show="loginBtnShow" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
         <a href="#!/acc" ng-show="!loginBtnShow" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
@@ -68,175 +91,14 @@
 
 
 
-<!--TODO 登录-->
-<div ng-controller="loginCtrl" id="pagelogin" data-role="page">
-    <header data-role="header" data-position="fixed">
-        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
-        <h1>用户登录</h1>
-        <a href="#!/reg" class="ui-btn-right" data-icon="edit" data-role="button">注册</a>
-    </header>
-
-    <section data-role="content">
-
-        <form ng-submit="submit()" data-ajax="false">
-            <div data-role="fieldcontain">
-                <label for="name">用户名:</label>
-                <input type="text" name="name" ng-model="userprams.name" required id="name" value=""  placeholder="请填写一个名字"/>
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="psw">密码:</label>
-                <input type="password" name="psw" ng-model="userprams.psw" required id="psw"  placeholder="请填写密码"/>
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="flip-1">记住登录信息:</label>
-                <select ng-init='remember="on"' ng-model="remember" name="flip-1" id="flip-1" data-role="slider">
-                    <option value="off">不记住</option>
-                    <option value="on">记住</option>
-                </select>
-            </div>
-
-            <input id="loginSubmit" ng-init="subBtn={isOff:false,submitText:'提交'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
-
-        </form>
-
-    </section>
 
 
-</div>
-<!--登录结束-->
-
-
-<!--TODO 注册-->
-<div ng-controller="regCtrl" id="pageReg" data-role="page" >
-    <header data-role="header" data-position="fixed">
-        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
-        <h1>用户注册</h1>
-    </header>
-
-    <section data-role="content">
-
-        <form ng-submit="regSubmit()" data-ajax="false">
-            <ul data-role="listview" data-inset="true">
-                <li data-role="fieldcontain">
-                    <label for="regname">注册用户名:</label>
-                    <input type="text" name="name" ng-model="regprams.name" required id="regname" value=""  placeholder="请填写一个名字"/>
-                </li>
-                <li data-role="fieldcontain">
-                    <label for="psw">创建密码:</label>
-                    <input type="password" name="psw" ng-model="regprams.psw" required placeholder="请填写密码"/>
-                </li>
-                <li data-role="fieldcontain" ng-class="errorClass">
-                    <label for="psw">确认此密码:</label>
-                    <input type="password" name="psw2" ng-model="psw2" required placeholder="请再次填写密码"/>
-                    <span class="formErrotip">{{comparePsw(regprams.psw,psw2)}}</span>
-                </li>
-
-                <li data-role="fieldcontain" style="text-align: center">
-                <input ng-init="subBtn={isOff:false,submitText:'注册'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
-                </li>
-            </ul>
-        </form>
-
-    </section>
-
-
-</div>
-<!--注册结束-->
-
-
-
-<!--TODO 创建/修改店铺-->
-<div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
-    <header data-role="header" data-position="fixed">
-        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
-        <h1>店铺管理</h1>
-    </header>
-
-    <section data-role="content">
-
-        <form ng-submit="shopSubmit()" data-ajax="false">
-
-            <div data-role="fieldcontain">
-                <label for="s_shopname">店铺名:</label>
-                <input type="text" name="name" ng-model="shopPrams.shopname" required id="s_shopname" value=""  placeholder="请填写一个名字"/>
-            </div>
-            <div data-role="fieldcontain">
-                <fieldset id="area" data-role="controlgroup" data-type="horizontal">
-                    <legend>地区:</legend>
-                    <label for="s_sheng">省</label>
-                    <select ng-model="shopPrams.prov" ng-change="getCityList()" ng-options="p.provName for p in provList" id="s_sheng">
-                        <option selected="selected">请选择省</option>
-                    </select>
-                    <label ng-show="cityList" for="s_shi">市</label>
-                    <select ng-model="shopPrams.city" ng-show="cityList" id="s_shi" ng-options="c.cityName for c in cityList" >
-                        <option selected="selected">请选择市</option>
-                    </select>
-                </fieldset>
-            </div>
-            <div data-role="fieldcontain" >
-                <fieldset id="ind" data-role="controlgroup" data-type="horizontal">
-                    <legend>所属行业:</legend>
-                    <label for="s_hy">大行业</label>
-                    <select id="s_hy" required ng-model="shopPrams.ind1" ng-change="getin2List()" ng-options="il1.ind1Name for il1 in ind1List" >
-
-                    </select>
-                    <label for="s_xhy">小行业:</label>
-                    <select id="s_xhy" required ng-model="shopPrams.ind2" ng-show="ind2List" ng-model="shopPrams.ind2" ng-options="il2.ind2Name for il2 in ind2List">
-
-                    </select>
-                </fieldset>
-            </div>
-
-            <div data-role="fieldcontain" >
-                <label for="s_jj">简介:</label>
-                <textarea id="s_jj" ng-mode="shopPrams.introduction"></textarea>
-            </div>
-            <div data-role="fieldcontain" >
-                <label for="s_yy">经营范围:</label>
-                <textarea id="s_yy" ng-model="shopPrams.management" ></textarea>
-            </div>
-            <div data-role="fieldcontain" >
-                <label for="s_dz">公司地址:</label>
-                <input id="s_dz" ng-model="shopPrams.address" type="text" />
-            </div>
-
-            <div data-role="fieldcontain" >
-                <label for="s_contact">联系人:</label>
-                <input id="s_contact" ng-model="shopPrams.contact" type="text" />
-            </div>
-            <div data-role="fieldcontain" >
-                <label for="s_mail">电子邮箱:</label>
-                <input id="s_mail" required ng-model="shopPrams.email" type="email" />
-            </div>
-
-            <div data-role="fieldcontain">
-                <label for="s_phone">电话:</label>
-                <input id="s_phone" ng-model="shopPrams.tel" type="tel" />
-            </div>
-
-            <div data-role="fieldcontain" >
-                <label for="s_logo">Logo:</label>
-                <input id="s_logo" type="file" onchange="changeFile(this)" accept='image/*'/>
-            </div>
-
-            <div data-role="fieldcontain" style="text-align: center">
-                <input id="logoImg" ng-init="subBtn={isOff:false,submitText:'修改店铺'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
-            </div>
-        </form>
-
-    </section>
-
-
-</div>
-<!--创建/修改店铺结束-->
 
 
 
 
 <div id="popup" data-role="popup" class="ui-content" style="max-width:80%;display: none;">
-    <a ngm-vclick="closepop()" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+    <a data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
     <p id="poptext">pop</p>
 </div>
 
