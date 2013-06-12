@@ -7,6 +7,9 @@ app.factory('userInfo', function(localStorageService){
             }else{
                 return false;
             }
+        },
+        delete:function(){
+            localStorageService.remove('userInfo');
         }
     }
 
@@ -14,12 +17,12 @@ app.factory('userInfo', function(localStorageService){
 });
 
 
-app.factory('JSONP', function($http){
+app.factory('AJAX', function($http){
     /*url p bCall sCall eCall*/
       var send=function(o){
           if(typeof(o.bCall)=="function"){o.bCall();}
           $http({
-              method:"JSONP",
+              method: o.method || "JSONP",
               url: o.url+'&callback=JSON_CALLBACK',
               params: o.p || null
           }).success(function(data, status, headers, config){
@@ -75,15 +78,50 @@ app.factory('$pop', function($window){
 });
 
 
-function getimageBase64(input) {
+function getimageBinaryString(input,callback) {
+
     if (input.files && input.files[0]) {
+        var f=input.files[0];
+        if (!f.type.match('image.*')) {
+            return null;
+        }
         var reader = new FileReader();
         reader.onload = function (e) {
             //the only jQuery line.  All else is the File API.
             var imagecode=e.target.result;
-            template.logo=imagecode;
-            return imagecode;
+            if(typeof(callback)=="function"){
+                callback({
+                    code:imagecode,
+                    type: f.type,
+                    name: f.name,
+                    size: f.size
+                });
+            }
         }
-        reader.readAsBinaryString(input.files[0]);
+        reader.readAsBinaryString(f);
     }
 }
+
+function getimageDataURL(input,callback) {
+    if (input.files && input.files[0]) {
+        var f=input.files[0];
+        if (!f.type.match('image.*')) {
+            return null;
+        }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var imagecode=e.target.result;
+            if(typeof(callback)=="function"){
+                callback({
+                    code:imagecode,
+                    type: f.type,
+                    name: f.name,
+                    size: f.size
+                });
+            }
+        }
+        reader.readAsDataURL(f);
+    }
+
+}
+

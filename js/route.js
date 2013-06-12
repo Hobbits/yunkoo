@@ -8,18 +8,23 @@ app.config(function($locationProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
+        when('/account', {
+            templateUrl: 'account.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
         when('/shop', {
-            templateUrl: 'temp/shop.html',
+            templateUrl: 'shop.html',
             jqmOptions: {transition: 'slide'},
             onActivate:"preGet()",
             resolve:validateLogon
         }).
         when('/reg', {
-            templateUrl: 'temp/reg.html',
+            templateUrl: 'reg.html',
             jqmOptions: {transition: 'flip'}
         }).
         when('/login', {
-        templateUrl: 'temp/login.html',
+        templateUrl: 'login.html',
         jqmOptions: {transition: 'flip'},
         onActivate:"prefill()"
     }).

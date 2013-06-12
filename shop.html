@@ -11,15 +11,45 @@
 
 <!--TODO 创建/修改店铺-->
 <div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+    <div data-role="panel" class="myPanel" data-position="left" data-display="reveal">
+        <ul data-role="listview" data-inset="false" data-split-theme="h">
+            <li>
+                <a href="#!/">首页</a>
+            </li>
+            <li>
+                <a href="#!/account">账号管理</a>
+            </li>
+            <li class="activate">
+                <a>店铺管理</a>
+            </li>
+            <li>
+                <a>新消息</a>
+                <span class="ui-li-count">55</span>
+            </li>
+        </ul>
+
+    </div>
+
+
     <header data-role="header" data-position="fixed">
-        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
+        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
         <h1>店铺管理</h1>
     </header>
 
     <section data-role="content">
 
+
         <form ng-submit="shopSubmit()" data-ajax="false" src="">
 
+            <div data-role="fieldcontain" class="shoppic">
+                <label class="ui-input-text">选择照片:</label>
+                <a id="s_shoppic">
+                   <img src="images/add_photo.png"/>
+                </a>
+                <i></i>
+                <input class="noShow" data-role="none" id="s_shoppic_false" type="file" onchange="changeFile(this)" accept='image/*'/>
+            </div>
+            
             <div data-role="fieldcontain">
                 <label for="s_shopname">店铺名:</label>
                 <input type="text" name="name" ng-model="shopPrams.shopname" required id="s_shopname" value=""  placeholder="请填写一个名字"/>
@@ -78,11 +108,6 @@
                 <input id="s_phone" ng-model="shopPrams.tel" type="tel" />
             </div>
 
-            <div data-role="fieldcontain" >
-                <label for="s_logo">Logo:</label>
-                <input id="s_logo" type="file" onchange="changeFile(this)" accept='image/*'/>
-            </div>
-
             <div data-role="fieldcontain" style="text-align: center">
                 <input id="logoImg" ng-init="subBtn={isOff:false,submitText:'修改店铺'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
             </div>
@@ -93,5 +118,7 @@
 
 </div>
 <!--创建/修改店铺结束-->
+
+
 </body>
 </html>

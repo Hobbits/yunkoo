@@ -1,14 +1,42 @@
-form .formErrotip{
+img{
+    max-width: 100%;
+}
+.noShow{
+    visibility: hidden;
+    width: 0;height: 0;
+}
+
+
+.my .shoppic i{
+    padding-left: 1em;
+    display: inline-block;
+    vertical-align: top
+}
+.my .shoppic #s_shoppic{
+      position: relative;
+    width: 7.4em;height: 4.6em;
+    display: inline-block;
+}
+.my .shoppic #s_shoppic img{
+    max-height: 100%;max-width: 100%;
+}
+
+
+.my form .formErrotip{
     color: red;
     text-align: right;
     font-weight: normal;
     float: right;
 
 }
-.myPanel .ui-panel-inner{
+.my .myPanel .ui-panel-inner{
     margin-top: 1em;
     margin-right: 1em;
 }
-.myPanel .ui-li{
+ .my .myPanel .ui-li{
     background-image: none;
 }
+
+ .my .myPanel .activate .ui-icon-arrow-r{
+     background-color:#463535;
+ }

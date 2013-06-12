@@ -1,4 +1,4 @@
-app.controller("loginCtrl", function ($scope,$rootScope,$window,$timeout,$location,localStorageService,JSONP,$element,$pop) {
+app.controller("loginCtrl", function ($scope,$rootScope,$window,$timeout,$location,localStorageService,AJAX,$element,$pop) {
     $scope.prefill = function () {
         var userLogininfo = localStorageService.get('userLogininfo');
         if (userLogininfo) {
@@ -17,7 +17,7 @@ app.controller("loginCtrl", function ($scope,$rootScope,$window,$timeout,$locati
         };
 
         if (p.name && p.psw) {
-            JSONP({
+            AJAX({
                 url: appConfig.loginURL,
                 p: p,
                 bCall:function(){changeBtn("正在提交...",false);},

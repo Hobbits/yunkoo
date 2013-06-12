@@ -7,9 +7,10 @@
 
     <!--<link rel="apple-touch-icon-precomposed" href="icon.png">-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <meta name="application-name" content="云库商务" />
-
     <meta name="format-detection" content="telephone-no"/>
+
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="libs/jquery.mobile-1.3.1.css"/>
     <link rel="stylesheet" href="css/main.css"/>
@@ -35,19 +36,19 @@
 
 
 </head>
-<body ng-controller="rootC">
+<body class="my" ng-controller="rootC" ng-init="islogged=false">
 
 
 <!--TODO 首页-->
-<div id="pagemain" ng-init="loginBtnShow=true" ng-controller="mainCtrl" data-role="page">
+<div id="pagemain" ng-controller="mainCtrl" data-role="page">
 
-    <div data-role="panel" class="myPanel" id="mainPanel" data-position="left" data-display="reveal">
-        <ul data-role="listview" data-inset="false" data-split-theme="h">
-           <li>
-               <a>首页</a>
+    <div data-role="panel" class="myPanel" data-position="left" data-display="reveal">
+        <ul data-role="listview" data-inset="false">
+           <li class="activate">
+               <a >首页</a>
            </li>
             <li>
-                <a>账号管理</a>
+                <a href="#!/account">账号管理</a>
             </li>
             <li>
                 <a href="#!/shop">店铺管理</a>
@@ -62,10 +63,10 @@
 
 
     <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel('#mainPanel')" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
+        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
         <h1>云库商务</h1>
-        <a href="#!/login" ng-show="loginBtnShow" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
-        <a href="#!/acc" ng-show="!loginBtnShow" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
+        <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
+        <a href="#!/account" ng-show="islogged" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
     </header>
 
     <section data-role="content">
@@ -98,7 +99,7 @@
 
 
 <div id="popup" data-role="popup" class="ui-content" style="max-width:80%;display: none;">
-    <a data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+    <a ngm-vclick="closepop()" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
     <p id="poptext">pop</p>
 </div>
 
@@ -121,6 +122,9 @@
 <script src="js/controllers/loginCtrl.js"></script>
 <script src="js/controllers/regCtrl.js"></script>
 <script src="js/controllers/shopCtrl.js"></script>
+<script src="js/controllers/accCtrl.js"></script>
 
+
+<script src="js/other.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@ var appConfig={
 }
 
 var template={
-    logo:null
+    logo:{}
 }
 //
 //<script>

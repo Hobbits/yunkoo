@@ -22,12 +22,12 @@
                     <input type="text" name="name" ng-model="regprams.name" required id="regname" value=""  placeholder="请填写一个名字"/>
                 </li>
                 <li data-role="fieldcontain">
-                    <label for="psw">创建密码:</label>
-                    <input type="password" name="psw" ng-model="regprams.psw" required placeholder="请填写密码"/>
+                    <label for="reg_psw">创建密码:</label>
+                    <input type="password" id="reg_psw" ng-model="regprams.psw" required placeholder="请填写密码"/>
                 </li>
                 <li data-role="fieldcontain" ng-class="errorClass">
-                    <label for="psw2">确认此密码:</label>
-                    <input type="password" name="psw2" ng-model="psw2" required placeholder="请再次填写密码"/>
+                    <label for="reg_psw2">确认此密码:</label>
+                    <input type="password" id="reg_psw2" ng-model="psw2" required placeholder="请再次填写密码"/>
                     <span class="formErrotip">{{comparePsw(regprams.psw,psw2)}}</span>
                 </li>
 

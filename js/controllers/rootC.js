@@ -1,16 +1,15 @@
-app.controller("rootC", function ($scope,$history,$location,$pop) {
-    $scope.pannelIsOpen=false;
+app.controller("rootC", function ($scope,$history,$location,$pop,$rootScope) {
 
-    $scope.linkTo=function(str){
-        $location.url(str);
-    }
+//    $rootScope.linkTo=function(str){
+//        $location.url(str);
+//    }
     $scope.closepop=function(){
         $pop.close();
     }
 
 
-    $scope.openPanel=function(str){
-        $(str).panel("toggle");
+    $rootScope.openPanel=function(){
+        $.mobile.activePage.find(".myPanel").panel("toggle");
     }
 
 });

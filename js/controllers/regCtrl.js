@@ -1,4 +1,4 @@
-app.controller("regCtrl", function ($scope,$element,$window,JSONP,$location,localStorageService,$pop) {
+app.controller("regCtrl", function ($scope,$element,$window,AJAX,$location,localStorageService,$pop) {
     $scope.comparePsw=function(a,b){
         if(a && b && a!=b){
             return "两次输入的密码不一致，请核对"
@@ -17,7 +17,7 @@ app.controller("regCtrl", function ($scope,$element,$window,JSONP,$location,loca
         };
 
 
-        JSONP({
+        AJAX({
             url: appConfig.regURL,
             p: regp,
             bCall:function(){changeBtn("正在提交...",false);},
