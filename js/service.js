@@ -10,10 +10,7 @@ app.factory('shopInfo', function(localStorageService,userInfo,AJAX,$waitDialog){
                             $waitDialog.show("正在获取已有的店铺信息...");
                         },
                         sCall:function(d){
-                            if(d==-1){return d}/*没店铺*/
-                            if(typeof(callback)=="function"){
-                                callback(d);
-                            }
+                              if(typeof(callback)=="function"){callback(d);}
                         },
                         cCall:function(){
                             $waitDialog.hide();

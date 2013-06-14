@@ -29,8 +29,9 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
             $scope.shopPrams['contact']= d.shop_contact;
             $scope.shopPrams['email']= d.shop_email;
             $scope.shopPrams['tel']= d.telphone;
-            $("#s_shoppic img").prop({"src": appConfig.logobaseURL+d.shop_logo})
-
+            if(d.shop_logo && d.shop_logo.length>2){
+                $("#s_shoppic img").prop({"src": appConfig.logobaseURL+d.shop_logo})
+            }
             var provIndex=getListIndex($scope.provList,"provID",d.shop_province);
             if(provIndex>0){
                 $scope.shopPrams.prov = $scope.provList[provIndex];
@@ -43,28 +44,6 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
                 $scope.getin2List(d.shop_categories);
             }
         };
-
-
-//        var getShopInfo=function(){
-//            /*获取已经存在服务器上的店铺信息*/
-//            AJAX(
-//                {
-//                    url:appConfig.shop_get,
-//                    p:{'shopid':userInfo.get().userid},
-//                    bCall:function(){
-//                        $waitDialog.show("正在获取已有的店铺信息...");
-//                    },
-//                    sCall:function(d){
-//
-//
-//                    },
-//                    cCall:function(){
-//                        $waitDialog.hide();
-//                    }
-//                }
-//            );
-//        };
-
 
 
 
