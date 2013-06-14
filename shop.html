@@ -17,13 +17,10 @@
                 <a href="#!/">首页</a>
             </li>
             <li>
-                <a href="#!/account">账号管理</a>
-            </li>
-            <li class="activate">
-                <a>店铺管理</a>
+                <a href="#!/account">管理中心</a>
             </li>
             <li>
-                <a>新消息</a>
+                <a href="#!/chatlist">新消息</a>
                 <span class="ui-li-count">55</span>
             </li>
         </ul>
@@ -34,12 +31,22 @@
     <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
         <h1>店铺管理</h1>
+        <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+            <button class="fakeSubmit" data-theme="c" data-role="button">提交</button>
+            <a data-rel="back" data-theme="e" data-role="button">取消</a>
+        </div>
     </header>
 
     <section data-role="content">
 
 
         <form ng-submit="shopSubmit()" data-ajax="false" src="">
+            <div data-role="none" class="noShow">
+                <input class="trueSubmit" data-role="none" data-theme="b" data-inline="true" id="shopSub" ng-init="subBtn={isOff:false,submitText:'提交'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+                <a data-role="none" data-inline="true" data-role="button" href="#!/account">取消</a>
+
+            </div>
+
 
             <div data-role="fieldcontain" class="shoppic">
                 <label class="ui-input-text">选择照片:</label>
@@ -51,7 +58,7 @@
             </div>
             
             <div data-role="fieldcontain">
-                <label for="s_shopname">店铺名:</label>
+                <label for="s_shopname">*店铺名:</label>
                 <input type="text" name="name" ng-model="shopPrams.shopname" required id="s_shopname" value=""  placeholder="请填写一个名字"/>
             </div>
             <div data-role="fieldcontain">
@@ -59,7 +66,7 @@
                     <legend>地区:</legend>
                     <label for="s_sheng">省</label>
                     <select ng-model="shopPrams.prov" ng-change="getCityList()" ng-options="p.provName for p in provList" id="s_sheng">
-                        <option selected="selected">请选择省</option>
+                        <option ng-value="" selected="selected">请选择省</option>
                     </select>
                     <label ng-show="cityList" for="s_shi">市</label>
                     <select ng-model="shopPrams.city" ng-show="cityList" id="s_shi" ng-options="c.cityName for c in cityList" >
@@ -99,7 +106,7 @@
                 <input id="s_contact" ng-model="shopPrams.contact" type="text" />
             </div>
             <div data-role="fieldcontain" >
-                <label for="s_mail">电子邮箱:</label>
+                <label for="s_mail">*电子邮箱:</label>
                 <input id="s_mail" required ng-model="shopPrams.email" type="email" />
             </div>
 
@@ -108,9 +115,7 @@
                 <input id="s_phone" ng-model="shopPrams.tel" type="tel" />
             </div>
 
-            <div data-role="fieldcontain" style="text-align: center">
-                <input id="logoImg" ng-init="subBtn={isOff:false,submitText:'修改店铺'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
-            </div>
+
         </form>
 
     </section>

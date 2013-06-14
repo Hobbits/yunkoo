@@ -2,12 +2,24 @@
 var app = angular.module("app", []);
 
 
-app.config(function($locationProvider) {
+app.config(function($locationProvider,$httpProvider) {
     $locationProvider.html5Mode(false);
+//    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 app.config(function($routeProvider) {
     $routeProvider.
+        when('/addgood', {
+            templateUrl: 'addgood.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
+        when('/chatlist', {
+            templateUrl: 'chatlist.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
         when('/account', {
             templateUrl: 'account.html',
             jqmOptions: {transition: 'slide'},
@@ -44,8 +56,7 @@ var validateLogon = {
         if(userInfo.get()){
             deferred.resolve(userInfo.get().userid);
         }else{
-            //deferred.reject();
-            deferred.resolve();
+            deferred.reject();
         }
 
 

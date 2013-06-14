@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加商品</title>
+</head>
+<body>
+
+
+
+
+<!--TODO 添加/修改产品-->
+<div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+    <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
+        <ul data-role="listview" data-inset="false" data-split-theme="h">
+            <li>
+                <a href="#!/">首页</a>
+            </li>
+            <li>
+                <a href="#!/account">管理中心</a>
+            </li>
+            <li>
+                <a href="#!/chatlist">新消息</a>
+                <span class="ui-li-count">55</span>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <header data-role="header" data-position="fixed">
+        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
+        <h1>添加商品</h1>
+        <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+            <button class="fakeSubmit" data-theme="c" data-role="button">提交</button>
+            <a data-rel="back" data-theme="e" data-role="button">取消</a>
+        </div>
+    </header>
+
+    <section data-role="content">
+
+
+        <form ng-submit="goodSubmit()" data-ajax="false" src="">
+
+            <div data-role="none" class="noShow">
+                <input class="trueSubmit" data-role="none" data-inline="true" id="shopSub" ng-init="subBtn={isOff:false,submitText:'提交'}" type="submit" ng-disabled="subBtn.isOff" value="{{subBtn.submitText}}" />
+                <a data-role="none" data-inline="true" data-role="button" href="#!/account">取消</a>
+            </div>
+
+            <div data-role="fieldcontain" class="shoppic">
+                <label class="ui-input-text">添加照片:</label>
+                <a id="fakeAddgoodpic">
+                    <img src="images/add_photo.png"/>
+                </a>
+                <i></i>
+                <input class="noShow" data-role="none" id="trueAddgoodpic" type="file" onchange="changeFile(this)" accept='image/*'/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodname">*产品名:</label>
+                <input type="text" name="name" ng-model="goodPrams.name" required id="s_goodname" value=""  placeholder="请填写一个名字"/>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="s_shopid">所属店铺ID:</label>
+                <input type="text" name="name" ng-model="goodPrams.shopid" required id="s_shopid" readonly/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodcat">所属分类</label>
+                <input type="text" name="name" ng-model="goodPrams.goodcat" id="s_goodcat"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodintro">产品简介</label>
+                <input type="text" name="name" ng-model="goodPrams.introduction" id="s_goodintro"/>
+            </div>
+
+            <div data-role="fieldcontain">
+            <label for="s_goodprice">单价</label>
+            <input type="text" name="name" ng-model="goodPrams.price" id="s_goodprice"/>
+        </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodpic">产品缩略图:</label>
+                <input type="file" name="name" id="s_goodpic"/>
+            </div>
+
+
+
+        </form>
+
+    </section>
+
+
+</div>
+<!--创建/修改商品结束-->
+
+
+</body>
+</html>

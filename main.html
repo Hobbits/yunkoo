@@ -36,7 +36,7 @@
 
 
 </head>
-<body class="my" ng-controller="rootC" ng-init="islogged=false">
+<body class="my" ng-controller="rootC">
 
 
 <!--TODO 首页-->
@@ -48,13 +48,10 @@
                <a >首页</a>
            </li>
             <li>
-                <a href="#!/account">账号管理</a>
+                <a href="#!/account">管理中心</a>
             </li>
             <li>
-                <a href="#!/shop">店铺管理</a>
-            </li>
-            <li>
-                <a>新消息</a>
+                <a href="#!/chatlist">新消息</a>
                 <span class="ui-li-count">55</span>
             </li>
         </ul>
@@ -65,8 +62,8 @@
     <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
         <h1>云库商务</h1>
-        <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
-        <a href="#!/account" ng-show="islogged" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
+        <a href="#!/login" ng-show="islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
+        <a href="#!/account" ng-show="!islogged" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
     </header>
 
     <section data-role="content">
@@ -78,15 +75,16 @@
             <!--</div>-->
 
     </section>
-    <div data-role="footer" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#" data-icon="grid">Summary</a></li>
-                <li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>
-                <li><a href="#!/shop" data-icon="gear">管理店铺</a></li>
-            </ul>
-        </div><!-- /navbar -->
-    </div><!-- /footer -->
+
+    <!--<div data-role="footer" data-position="fixed">-->
+        <!--<div data-role="navbar">-->
+            <!--<ul>-->
+                <!--<li><a href="#" data-icon="grid">Summary</a></li>-->
+                <!--<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>-->
+                <!--<li><a href="#!/shop" data-icon="gear">管理店铺</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 <!--首页结束-->
 
@@ -123,7 +121,8 @@
 <script src="js/controllers/regCtrl.js"></script>
 <script src="js/controllers/shopCtrl.js"></script>
 <script src="js/controllers/accCtrl.js"></script>
-
+<script src="js/controllers/chatlistCtrl.js"></script>
+<script src="js/controllers/addgoodCtrl.js"></script>
 
 <script src="js/other.js"></script>
 </body>

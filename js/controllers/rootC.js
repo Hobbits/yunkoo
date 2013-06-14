@@ -1,4 +1,4 @@
-app.controller("rootC", function ($scope,$history,$location,$pop,$rootScope) {
+app.controller("rootC", function ($scope,userInfo,$history,$location,$pop,$rootScope) {
 
 //    $rootScope.linkTo=function(str){
 //        $location.url(str);

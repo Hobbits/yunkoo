@@ -3,7 +3,9 @@ var appConfig={
     regURL:"http://192.168.1.111/shop/appdo.php?act=appregister",
     shop_newShop:"http://192.168.1.111/shop/appdo.php?act=appshopcreate",/*修改店铺*/
     shop_area:"http://192.168.1.111/shop/appdo.php?act=applocation",/*地区获取*/
-    shop_ind:"http://192.168.1.111/shop/appdo.php?act=appbusiness"/*所在行业*/
+    shop_ind:"http://192.168.1.111/shop/appdo.php?act=appbusiness",/*所在行业*/
+    shop_get:"http://192.168.1.111/shop/appdo.php?act=appshopinfo",/*获取店铺信息*/
+    logobaseURL:"http://192.168.1.111/shop/"
 
 }
 

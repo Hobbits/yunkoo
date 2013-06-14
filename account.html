@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>账号管理</title>
+    <title>管理中心</title>
 </head>
 <body>
 
@@ -14,13 +14,11 @@
                 <a href="#!/">首页</a>
             </li>
             <li class="activate">
-                <a>账号管理</a>
+                <a>管理中心</a>
             </li>
+
             <li>
-                <a  href="#!/shop">店铺管理</a>
-            </li>
-            <li>
-                <a>新消息</a>
+                <a href="#!/chatlist">新消息</a>
                 <span class="ui-li-count">55</span>
             </li>
         </ul>
@@ -30,7 +28,7 @@
 
     <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
-        <h1>会员中心</h1>
+        <h1>管理中心</h1>
 
     </header>
 
@@ -41,13 +39,24 @@
             <img src="images/7-1.jpg">
             <h2>张三</h2>
             <p>等级：5</p>
+            <div id="logoutBtn">
+            <a data-role="none" ngm-vclick="logout()">
+                <img src="images/logout.png"/>
+            </a>
+            </div>
         </li>
         </ul>
         <ul data-role="listview" data-inset="true" data-divider-theme="d">
 
-            <li data-role="list-divider">行业信息</li>
-            <li><a href="#">经营范围</a></li>
-            <li><a href="#">经营地区</a></li>
+            <li data-role="list-divider">行业</li>
+            <li><a href="#!/shop">店铺管理</a></li>
+            <li><a href="#!/addgood">产品管理</a></li>
+            <li><a href="#">订单管理</a></li>
+            <li><a href="#">自助推广</a></li>
+
+            <li data-role="list-divider">交流</li>
+            <li><a href="#!/chatlist">问询记录</a></li>
+            <li><a href="#">附近商户</a></li>
         </ul>
     </section>
 
