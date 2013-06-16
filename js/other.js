@@ -20,3 +20,9 @@ var changeFile=function(target,typestring){
     }
 }
 
+$(document).on("touchmove",function(evt){
+    evt.preventDefault();
+});
+$(document).on("touchmove",".scrollable",function(evt){
+    evt.stopPropagation();
+});
