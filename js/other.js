@@ -26,3 +26,7 @@ $(document).on("touchmove",function(evt){
 $(document).on("touchmove",".scrollable",function(evt){
     evt.stopPropagation();
 });
+
+$(document).on("swiperight","div:jqmData(role='page')",function(evt){
+    $.mobile.activePage.find(".myPanel").panel("open");
+});
