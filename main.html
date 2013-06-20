@@ -40,7 +40,7 @@
 
 
 <!--TODO 首页-->
-<div id="pagemain" ng-controller="mainCtrl" data-role="page">
+<div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pageshow="pre()">
 
     <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
         <ul data-role="listview" data-inset="false">
@@ -60,7 +60,7 @@
 
 
     <header data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
+        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
         <h1>云库商务</h1>
         <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
         <a href="#!/account" ng-show="islogged" class="ui-btn-right" data-icon="gear" data-role="button">账户管理</a>
@@ -68,7 +68,7 @@
 
     <section data-role="content">
         {{mainpageContent}}
-
+         <a href="#!/gooddetail/15/gallery">Gallery!!</a>
 
             <!--<div ngm-if="pager.hasMore">-->
                 <!--<a href="#" ngm-vclick="pager.loadMore()" data-role="button">Load more</a>-->
@@ -112,8 +112,8 @@
 <script src="js/route.js"></script>
 
 <script src="js/directives.js"></script>
-<script src="js/localStorageService.js"></script>
-<script src="js/service.js"></script>
+<script src="js/services/localStorageService.js"></script>
+<script src="js/services/service.js"></script>
 
 <script src="js/controllers/rootC.js"></script>
 <script src="js/controllers/mainCtrl.js"></script>
@@ -123,6 +123,9 @@
 <script src="js/controllers/accCtrl.js"></script>
 <script src="js/controllers/chatlistCtrl.js"></script>
 <script src="js/controllers/addgoodCtrl.js"></script>
+<script src="js/controllers/goodslistCtrl.js"></script>
+<script src="js/controllers/gooddetailCtrl.js"></script>
+<script src="js/controllers/uploadMoreCtrl.js"></script>
 
 <script src="js/other.js"></script>
 </body>

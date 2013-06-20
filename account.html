@@ -7,7 +7,7 @@
 <body>
 
 <!--TODO   账号-->
-<div ng-controller="accCtrl" id="pagelogin" data-role="page">
+<div ng-controller="accCtrl" id="pagelogin" data-role="page" ngm-pageshow="preRun()">
     <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
         <ul data-role="listview" data-inset="false" data-split-theme="h">
             <li>
@@ -27,7 +27,7 @@
 
 
     <header data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
+        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
         <h1>管理中心</h1>
 
     </header>
@@ -37,7 +37,7 @@
         <li  data-inset="true">
 
             <img src="images/7-1.jpg">
-            <h2>{{}}</h2>
+            <h2>{{uInfo.username}}</h2>
             <p>等级：无敌</p>
             <div id="logoutBtn">
             <a data-role="none" ngm-vclick="logout()">
@@ -50,7 +50,7 @@
 
             <li data-role="list-divider">行业</li>
             <li><a href="#!/shop">店铺管理</a></li>
-            <li><a href="#!/addgood">产品管理</a></li>
+            <li><a href="#!/goods">产品管理</a></li>
             <li><a href="#">订单管理</a></li>
             <li><a href="#">自助推广</a></li>
 

@@ -10,7 +10,7 @@
 
 
 <!--TODO 添加/修改产品-->
-<div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pagebeforeshow="" ngm-swipeleft="">
+<div ng-controller="addgoodCtrl" id="pageshop" data-role="page" ngm-pageshow="prefill()">
     <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
         <ul data-role="listview" data-inset="false" data-split-theme="h">
             <li>
@@ -29,12 +29,9 @@
 
 
     <header data-role="header" data-position="fixed" data-tap-toggle="false">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button" data-iconpos="notext">菜单</a>
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-theme="e" data-icon="delete" data-role="button">取消</a>
         <h1>添加商品</h1>
-        <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-            <button class="fakeSubmit" data-theme="c" data-role="button">提交</button>
-            <a data-rel="back" data-theme="e" data-role="button">取消</a>
-        </div>
+        <button class="fakeSubmit ui-btn-right" data-theme="b" data-icon="check" data-role="button">提交</button>
     </header>
 
     <section data-role="content">
@@ -47,27 +44,35 @@
                 <a data-role="none" data-inline="true" data-role="button" href="#!/account">取消</a>
             </div>
 
-            <div data-role="fieldcontain" class="shoppic">
+            <div data-role="fieldcontain" class="shoppic goodpicList">
                 <label class="ui-input-text">添加照片:</label>
                 <a id="fakeAddgoodpic">
                     <img src="images/add_photo.png"/>
                 </a>
                 <i></i>
-                <input class="noShow" data-role="none" id="trueAddgoodpic" type="file" onchange="changeFile(this)" accept='image/*'/>
+                <input class="noShow" data-role="none" id="trueAddgoodpic" type="file" ng-model="file" ng-change="changeGoodlogo()" accept='image/*'/>
             </div>
 
             <div data-role="fieldcontain">
                 <label for="s_goodname">*产品名:</label>
                 <input type="text" name="name" ng-model="goodPrams.name" required id="s_goodname" value=""  placeholder="请填写一个名字"/>
             </div>
-            <div data-role="fieldcontain">
-                <label for="s_shopid">所属店铺ID:</label>
-                <input type="text" name="name" ng-model="goodPrams.shopid" required id="s_shopid" readonly/>
+            <div data-role="none" class="noShow">
+                <input data-role="none" type="text" ng-model="goodPrams.shopid" required readonly/>
             </div>
 
             <div data-role="fieldcontain">
-                <label for="s_goodcat">所属分类</label>
-                <input type="text" name="name" ng-model="goodPrams.goodcat" id="s_goodcat"/>
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <legend>所属类别:</legend>
+                <label for="g_cat1">一级</label>
+                <select id="g_cat1" required ng-model="cat1" ng-change="getcat2List($event)" ng-options="cat1.cat_name for cat1 in cat1List" >
+
+                </select>
+                <label for="g_cat2">二级:</label>
+                <select id="g_cat2" required ng-model="cat2" ng-show="cat2" ng-options="cat2.cat_name for cat2 in cat2List">
+
+                </select>
+                    </fieldset>
             </div>
 
             <div data-role="fieldcontain">
@@ -81,8 +86,18 @@
         </div>
 
             <div data-role="fieldcontain">
-                <label for="s_goodpic">产品缩略图:</label>
-                <input type="file" name="name" id="s_goodpic"/>
+                <label for="s_goodtel">联系电话:</label>
+                <input ng-model="goodPrams.telphone" type="tel" id="s_goodtel"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodadd">联系地址:</label>
+                <input ng-model="goodPrams.address" type="text" id="s_goodadd"/>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="s_goodmail">联系邮件:</label>
+                <input ng-model="goodPrams.email" type="text" id="s_goodmail"/>
             </div>
 
 

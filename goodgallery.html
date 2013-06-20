@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>商品详情</title>
+</head>
+<body>
+<!--TODO 商品详情-->
+<div ng-controller="gooddetailCtrl" id="pagegoodGallery" ngm-pageshow="getitemInfo()">
+    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
+        <h1>商品图库</h1>
+        <a ng-href="#!/uploadmore/{{goodid}}" class="ui-btn-right" data-icon="plus" data-role="button">添加图片</a>
+        <div data-role="navbar">
+            <ul>
+                <li><a ng-href="#!/gooddetail/{{goodid}}">详情</a></li>
+                <li><a class="ui-btn-active">图片集</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section data-role="content">
+
+        <ul data-role="none" class="gallery">
+            <li><a style="background-image:url('images/temp/1.jpeg');"> </a></li>
+            <li><a style="background-image:url('images/temp/2.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/3.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/4.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/5.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/6.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/7.jpg');"> </a></li>
+            <li><a style="background-image:url('images/temp/8.gif');"> </a></li>
+
+        </ul>
+
+
+
+
+    </section>
+
+
+</div>
+<!--商品详情结束-->
+
+</body>
+</html>

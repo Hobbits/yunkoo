@@ -1,6 +1,7 @@
 app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageService,userInfo,shopInfo,$waitDialog,$pop,$timeout){
     $scope.provList={};$scope.ind1list={};
     $scope.shopPrams={};
+    localStorageService.remove("shopPic");
 
     var getListIndex=function(arr,idname,id){
         for(index in arr){
@@ -15,33 +16,34 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
 
 
         var aftergetShopinfo=function(d){
-            console.log(d);
-            if(d==-1){return}/*没店铺*/
+            if(d.status!="ok"){return}/*没店铺*/
 
 
             /*TODO 预先给表单赋值*/
-            shopInfo.set(d);
 
-            $scope.shopPrams['shopname']= d.shop_name;
-            $scope.shopPrams['introduction']= d.shop_intro;
-            $scope.shopPrams['management']= d.shop_management;
-            $scope.shopPrams['address']= d.shop_address;
-            $scope.shopPrams['contact']= d.shop_contact;
-            $scope.shopPrams['email']= d.shop_email;
-            $scope.shopPrams['tel']= d.telphone;
-            if(d.shop_logo && d.shop_logo.length>2){
-                $("#s_shoppic img").prop({"src": appConfig.logobaseURL+d.shop_logo})
+            shopInfo.set(d.result);
+            $scope.shopPrams['shopname']= d.result.shop_name;
+            $scope.shopPrams['introduction']= d.result.shop_intro;
+            $scope.shopPrams['management']= d.result.shop_management;
+            $scope.shopPrams['address']= d.result.shop_address;
+            $scope.shopPrams['contact']= d.result.shop_contact;
+            $scope.shopPrams['email']= d.result.shop_email;
+            $scope.shopPrams['tel']= d.result.telphone;
+            if(d.result.shop_logo && d.result.shop_logo.length>2){
+                $("#s_shoppic img").prop({"src": appConfig.logobaseURL+d.result.shop_logo})
             }
-            var provIndex=getListIndex($scope.provList,"provID",d.shop_province);
+
+            var provIndex=getListIndex($scope.provList,"provID",d.result.shop_province);
+
             if(provIndex>0){
                 $scope.shopPrams.prov = $scope.provList[provIndex];
-                $scope.getCityList(d.shop_city);
+                $scope.getCityList(d.result.shop_city);
             }
 
-            var mcatIndex=getListIndex($scope.ind1List,"ind1ID",d.shop_maincategories);
+            var mcatIndex=getListIndex($scope.ind1List,"ind1ID",d.result.shop_maincategories);
             if(mcatIndex>=0){
                 $scope.shopPrams.ind1 = $scope.ind1List[mcatIndex];
-                $scope.getin2List(d.shop_categories);
+                $scope.getin2List(d.result.shop_categories);
             }
         };
 
@@ -148,27 +150,44 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
     }
 
 
+    $scope.changeShoplogo=function(){
+        var target=$("#s_shoppic_false")[0];
+        getimageDataURL(target,function(o){
+            localStorageService.add("shopPic",o);
+            $("#s_shoppic img")[0].src= o.code;
+            $(".shoppic i").html(o.size/1000+"KB");
+        })
+    }
+
+
     $scope.shopSubmit=function(){
         var logoImg=document.getElementById("logoImg");
 
         var  shopPrams=$scope.shopPrams;
+        var picPrams=localStorageService.get("shopPic");
+        if(!picPrams){
+            picPrams={};
+            picPrams.code=null;
+            picPrams.imageType=null;
+        }
+
+
 
         var p = {
             userid:userInfo.get().userid,
             shopname: shopPrams.shopname,
             email: shopPrams.email,
             contact: shopPrams.contact,
-            province: shopPrams.prov.provID || null,
-            city: shopPrams.city.cityID || null,
+            province: shopPrams.prov.provID,
+            city: shopPrams.city.cityID,
             categories: shopPrams.ind2.ind2ID,
             management: shopPrams.management,
             introduction: shopPrams.introduction,
             tel: shopPrams.tel,
-            logo: window.template.logo.u || null,
-            imageType:window.template.logo.type ||null,
+            logo: picPrams.code,
+            imageType:picPrams.imageType,
             address: shopPrams.address
         };
-        console.log(p);
 
 //        $http
 //            .post(appConfig.shop_newShop, {})
@@ -193,8 +212,6 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
                 if(typeof(d)=="object"){
                     $pop.open( '提交成功!');
                     shopInfo.set(d);
-
-                    template.logo={};
                     $timeout(function(){
                         $pop.close();
                         $location.path('/');

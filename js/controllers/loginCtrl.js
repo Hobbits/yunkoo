@@ -1,4 +1,4 @@
-app.controller("loginCtrl", function ($scope,$rootScope,$window,$timeout,$location,localStorageService,AJAX,$element,$pop) {
+app.controller("loginCtrl", function ($scope,$rootScope,$window,shopInfo,$timeout,$location,localStorageService,AJAX,$element,$pop) {
     $scope.prefill = function () {
         var userLogininfo = localStorageService.get('userLogininfo');
         if (userLogininfo) {
@@ -27,6 +27,7 @@ app.controller("loginCtrl", function ($scope,$rootScope,$window,$timeout,$locati
                         localStorageService.add("userInfo",d);
                         changeBtn("登录成功...",false);
                         $timeout(function(){
+                            shopInfo.delete();
                             $location.path('/');
 
                         },500);
