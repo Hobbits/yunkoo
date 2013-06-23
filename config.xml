@@ -6,15 +6,19 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>PhoneGap Example</name>
+    <name>Yunkoo</name>
 
     <description>
         An example for phonegap build docs.
     </description>
 
-    <author email="support@phonegap.com">
+    <author email="admin@regou.me">
         regou
     </author>
+    <icon src="favicon.jpg"/>
+    <gap:splash src="images/intro.jpg" />
+
+    <preference name="webviewboune" value="false"/>
     <access origin="*" />
 
 </widget>
