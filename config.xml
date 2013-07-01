@@ -21,7 +21,7 @@
 
     <icon src="favicon.jpg"/>
     <!--<splash src="images/intro.jpg" />-->
-    <gap:splash src="splash.png" />
+    <splash src="splash.png" />
 
 
     <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
