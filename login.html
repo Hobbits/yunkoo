@@ -9,13 +9,17 @@
 
 <!--TODO 登录-->
 <div ng-controller="loginCtrl" id="pagelogin" data-role="page" ngm-pageshow="prefill()">
-    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+    <header data-role="header" data-position="fixed">
         <a href="#!/" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>用户登录</h1>
         <a href="#!/reg" class="ui-btn-right" data-icon="edit" data-role="button">注册</a>
     </header>
 
     <section data-role="content">
+
+        <div ng-class="failedInfo.textboxClass">
+            {{failedInfo.text}}
+        </div>
 
         <form ng-submit="submit()" data-ajax="false" src="">
             <div data-role="fieldcontain">

@@ -1,5 +1,9 @@
-app.controller("loginCtrl", function ($scope,$rootScope,$window,shopInfo,$timeout,$location,localStorageService,AJAX,$element,$pop) {
+app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,$window,myshopInfo,$timeout,$location,localStorageService,AJAX,$element,$pop) {
     $scope.prefill = function () {
+        if(angular.isDefined($routeParams.code) && $routeParams.code==401){
+            $scope.failedInfo=textStatus("error","帐号认证失败，请重新登录");
+        }
+
         var userLogininfo = localStorageService.get('userLogininfo');
         if (userLogininfo) {
             $scope.userprams = userLogininfo;
@@ -27,7 +31,7 @@ app.controller("loginCtrl", function ($scope,$rootScope,$window,shopInfo,$timeou
                         localStorageService.add("userInfo",d);
                         changeBtn("登录成功...",false);
                         $timeout(function(){
-                            shopInfo.delete();
+                            myshopInfo.delete();
                             $location.path('/');
 
                         },500);

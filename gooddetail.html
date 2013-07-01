@@ -7,20 +7,38 @@
 <body>
 <!--TODO 商品详情-->
 <div ng-controller="gooddetailCtrl" id="pagegoodDetail" data-role="page" ngm-pageshow="getitemInfo()">
-    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+    <header data-role="header" data-position="fixed">
         <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>商品详情</h1>
-        <a ng-href="#!/uploadmore/{{goodid}}" class="ui-btn-right" data-icon="plus" data-role="button">添加图片</a>
+        <a ngm-if="getGoodowner()" ng-href="#!/uploadmore/{{getgoodid()}}" class="ui-btn-right" data-icon="plus" data-role="button">添加图片</a>
         <div data-role="navbar">
             <ul>
                 <li><a class="ui-btn-active">详情</a></li>
-                <li><a ng-href="#!/gooddetail/{{goodid}}/gallery">图片集</a></li>
+                <li><a templarlink="#!/gooddetail/{{getgoodid()}}/gallery">图片集</a></li>
             </ul>
         </div><!-- /navbar -->
 
     </header>
 
     <section data-role="content">
+
+        <ul data-role="listview" data-inset="false">
+            <li>
+                <img ng-src="{{logobaseURL+goodInfo.imgs[0].img_thumb}}"  />
+                <h2>{{goodInfo.name}}</h2>
+
+            </li>
+            <li>单价：{{goodInfo.price}}元</li>
+            <li>简介：{{goodInfo.introduction}}</li>
+
+            <li>创建时间：{{goodInfo.addtime}}</li>
+            <li>联系人：{{goodInfo.contact}}</li>
+            <li>地址：{{goodInfo.address}}</li>
+            <li>联系电话：{{goodInfo.telphone}}</li>
+        </ul>
+
+        <a  style="margin-top: 1em"
+                ng-href="#!/order/{{getgoodid()}}/1" data-theme="c" data-role="button">提交订单</a>
 
     </section>
 

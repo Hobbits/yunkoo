@@ -1,10 +1,10 @@
-app.controller("goodslistCtrl", function ($scope,AJAX,$location,userInfo,shopInfo,$pop,$waitDialog) {
+app.controller("goodslistCtrl", function ($scope,AJAX,$location,userInfo,myshopInfo,$pop,$waitDialog) {
     $scope.logobaseURL=appConfig.logobaseURL;
 
 
     $scope.preget=function(){
 
-        var shopid=shopInfo.get("shop_id");
+        var shopid=myshopInfo.get("shop_id");
         if(shopid){
             AJAX({
                 bCall:function(){
@@ -14,9 +14,9 @@ app.controller("goodslistCtrl", function ($scope,AJAX,$location,userInfo,shopInf
                 p:{'shopid':shopid},
                 sCall: function (d) {
                     if(d.status=="ok"){
-                        var data= d.result;
+                        var data= d.result.goodslist;
                         if(!data.goods_thumb){
-                            $scope.default_thumb=shopInfo.get("shop_logo");
+                            $scope.default_thumb=myshopInfo.get("shop_logo");
                         }
                         console.log(data);
                         $scope.goodList= data;

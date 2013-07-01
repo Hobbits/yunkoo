@@ -16,9 +16,20 @@
         regou
     </author>
     <icon src="favicon.jpg"/>
-    <gap:splash src="images/intro.jpg" />
+    <splash src="images/intro.jpg" />
 
+
+    <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
+
+    <!--Android-->
+    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+
+    <!--iOS-->
+    <plugin name="Geolocation" value="CDVLocation" />
     <preference name="webviewboune" value="false"/>
+
+
+
     <access origin="*" />
 
 </widget>

@@ -9,4 +9,13 @@ app.controller("mainCtrl", function ($scope,$location,localStorageService,userIn
             $scope.mainpageContent="你还没登录。"
         }
     };
+
+    $scope.mainsearch=function(){
+        var key=$scope.mainSearch;
+        if(key){
+            var str=JSON.stringify({'k':key});
+             $location.path("/search/"+str)
+        }
+    }
+
 });

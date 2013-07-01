@@ -3,7 +3,6 @@ app.controller('uploadmoreCtrl', function($scope,$pop,$element,AJAX,$waitDialog,
         var target=$("#moreimgInput")[0];
         getimageDataURL(target,function(o){
             localStorageService.add("moregoodPic",o);
-            console.log(o);
             $(".imgContainer img")[0].src= o.code;
 
             if(o.size>=300000){

@@ -10,9 +10,17 @@
 
 
 <!--TODO 创建/修改店铺-->
+
 <div ng-controller="shopCtrl" id="pageshop" data-role="page" ngm-pageshow="preGet()">
+
+    <!--字体样式-->
+    <link rel="stylesheet" href="css/font/css/fontello.css"/>
+
+
+
     <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
-        <ul data-role="listview" data-inset="false" data-split-theme="h">
+        <h1><img src="images/logo.png"/></h1>
+        <ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">
             <li>
                 <a href="#!/">首页</a>
             </li>
@@ -28,7 +36,7 @@
     </div>
 
 
-    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+    <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
         <h1>店铺管理</h1>
         <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
@@ -90,15 +98,19 @@
 
             <div data-role="fieldcontain" >
                 <label for="s_jj">简介:</label>
-                <textarea id="s_jj" ng-mode="shopPrams.introduction"></textarea>
+                <textarea id="s_jj" ng-model="introduction"></textarea>
             </div>
             <div data-role="fieldcontain" >
                 <label for="s_yy">经营范围:</label>
                 <textarea id="s_yy" ng-model="shopPrams.management" ></textarea>
             </div>
-            <div data-role="fieldcontain" >
+            <div data-role="fieldcontain" id="shopLocation">
                 <label for="s_dz">公司地址:</label>
-                <input id="s_dz" ng-model="shopPrams.address" type="text" />
+                    <input id="s_dz" ng-model="shopPrams.address" type="text" />
+                    <a ng-click="getGeo($event)" class="locationBtn {{geovalid}}" data-inline="true" data-role="none">
+                        <i class="icon-location"></i>
+                    </a>
+
             </div>
 
             <div data-role="fieldcontain" >

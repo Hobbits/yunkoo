@@ -12,7 +12,8 @@
 <!--TODO 添加/修改产品-->
 <div ng-controller="addgoodCtrl" id="pageshop" data-role="page" ngm-pageshow="prefill()">
     <div data-role="panel" class="myPanel" data-position="left" data-position-fixed="true" data-display="reveal">
-        <ul data-role="listview" data-inset="false" data-split-theme="h">
+        <h1><img src="images/logo.png"/></h1>
+        <ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">
             <li>
                 <a href="#!/">首页</a>
             </li>
@@ -28,7 +29,7 @@
     </div>
 
 
-    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+    <header data-role="header" data-position="fixed">
         <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-theme="e" data-icon="delete" data-role="button">取消</a>
         <h1>添加商品</h1>
         <button class="fakeSubmit ui-btn-right" data-theme="b" data-icon="check" data-role="button">提交</button>

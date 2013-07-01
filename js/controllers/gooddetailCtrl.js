@@ -1,10 +1,41 @@
-app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,userInfo,shopInfo,$pop,$waitDialog) {
+app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,userInfo,$location,myshopInfo,$pop,$waitDialog) {
+    var goodowner=false;
+    $scope.getGoodowner=function(){
+        return goodowner;
+    };
     $scope.logobaseURL=appConfig.logobaseURL;
     $scope.goodInfo={};
-    $scope.goodid=0;
-    $scope.getitemInfo=function(){
+    $scope.getgoodid=function(){
+          return $routeParams.goodid;
+    };
 
+    var selectObj={};
+    var menuAct="";
+    var reset=function(){
+        selectObj={};
+        menuAct="";
+    };
+
+    $scope.getitemInfo=function(){
+        reset();
+        goodowner=false;
         var getInfo=function(itemID){
+
+
+            /*区分店铺是不是自己的*/
+            var distinguishOwner=function(data){
+                var thisshopID=data.shopid;
+                var thisusersShop=myshopInfo.get('shop_id');
+                $scope.$apply(function(){
+                    if(thisshopID == thisusersShop){
+                        goodowner=true
+                    }else{
+                        goodowner=false
+                    }
+                })
+            }
+
+
             AJAX({
                 bCall:function(){
                     $waitDialog.show("获取商品信息...");
@@ -12,8 +43,18 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
                 url: appConfig.goodInfoURL,
                 p:{'goodsid':itemID},
                 sCall: function (d) {
+                    console.log(d);
                     if(d.status=="ok"){
-                       console.log(d);
+                        if(d.result.imgs && d.result.imgs.length>0){
+                            d.result.imgs[0].img_thumb=d.result.imgs[0].img_thumb || myshopInfo.get("shop_logo");
+                        }
+                        $scope.goodInfo= d.result;
+                        distinguishOwner(d.result);
+
+                        if(d.result.imgs && d.result.imgs.length>0){
+                              $scope.galleryList=d.result.imgs;
+                        }
+
                     }else{
                         $pop.open(d.result);
                     }
@@ -24,21 +65,167 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
         }
 
 
-        var shopid=shopInfo.get("shop_id");
-        if(shopid){
+
             if($routeParams.goodid){
-                $scope.goodid=$routeParams.goodid;
-                getInfo($scope.goodid);
+                getInfo($scope.getgoodid());
             }else{
                 $window.history.back();
             }
-        }else{
-            alert("您还没创建店铺!");
-            $location.path("/shop");
-        }
+
     }
 
+    var popupIMG=$("#popupIMG");
+    var menuIMG=$("#imgmenu");
 
 
 
-})
+
+
+    $scope.showMenu=function(index,$event){
+        $event.preventDefault();
+        selectObj=$scope.galleryList[index];
+        menuIMG.popup("open",{
+                history: false,
+                overlayTheme: "a",
+                positionTo:"window",
+                transition:"slideup"
+            });
+
+        setTimeout(function(){
+            $("#galleryTip").fadeOut();
+        },500)
+
+    }
+
+    /*关闭菜单后的动作*/
+    var afterMenu=function(){
+        var targetObj=angular.copy(selectObj);
+
+
+        /*完毕后重刷相册*/
+        var refreshGallery=function(d){
+            if(d.result.imgs && d.result.imgs.length>=0){
+                $scope.$apply(function(){
+                    $scope.galleryList=d.result.imgs;
+                })
+
+            }
+            reset();
+
+        };
+
+
+        /*查看原图*/
+        if(menuAct==1 && targetObj.img_url){
+            var trueurl=appConfig.logobaseURL+targetObj.img_url;
+             console.log(targetObj);
+
+            var targetimg=popupIMG.find(".popphoto");
+
+            try{
+                targetimg.css({
+                    "width":targetObj.orwidth+"px",
+//                  "height":targetObj.orheight+"px"
+                });
+            }catch(e){}
+            targetimg.prop({src:trueurl});
+
+
+            popupIMG.popup("open",{
+                history: false,
+                overlayTheme: "a",
+                positionTo:"window",
+                transition:"flow"
+            });
+            reset();
+            return;
+        }
+
+        /*设为主图*/
+        if(menuAct==2 && targetObj.imgid>0){
+            var imgid=targetObj.imgid;
+
+            AJAX({
+                url:appConfig.makeMainimgURL,
+                p:{
+                    'imgid':imgid,
+                    'goodsid':$scope.getgoodid()
+                },
+                bCall:function(){
+                    $waitDialog.show("正在设置...");
+                },
+                sCall:function(d){
+                    if(d.status=="ok"){
+                        $pop.open("成功设置!");
+                        refreshGallery(d);
+                    }else{
+                        $pop.open(d.result);
+                    }
+                },
+                cCall:function(){
+                    $waitDialog.hide();
+                }
+            })
+
+            reset();
+            return;
+        }
+
+
+        /*删除图片*/
+        if(menuAct==3){
+            var imgid=targetObj.imgid;
+
+            AJAX({
+                url:appConfig.deleteImgURL,
+                p:{
+                    'imgid':imgid,
+                    'goodsid':$scope.getgoodid()
+                },
+                bCall:function(){
+                    $waitDialog.show("正在删除...");
+                },
+                sCall:function(d){
+                   if(d.status=="ok"){
+                       $pop.open("成功删除!");
+                       refreshGallery(d);
+                   }else{
+                       $pop.open(d.result);
+                   }
+                },
+                cCall:function(){
+                    $waitDialog.hide();
+                    reset();
+                }
+            })
+
+
+            reset();
+            return;
+        }
+
+
+    };
+    menuIMG.bind("popupafterclose",afterMenu);
+
+
+    $scope.menuAct=function(act){
+        if(act){
+            menuAct=act;
+            menuIMG.popup("close");
+            return;
+        }
+
+
+    }
+
+    $scope.closepop=function(){
+        $("#popupIMG").popup("close");
+        reset();
+    }
+
+});
+
+
+
+

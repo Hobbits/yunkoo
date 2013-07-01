@@ -1,4 +1,4 @@
-app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageService,userInfo,shopInfo,$waitDialog,$pop,$timeout){
+app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageService,userInfo,myshopInfo,$waitDialog,$pop,$timeout,geo){
     $scope.provList={};$scope.ind1list={};
     $scope.shopPrams={};
     localStorageService.remove("shopPic");
@@ -21,9 +21,15 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
 
             /*TODO 预先给表单赋值*/
 
-            shopInfo.set(d.result);
+            myshopInfo.set(d.result);
+
+            if(angular.isDefined(d.result.coords)){
+                $scope.shopPrams.coords=d.result.coords;
+                $scope.geovalid="geovalid";
+            }
+
             $scope.shopPrams['shopname']= d.result.shop_name;
-            $scope.shopPrams['introduction']= d.result.shop_intro;
+            $scope.introduction= d.result.shop_intro;
             $scope.shopPrams['management']= d.result.shop_management;
             $scope.shopPrams['address']= d.result.shop_address;
             $scope.shopPrams['contact']= d.result.shop_contact;
@@ -53,7 +59,7 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
         function checkIfDone() {
             done++;
             if (done==2){
-                shopInfo.refresh(aftergetShopinfo);
+                myshopInfo.refresh(aftergetShopinfo);
             };
         }
 
@@ -178,15 +184,16 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
             shopname: shopPrams.shopname,
             email: shopPrams.email,
             contact: shopPrams.contact,
-            province: shopPrams.prov.provID,
-            city: shopPrams.city.cityID,
-            categories: shopPrams.ind2.ind2ID,
+            province: ('prov' in shopPrams)?shopPrams.prov.provID:null,
+            city: ('city' in shopPrams)?shopPrams.city.cityID:null,
+            categories: ('ind2' in shopPrams)?shopPrams.ind2.ind2ID:null,
             management: shopPrams.management,
-            introduction: shopPrams.introduction,
+            introduction: $scope.introduction,
             tel: shopPrams.tel,
             logo: picPrams.code,
             imageType:picPrams.imageType,
-            address: shopPrams.address
+            address: shopPrams.address,
+            coords:shopPrams.coords
         };
 
 //        $http
@@ -209,9 +216,9 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
 
             },
             sCall:function(d){
-                if(typeof(d)=="object"){
+                if(typeof(d)=="object" && angular.isDefined(d.shop_name)){
                     $pop.open( '提交成功!');
-                    shopInfo.set(d);
+                    myshopInfo.set(d);
                     $timeout(function(){
                         $pop.close();
                         $location.path('/');
@@ -233,6 +240,34 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
                 $waitDialog.hide();
             }
         })
+
+    }
+
+    $scope.geovalid="geoStandby";
+    $scope.getGeo=function(e){
+        var ongeoSuccess=function(data){
+            var coords=data.coords;
+            $scope.shopPrams.coords=coords;
+            $scope.geovalid="geovalid";
+            geo.getGeocoding(coords,function(result){
+                if(angular.isDefined(result.formatted_address)){
+                    $scope.shopPrams.address=result.formatted_address
+                }
+
+            })
+        }
+
+        var ongeoError=function(data){
+            $pop.open("GEO定位服务权限不足");
+            $scope.geovalid="geoinvalid";
+        }
+
+        if($scope.geovalid=="geoStandby" || $scope.geovalid=="geoinvalid"){
+            geo.get(ongeoSuccess,ongeoError)
+        }else if($scope.geovalid=="geovalid"){
+            $scope.shopPrams.coords=null;
+            $scope.geovalid="geoStandby";
+        }
 
     }
 

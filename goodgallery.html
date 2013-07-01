@@ -2,45 +2,62 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>商品详情</title>
+    <title>商品图片</title>
 </head>
 <body>
-<!--TODO 商品详情-->
-<div ng-controller="gooddetailCtrl" id="pagegoodGallery" ngm-pageshow="getitemInfo()">
-    <header data-role="header" data-position="fixed" data-tap-toggle="false">
+<!--TODO 商品图片-->
+<div data-role="page" class="unselectable" ng-controller="gooddetailCtrl" id="pagegoodGallery" ngm-pageshow="getitemInfo()">
+    <header data-role="header" data-position="fixed">
         <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>商品图库</h1>
-        <a ng-href="#!/uploadmore/{{goodid}}" class="ui-btn-right" data-icon="plus" data-role="button">添加图片</a>
+        <a ngm-if="getGoodowner()" ng-href="#!/uploadmore/{{getgoodid()}}" class="ui-btn-right" data-icon="plus" data-role="button">添加图片</a>
         <div data-role="navbar">
             <ul>
-                <li><a ng-href="#!/gooddetail/{{goodid}}">详情</a></li>
+                <li><a templarlink="#!/gooddetail/{{getgoodid()}}/detailRev">详情</a></li>
                 <li><a class="ui-btn-active">图片集</a></li>
             </ul>
         </div>
     </header>
 
+    <div id="galleryTip" class="textbox-info">
+        翻开后长按可弹出菜单
+    </div>
+
     <section data-role="content">
 
         <ul data-role="none" class="gallery">
-            <li><a style="background-image:url('images/temp/1.jpeg');"> </a></li>
-            <li><a style="background-image:url('images/temp/2.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/3.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/4.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/5.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/6.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/7.jpg');"> </a></li>
-            <li><a style="background-image:url('images/temp/8.gif');"> </a></li>
-
+            <li data-ng-repeat="img in galleryList">
+                <a style="background-image:url({{logobaseURL+img.img_thumb}});">
+                    <div ngm-taphold="showMenu($index,$event)" class="imgword">
+                        &nbsp;
+                    </div>
+                </a>
+            </li>
         </ul>
 
+
+        <div id="imgmenu" data-role="popup" data-overlay-theme="a" data-theme="d">
+            <ul data-role="listview" data-inset="true">
+                <li><a ng-click="menuAct(1)">查看原图</a></li>
+                <li ngm-if="getGoodowner()"><a ng-click="menuAct(2)">设为主图</a></li>
+                <li ngm-if="getGoodowner()"><a ng-click="menuAct(3)">删除此图</a></li>
+            </ul>
+        </div>
+
+
+        <div data-role="popup" id="popupIMG" data-overlay-theme="a" data-theme="d" data-corners="false">
+            <a data-ngm-vclick="closepop()" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <img class="popphoto" src="" />
+        </div>
 
 
 
     </section>
 
 
+
 </div>
-<!--商品详情结束-->
+<!--商品图片结束-->
 
 </body>
 </html>

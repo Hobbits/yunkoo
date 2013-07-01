@@ -1,10 +1,11 @@
-app.directive("templarlink",['$location', function(){
+app.directive("templarlink",['$window','$location', function($window){
     return {
         restrict: 'A',
         link: function (scope,element,attrs) {
             element.bind("vclick",function(){
                 var href=attrs.templarlink;
-                scope.linkTo(href);
+                    $window.location.replace(href);
+
             })
         }
     }

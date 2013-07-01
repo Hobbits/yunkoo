@@ -1,15 +1,15 @@
-app.controller("addgoodCtrl", function ($scope,$pop,userInfo,shopInfo,AJAX,localStorageService,$location,$timeout,$waitDialog) {
+app.controller("addgoodCtrl", function ($scope,$pop,userInfo,myshopInfo,AJAX,localStorageService,$location,$timeout,$waitDialog) {
    $scope.prefill=function(){
        $scope.goodPrams={};
        $scope.cat2={}
        localStorageService.remove("goodPic");
-       shopInfo.refresh(
+       myshopInfo.refresh(
            function(result){
                if(result){
-               $scope.goodPrams.shopid=shopInfo.get("shop_id");
-               $scope.goodPrams.telphone=shopInfo.get("telphone");
-               $scope.goodPrams.address=shopInfo.get("shop_address");
-               $scope.goodPrams.email=shopInfo.get("shop_email");
+               $scope.goodPrams.shopid=myshopInfo.get("shop_id");
+               $scope.goodPrams.telphone=myshopInfo.get("telphone");
+               $scope.goodPrams.address=myshopInfo.get("shop_address");
+               $scope.goodPrams.email=myshopInfo.get("shop_email");
                }else{
                    alert("您需要先创建店铺");
                    $location.path("/shop");
@@ -41,7 +41,6 @@ app.controller("addgoodCtrl", function ($scope,$pop,userInfo,shopInfo,AJAX,local
             p:{"cat_id":$scope.cat1.cat_id||null},
             sCall: function (d) {
                 if(typeof(d)=="object" || typeof(d)=="array"){
-                    console.log(d);
                     $scope.cat2List=d;
                     $scope.cat2 = $scope.cat2List[0];
                 }

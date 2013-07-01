@@ -11,17 +11,39 @@ app.config(function($locationProvider,$httpProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
+        when('/order/:goodid/:step', {
+            templateUrl: 'order.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
+        when('/myqrcode', {
+            templateUrl: 'myqrcode.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:hasShop
+        }).
+        when('/near', {
+            templateUrl: 'nearShop.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/search/:object', {
+            templateUrl: 'search.html',
+            jqmOptions: {transition: 'slideup'}
+        }).
         when('/uploadmore/:goodid', {
             templateUrl: 'uploadmore.html',
             jqmOptions: {transition: 'slideup'}
         }).
         when('/gooddetail/:goodid/gallery', {
             templateUrl: 'goodgallery.html',
-            jqmOptions: {transition: 'none'}
+            jqmOptions: {transition: 'slide'}
         }).
-        when('/gooddetail/:goodid', {
+        when('/gooddetail/:goodid/detailRev', { /*翻转动画反向*/
             templateUrl: 'gooddetail.html',
-            jqmOptions: {transition: 'none'}
+            jqmOptions: {transition: 'slide',reverse:true}
+        }).
+        when('/gooddetail/:goodid/detail', {
+            templateUrl: 'gooddetail.html',
+            jqmOptions: {transition: 'slide'}
         }).
         when('/addgood', {
             templateUrl: 'addgood.html',
@@ -43,16 +65,28 @@ app.config(function($routeProvider) {
             jqmOptions: {transition: 'slideup'},
             resolve:validateLogon
         }).
+        when('/shopGuest/:shopid/goods', {
+            templateUrl: 'shopGuestviewgoods.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/shopGuest/:shopid/infoRev', {/*动画反向*/
+            templateUrl: 'shopGusetviewinfo.html',
+            jqmOptions: {transition: 'slide',reverse:true}
+        }).
+        when('/shopGuest/:shopid/info', {
+            templateUrl: 'shopGusetviewinfo.html',
+            jqmOptions: {transition: 'slide'}
+        }).
         when('/shop', {
             templateUrl: 'shop.html',
-            jqmOptions: {transition: 'slideup'},
+            jqmOptions: {transition: 'none'},
             resolve:validateLogon
         }).
         when('/reg', {
             templateUrl: 'reg.html',
             jqmOptions: {transition: 'flip'}
         }).
-        when('/login', {
+        when('/login:code', {
         templateUrl: 'login.html',
         jqmOptions: {transition: 'flip'}
     }).
@@ -66,13 +100,13 @@ app.config(function($routeProvider) {
 
 
 var validateLogon = {
-    storge: function($q,$rootScope,userInfo,$location) {
+    storge: function($q,$rootScope,userInfo,$window) {
         var deferred = $q.defer();
         if(userInfo.get()){
             deferred.resolve(userInfo.get().userid);
         }else{
-            deferred.resolve("notlogin");
-            //$location.path('/login');
+            deferred.reject("notlogin");
+            $window.location.replace('#!/login');
         };
         return deferred.promise;
     }
@@ -80,16 +114,17 @@ var validateLogon = {
 
 
 var hasShop = {
-    get: function($q,userInfo,shopInfo,$location) {
+    get: function($q,userInfo,myshopInfo,$location) {
         var deferred = $q.defer();
-        shopInfo.refresh(
+        myshopInfo.refresh(
             function(d){
                 if(d.status=="ok"){
                     deferred.resolve();
                 }else{
-                    deferred.resolve("needaShop");
-                    //$location.path("/shop");
                     alert("您需要先创建店铺");
+                    deferred.reject("needaShop");
+                    $location.path("/shop");
+
                 }
 
             });
