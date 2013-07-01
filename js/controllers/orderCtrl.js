@@ -7,4 +7,9 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams) {
     $scope.getStep=function(){
         return $routeParams.step;
     }
+
+
+    $scope.goNextstep=function(o){
+        console.log($scope.orderInfo);
+    }
 })
