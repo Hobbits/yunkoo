@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
-    <script src="libs/jquery-1.10.1.min.js"></script>
     <script src="libs/cordova.js"></script>
+
+    <script src="libs/jquery-1.10.1.min.js"></script>
     <script>
         $(document).bind("mobileinit", function() {
             // PhoneGap Support options
@@ -41,24 +42,6 @@
 
 <!--TODO 首页-->
 <div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pageshow="pre()">
-
-    <div data-role="panel" class="myPanel" data-position="left"  data-display="reveal">
-        <h1><img src="images/logo.png"/></h1>
-        <ul class="panelul" data-role="listview" data-inset="false">
-           <li class="activate">
-               <a >首页</a>
-           </li>
-            <li>
-                <a href="#!/account">管理中心</a>
-            </li>
-            <li>
-                <a href="#!/chatlist">新消息</a>
-                <span class="ui-li-count">55</span>
-            </li>
-        </ul>
-
-    </div>
-
 
     <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
@@ -103,15 +86,22 @@
 
     </section>
 
-    <!--<div data-role="footer" data-position="fixed">-->
-        <!--<div data-role="navbar">-->
-            <!--<ul>-->
-                <!--<li><a href="#" data-icon="grid">Summary</a></li>-->
-                <!--<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>-->
-                <!--<li><a href="#!/shop" data-icon="gear">管理店铺</a></li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div data-role="panel" class="myPanel" data-position="left"  data-display="reveal">
+        <h1><img src="images/logo.png"/></h1>
+        <ul class="panelul" data-role="listview" data-inset="false">
+            <li class="activate">
+                <a >首页</a>
+            </li>
+            <li>
+                <a href="#!/account">管理中心</a>
+            </li>
+            <li>
+                <a href="#!/chatlist">新消息</a>
+                <span class="ui-li-count">55</span>
+            </li>
+        </ul>
+
+    </div>
 </div>
 <!--首页结束-->
 
