@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>确认订单信息</title>
+</head> 
+</head>
+<body>
+<div ng-controller="orderCtrl" data-role="page" ngm-pageshow="step2get()">
+
+        <header data-role="header" data-position="fixed">
+            <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
+            <h1>确认订单</h1>
+        </header>
+
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true" >
+                <li>
+                    商品名称：<span>{{orderList.goods_name}}</span>
+                </li>
+                <li>
+                    购买数量：100
+                </li>
+                <li>
+                    单价：998
+                </li>
+                <li>
+                    运费:10
+                </li>
+                <li>
+                    应支付总金额：1000
+                </li>
+                <li>
+                    联系人：xxx
+                </li>
+                <li>
+                    联系电话：234
+                </li>
+                <li>
+                    收货地址：安徽省安庆市迎江区长风乡长风组
+                </li>
+                <li>
+                    订单号：3242342
+                </li>
+            </ul>
+            
+            <a data-theme="a" data-inline="true" data-iconpos="left" data-icon="check" data-role="button">确认</a>
+
+        </div>
+
+
+
+
+</div>
+</body>
+</html>

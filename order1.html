@@ -4,7 +4,7 @@
     <title>填写订单信息</title>
 </head>
 <body>
-<div ng-controller="orderCtrl" id="pageorder" data-role="page">
+<div ng-controller="orderCtrl" id="pageorder" data-role="page" ngm-pageshow="prefill()">
 
         <header
                 data-role="header" data-position="fixed">
@@ -14,12 +14,12 @@
         </header>
 
         <div data-role="content">
-            <form data-ajax="false" src="" data-ng-submit="goNextstep(this)">
+            <form data-ajax="false" src="" data-ng-submit="goNextstep()">
                 <input type="submit" data-role="none" class="noShow trueSubmit"/>
 
                 <div data-role="fieldcontain">
                     <label for="goods_name">商品名称:</label>
-                    <input type="text" ng-model="orderInfo.goods_name" name="goods_name" id="goods_name" value="人口贩卖" disabled />
+                    <input type="text" ng-model="unChange.goods_name" name="goods_name" id="goods_name" value="人口贩卖" disabled />
                 </div>
 
                  <div data-role="fieldcontain">
@@ -27,11 +27,7 @@
                     <input type="number" ng-model="orderInfo.order_num" name="order_num" id="order_num" value="1" required pattern="^([1-9]\d{0,}|0)$" />
                 </div>
 
-                <input type="hidden" name="user_id" id="user_id" value="" /><!--买家id-->
-                <input type="hidden" name="shop_id" id="shop_id" value="" /><!--店铺id-->
-                <input type="hidden" name="goods_id" id="goods_id" value="" /><!--商品id-->
-
-                <div data-role="fieldcontain">
+                <div data-role="fieldcontain" data-ng-init="unChange.goods_price">
                     <label for="goods_price">单价:</label>
                     <input type="text" ng-model="unChange.goods_price" name="goods_price" id="goods_price" value="100" disabled />
                 </div>
@@ -48,12 +44,12 @@
 
                 <div data-role="fieldcontain">
                     <label for="mobile">*联系电话:</label>
-                    <input type="tel" ng-model="orderInfo.mobile" name="mobile" id="mobile" value="15255043248" required />
+                    <input type="tel" ng-model="orderInfo.mobile" name="mobile" id="mobile" value="" required />
                 </div>
 
                 <div data-role="fieldcontain">
                     <label for="address">*收货地址:</label>
-                    <textarea id="address" ng-model="orderInfo.address" name="address" >江苏省苏州市苏州工业园区旺墩路168号市场大厦</textarea>
+                    <textarea id="address" ng-model="orderInfo.address" name="address" required></textarea>
                 </div>
 
                 <div data-role="fieldcontain">

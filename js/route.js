@@ -11,6 +11,11 @@ app.config(function($locationProvider,$httpProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
+        when('/order/:payid/2', {
+            templateUrl: 'order2.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
         when('/order/:goodid/1', {
             templateUrl: 'order1.html',
             jqmOptions: {transition: 'slide'},
