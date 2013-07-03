@@ -17,6 +17,9 @@ $(document).on("vclick",".gallery li",function(e){
     }
 });
 
+$(document).on("pageshow",function(){
+    $.mobile.activePage.find(".myPanel").trigger("create");
+})
 
 $(document).ready(function(){
      var prepareData=function(callback){
