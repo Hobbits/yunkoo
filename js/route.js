@@ -11,6 +11,36 @@ app.config(function($locationProvider,$httpProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
+		when('/searchFriend', {
+            templateUrl: 'searchFriend.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
+		when('/buddyChat', {
+            templateUrl: 'buddyChat.html',
+            jqmOptions: {transition: 'slideup'},
+            resolve:validateLogon
+        }).
+		when('/orderDetail/:payid',{
+			templateUrl: 'orderDetail.html',
+            jqmOptions: {transition: 'slide'},
+			resolve:validateLogon
+		}).
+		when('/buyRev', {
+			templateUrl: 'orderlist.html',
+            jqmOptions: {transition: 'slide',reverse:true},
+			resolve:validateLogon
+		}).
+		when('/buy', {
+			templateUrl: 'orderlist.html',
+            jqmOptions: {transition: 'slideup'},
+			resolve:validateLogon
+		}).
+		when('/sell', {
+			templateUrl: 'orderlistSell.html',
+            jqmOptions: {transition: 'slide'},
+			resolve:validateLogon
+		}).
         when('/order/:payid/2', {
             templateUrl: 'order2.html',
             jqmOptions: {transition: 'slide'},
@@ -18,6 +48,11 @@ app.config(function($routeProvider) {
         }).
         when('/order/:goodid/1', {
             templateUrl: 'order1.html',
+            jqmOptions: {transition: 'slide'},
+            resolve:validateLogon
+        }).
+        when('/fav/:type', {
+            templateUrl: 'fav.html',
             jqmOptions: {transition: 'slide'},
             resolve:validateLogon
         }).
@@ -30,9 +65,21 @@ app.config(function($routeProvider) {
             templateUrl: 'nearShop.html',
             jqmOptions: {transition: 'slide'}
         }).
+        when('/filterlast/:object', {
+            templateUrl: 'filterlastShow.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/filterlv2/:object', {
+            templateUrl: 'filterlv2.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/filterlv1/:object', {
+            templateUrl: 'filterlv1.html',
+            jqmOptions: {transition: 'slide'}
+        }).
         when('/search/:object', {
             templateUrl: 'search.html',
-            jqmOptions: {transition: 'slideup'}
+            jqmOptions: {allowSamePageTransition: true,transition: 'flip'}
         }).
         when('/uploadmore/:goodid', {
             templateUrl: 'uploadmore.html',
@@ -59,6 +106,11 @@ app.config(function($routeProvider) {
             templateUrl: 'goodslist.html',
             jqmOptions: {transition: 'slideup'},
             resolve:hasShop
+        }).
+        when('/dialogue:targetName/:targetid/', {
+            templateUrl: 'dialogue.html',
+            jqmOptions: {transition: 'slideup'},
+            resolve:validateLogon
         }).
         when('/chatlist', {
             templateUrl: 'chatlist.html',

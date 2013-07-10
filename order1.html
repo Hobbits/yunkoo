@@ -19,42 +19,42 @@
 
                 <div data-role="fieldcontain">
                     <label for="goods_name">商品名称:</label>
-                    <input type="text" ng-model="unChange.goods_name" name="goods_name" id="goods_name" value="人口贩卖" disabled />
+                    <input type="text" ng-model="unChange.goods_name" id="goods_name" value="人口贩卖" disabled />
                 </div>
 
                  <div data-role="fieldcontain">
                     <label for="order_num">购买数量:</label>
-                    <input type="number" ng-model="orderInfo.order_num" name="order_num" id="order_num" value="1" required pattern="^([1-9]\d{0,}|0)$" />
+                    <input type="number" ng-model="orderInfo.order_num" id="order_num" value="1" required pattern="^([1-9]\d{0,}|0)$" />
                 </div>
 
                 <div data-role="fieldcontain" data-ng-init="unChange.goods_price">
                     <label for="goods_price">单价:</label>
-                    <input type="text" ng-model="unChange.goods_price" name="goods_price" id="goods_price" value="100" disabled />
+                    <input type="text" ng-model="unChange.goods_price" id="goods_price" value="100" disabled />
                 </div>
 
                 <div data-role="fieldcontain">
                     <label for="fee">运费:</label>
-                    <input type="text" ng-model="unChange.fee" name="fee" id="fee" value="10" disabled />
+                    <input type="text" ng-model="unChange.fee" id="fee" value="10" disabled />
                 </div>
 
                 <div data-role="fieldcontain">
-                    <label for="consignee">*联系人:</label>
-                    <input type="text" ng-model="orderInfo.consignee" name="consignee" id="consignee" value="xxx" required />
+                    <label for="consignee">*收货人:</label>
+                    <input type="text" ng-model="orderInfo.consignee" id="consignee" required />
                 </div>
 
                 <div data-role="fieldcontain">
                     <label for="mobile">*联系电话:</label>
-                    <input type="tel" ng-model="orderInfo.mobile" name="mobile" id="mobile" value="" required />
+                    <input type="tel" ng-model="orderInfo.mobile" id="mobile" required />
                 </div>
 
                 <div data-role="fieldcontain">
                     <label for="address">*收货地址:</label>
-                    <textarea id="address" ng-model="orderInfo.address" name="address" required></textarea>
+                    <textarea id="address" ng-model="orderInfo.address" required></textarea>
                 </div>
 
                 <div data-role="fieldcontain">
                     <label for="usernote">备注:</label>
-                    <textarea ng-model="orderInfo.usernote" id="usernote" name="usernote"></textarea>
+                    <textarea ng-model="orderInfo.usernote" id="usernote" ></textarea>
                 </div>
 
             </form>

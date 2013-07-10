@@ -1,4 +1,3 @@
-var servURL="http://yunku.4pu.com/";
 var appConfig={
     default:{
         shopthumb:"images/shop-open-icon.png"
@@ -21,7 +20,26 @@ var appConfig={
     makeMainimgURL:servURL+"shop/appdo.php?act=appmakemain",/*设为主图*/
     search:servURL+"shop/appdo.php?act=appsearch",
     nearShop:servURL+"shop/appdo.php?act=nearbyshops",/*附近商品*/
-    getqrCodeURL:servURL+"shop/appdo.php?act=phpcode"
+    getqrCodeURL:servURL+"shop/appdo.php?act=phpcode",
+	orderInfoURL:servURL+"shop/appdo.php?act=appuserorder", /*提交订单*/
+	orderDetailURL:servURL+"shop/appdo.php?act=orderinfo",	/*订单信息和订单详情*/
+	orderlistBuy:servURL+"shop/appdo.php?act=checkbuy",  /*我是买家订单列表*/
+	orderlistSell:servURL+"shop/appdo.php?act=checksell", /*我是卖家订单列表*/
+    dialogueURL:servURL+"shop/appdo.php?act=chat",/*发送对话*/
+    dialog_fetchUnreadURL:servURL+"shop/appdo.php?act=getchat",/*获取未读*/
+	charlistURL:servURL+"shop/appdo.php?act=records", /*聊天好友记录表*/
+	deleteChatRecordURL:servURL+"shop/appdo.php?act=record_del", /*删除聊天记录*/
+    dialog_fetchUnreadURL:servURL+"shop/appdo.php?act=getchat",/*对话时获取未读*/
+    dialog_prefetch:servURL+"shop/appdo.php?act=chatlist",/*对话时获取曾经的记录*/
+	searchFriendURL:servURL+"shop/appdo.php?act=searchfriends", /*查找好友*/
+	addFriendURL:servURL+"shop/appdo.php?act=addfriend", /*添加好友*/
+	deleteFriendURL:servURL+"shop/appdo.php?act=friend_del", /*删除好友*/
+	friendslistURL:servURL+"shop/appdo.php?act=friendslist", /*我的好友列表*/
+	addFav:servURL+"shop/appdo.php?act=goods_add_favorite",
+	addFav:servURL+"shop/appdo.php?act=goods_add_favorite",/*添加收藏*/
+    favList:servURL+"shop/appdo.php?act=favorite_lists",
+    favDel:servURL+"shop/appdo.php?act=favorite_del"/*删除收藏*/
+
 };
 appConfig.api={
     keys:{

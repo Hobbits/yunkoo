@@ -8,22 +8,24 @@
 
 <!--TODO   账号-->
 <div ng-controller="accCtrl" id="pagelogin" data-role="page" ngm-pageshow="preRun()">
-    <div data-role="panel" class="myPanel" data-position="left"  data-display="reveal">
-        <h1><img src="images/logo.png"/></h1>
-        <ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">
-            <li>
-                <a href="#!/">首页</a>
-            </li>
-            <li class="activate">
-                <a>管理中心</a>
-            </li>
+    <!--<div data-role="panel" class="myPanel"-->
+         <!--data-position-fixed="true"-->
+         <!--data-position="left"  data-display="overlay">-->
+        <!--<h1><img src="images/logo.png"/></h1>-->
+        <!--<ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">-->
+            <!--<li>-->
+                <!--<a href="#!/">首页</a>-->
+            <!--</li>-->
+            <!--<li class="activate">-->
+                <!--<a>管理中心</a>-->
+            <!--</li>-->
 
-            <li>
-                <a href="#!/chatlist">新消息</a>
-                <span class="ui-li-count">55</span>
-            </li>
-        </ul>
-    </div>
+            <!--<li>-->
+                <!--<a href="#!/chatlist">新消息</a>-->
+                <!--<span class="ui-li-count">55</span>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
 
 
 
@@ -52,12 +54,14 @@
             <li data-role="list-divider">行业</li>
             <li><a href="#!/shop">编辑店铺</a></li>
             <li><a href="#!/goods">产品管理</a></li>
-            <li><a href="#">订单管理</a></li>
-            <li><a href="#!/myqrcode">自助推广</a></li>
+            <li><a href="#!/buy">订单管理</a></li>
+            <li><a href="#!/fav/shop">收藏</a></li>
 
             <li data-role="list-divider">交流</li>
+			<li><a href="#!/buddyChat">好友聊天</a></li>
             <li><a href="#!/chatlist">问询记录</a></li>
             <li><a href="#!/near">附近商户</a></li>
+            <li><a href="#!/myqrcode">自助推广</a></li>
         </ul>
     </section>
 

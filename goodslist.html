@@ -8,26 +8,26 @@
 <!--TODO 商品列表-->
 <div ng-controller="goodslistCtrl" id="pagegoodlist" data-role="page" ngm-pageshow="preget()">
 
-    <div data-role="panel" class="myPanel" data-position="left"  data-display="reveal">
-        <h1><img src="images/logo.png"/></h1>
-        <ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">
-            <li>
-                <a href="#!/">首页</a>
-            </li>
-            <li>
-                <a href="#!/account">管理中心</a>
-            </li>
-            <li>
-                <a href="#!/chatlist">新消息</a>
-                <span class="ui-li-count">55</span>
-            </li>
-        </ul>
+    <!--<div data-role="panel" class="myPanel" data-position="left"  data-display="overlay">-->
+        <!--<h1><img src="images/logo.png"/></h1>-->
+        <!--<ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">-->
+            <!--<li>-->
+                <!--<a href="#!/">首页</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#!/account">管理中心</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#!/chatlist">新消息</a>-->
+                <!--<span class="ui-li-count">55</span>-->
+            <!--</li>-->
+        <!--</ul>-->
 
-    </div>
+    <!--</div>-->
 
 
     <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>我的货架</h1>
         <a href="#!/addgood" class="ui-btn-right" data-icon="plus" data-role="button">添加商品</a>
     </header>

@@ -18,7 +18,7 @@ app.factory('fetchShopInfo', function(AJAX,$waitDialog){
     }
 })
 
-app.factory('myshopInfo', function(localStorageService,fetchShopInfo,userInfo){
+app.factory('myshopInfo', function(localStorageService,fetchShopInfo,userInfo,$q){
     return {
         refresh:function(callback){
                 /*获取已经存在服务器上的店铺信息*/
@@ -33,6 +33,7 @@ app.factory('myshopInfo', function(localStorageService,fetchShopInfo,userInfo){
             localStorageService.add('shop_info',o);
         },
         get:function(str){
+
             var myshopInfo = localStorageService.get('shop_info');
             if(myshopInfo && myshopInfo['shop_id']>0){
                 if(str){
@@ -41,7 +42,18 @@ app.factory('myshopInfo', function(localStorageService,fetchShopInfo,userInfo){
                     return myshopInfo;
                 }
             }else{
-                return false;
+                this.refresh(function(data){
+                    if(data.status=="ok"){
+                        myshopInfo = localStorageService.get('shop_info');
+                        if(str){
+                            return myshopInfo[str];
+                        }else{
+                            return myshopInfo;
+                        }
+                    }
+
+                });
+                //return false;
             }
         },
         delete:function(){
@@ -66,7 +78,7 @@ app.factory('userInfo', function(localStorageService){
     }
 });
 
-app.factory('logout', function(userInfo,$http,$window,localStorageService){
+app.factory('logout', function(userInfo,$http,$window,localStorageService,$waitDialog){
     return function(path){
         try{
             var uinfo={"name":userInfo.get().username,"psw":""};
@@ -75,8 +87,10 @@ app.factory('logout', function(userInfo,$http,$window,localStorageService){
         userInfo.delete();
         localStorageService.remove('shop_info');
         $http.jsonp(appConfig.logoutURL);
-        if(angular.isDefined(path)){
-            $window.location.replace("#!"+path);
+        if(angular.isDefined(path) && path.length>0){
+            setTimeout(function(){
+                $window.location.replace("#!"+path);
+            },200)
         }
         $waitDialog.hide();
 
@@ -85,7 +99,26 @@ app.factory('logout', function(userInfo,$http,$window,localStorageService){
 
 })
 
-app.factory('AJAX', function($http,logout){
+app.factory('dataChannel', function($rootScope){
+    var sharedService={
+        message:null,
+        prepForBroadcast:function(msg){
+            this.message=msg;
+            this.broadcast();
+        }
+    };
+    sharedService.broadcast=function(){
+
+        $rootScope.$broadcast('appLive',this.message);
+
+    }
+
+    return sharedService
+})
+
+
+
+app.factory('AJAX', function($http,logout,dataChannel){
     /*url p bCall sCall eCall*/
       var send=function(o){
           var sendmethod=o.method || "JSONP";
@@ -104,17 +137,30 @@ app.factory('AJAX', function($http,logout){
           }
               $http(httpPatams).success(function(data, status, headers, config){
 
-                  if(angular.isDefined(data) && angular.isDefined(data.status) && data.status=="401"){
-                      logout('/login401');
-                      return;
-                  }
+                      if(angular.isDefined(data) && angular.isDefined(data.status) && data.status=="401"){
+                          logout('/login401');
+                          return;
+                      }
 
-                  if(typeof(o.sCall)=="function"){
-                        o.sCall(data,status, headers, config);
-                      };
+                      if(typeof(o.sCall)=="function"){
+                            o.sCall(data,status, headers, config);
+                          };
                       if(typeof(o.cCall)=="function"){
                           o.cCall(data,status, headers, config);
                       };
+
+                      /*处理附带信息*/
+                      try{
+                          if(angular.isDefined(data.status) && data.status=="ok"){
+                              if(angular.isDefined(data.addon) && data.addon.records_num>0){
+                                  dataChannel.prepForBroadcast({'newChatMsg':data.addon.records_num});
+                              }
+                          }
+                      }catch(e){}
+
+
+
+
                   }).error(function(data,status, headers, config){
                       if(typeof(o.eCall)=="function"){
                         o.eCall(data,status, headers, config);
@@ -222,3 +268,42 @@ app.factory('textStatus', function(){
         if(s=="error"){return {textboxClass:"textbox-error",text:text}}
     };
 });
+
+app.factory('flashTip',function(){
+    var o={
+        idName:'flashTip',
+        targeto:null,
+        resize:function(){
+            var target=$('#'+this.idName);
+            if(target.length<=0) return;
+            target.css({
+                'margin-top':target.height()/2*(-1)+"px",
+                'margin-left':target.width()/2*(-1)+"px"
+            });
+            console.log("resize");
+        },
+        hide:function(){
+            $("#"+this.idName).remove();
+        },
+        show:function(innerHTML,hideDelay,styleJqO){
+                var that=this;
+                var styleJqO=styleJqO || {};
+                if(!document.getElementById(that.idName)){
+                    that.targeto=$("<div/>").attr({'id':that.idName}).css(styleJqO).html(innerHTML);
+                    that.targeto.appendTo(".my");
+                }else{
+                    that.targeto=$("#"+that.idName);
+                    that.targeto.css(styleJqO).html(innerHTML);
+                }
+                that.resize();
+
+            if(hideDelay){
+                setTimeout(function(){
+                    that.hide();
+                },hideDelay);
+            }
+
+        }
+    }
+    return o;
+})

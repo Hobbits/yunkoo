@@ -1,3 +1,10 @@
+div,ul,li,h3,img,a {margin:0; padding:0;}
+img {border:none;}
+ul,li {list-style:none;}
+
+.clearfix{
+    clear: both;
+}
 img{
     max-width: 100%;
 }
@@ -10,6 +17,29 @@ img{
 .noShow{
     visibility: hidden;
     width: 0;height: 0;
+}
+.inline{
+    display: inline !important;
+}
+.dropShadow {
+    -webkit-filter: drop-shadow(rgba(0,0,0,0.5) 0 1px .8em);
+}
+.flipx { /*镜像*/
+    -moz-transform:scaleX(-1);
+    -webkit-transform:scaleX(-1);
+    -o-transform:scaleX(-1);
+    transform:scaleX(-1);
+    /*IE*/
+    filter:FlipH;
+}
+
+.icon-chat.online:before{
+    text-decoration: none;
+    color: #3cee3b;
+}
+.icon-chat.offline:before{
+    text-decoration: none;
+    color:#808080;
 }
 .textbox-warning{
     background-color: #FCF8E3;

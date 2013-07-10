@@ -6,11 +6,11 @@
 </head>
 <body>
 <div data-role="page" ng-controller="shopGuestview" ngm-pageshow="getshopGoods()">
-    <header
+    <header data-id="shopGuestHeader"
             data-role="header" data-position="fixed">
         <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>{{thisShopname}}</h1>
-
+        <a data-ngm-vclick="fav('s',thisShopid)" class="ui-btn-right" data-icon="star" data-role="button">收藏</a>
         <div data-role="navbar">
             <ul>
                 <li><a templarlink="#!/shopGuest/{{thisShopid}}/infoRev">详情</a></li>
@@ -20,7 +20,7 @@
     </header>
         
     <section data-role="content">
-        <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索商品..." data-inset="true">
+        <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索此店铺商品..." data-inset="true">
             <li data-ng-repeat="item in goodList">
                 <a data-ng-href="#!/gooddetail/{{item.goods_id}}/detail"><img data-ng-src="{{logobaseURL + item.goods_thumb}}" /><h2>{{item.goods_name}}</h2><p>{{item.goods_intro}}</p></a>
             </li>

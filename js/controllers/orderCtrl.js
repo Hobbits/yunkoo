@@ -1,9 +1,8 @@
-app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDialog) {
-      console.log("传入参数:",$routeParams);
+app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDialog,$pop) {
+    console.log("传入参数:",$routeParams);
     $scope.orderInfo = {};
     $scope.unChange = {};
-
-    $scope.orderList = {};
+    $scope.orderDetail = {};
 
     $scope.getGoodid=function(){
         return $routeParams.goodid;
@@ -16,8 +15,34 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
         $scope.getPayid=function(){
             return $routeParams.payid;
         }
-        console.log("PayID:",$scope.getPayid());
-
+        AJAX({
+            url : appConfig.orderDetailURL, 
+            p : {'payid' : $scope.getPayid()},
+            bCall : function(){
+                $waitDialog.show("正在获取订单信息...");
+            },
+            sCall : function(d){
+                console.log(d);
+                if(d.status == "ok"){
+                    var r = d.result;
+                    $scope.orderDetail.goods_name = r.goods_name;
+                    $scope.orderDetail.order_num = r.order_num;
+                    $scope.orderDetail.goods_price = r.goods_price;
+                    $scope.orderDetail.transport_price = r.transport_price;
+                    $scope.orderDetail.order_amount = r.order_amount;
+                    $scope.orderDetail.consignee = r.consignee;
+                    $scope.orderDetail.mobile = r.mobile;
+                    $scope.orderDetail.address = r.address;
+                    $scope.orderDetail.goodaddress = r.goodaddress;
+                    $scope.orderDetail.payid = $scope.getPayid();
+                } else {
+                    $pop.open(d.result);
+                }
+            },
+            cCall : function(){
+                $waitDialog.hide();
+            }
+        });
 
 
     }
@@ -26,7 +51,7 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
     $scope.goNextstep=function(o){
         var oi=$scope.orderInfo;
         AJAX({
-            url:"http://192.168.1.111/shop/appdo.php?act=appuserorder",
+            url:appConfig.orderInfoURL,
             p: {
                 "order_num" : oi.order_num,
                 "goods_id":$scope.getGoodid(),
@@ -39,12 +64,9 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
                 if(d.status=="ok"){
                     var payid=d.result;
                     $location.path("/order/"+payid+"/2");
+                }else {
+                    $pop.open(d.result);
                 }
-//                $location.path("/order/"+$scope.getGoodid()+"/2");
-//                var r = d.result;
-//                console.log(r);
-//                $scope.orderList.goods_name = r.goods_name;
-               
             }
         })
 
@@ -59,11 +81,15 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
             bCall : function(){
                 $waitDialog.show("正在获取信息...");
             },
-            sCall : function(data){
-                console.log(data);
-                var r = data.result;
-                $scope.unChange.goods_name = r.name;
-                $scope.unChange.goods_price = r.price;
+            sCall : function(d){
+                console.log(d);
+                if(d.status == "ok"){
+                    var r = d.result;
+                    $scope.unChange.goods_name = r.name;
+                    $scope.unChange.goods_price = r.price;
+                } else {
+                    $pop.open(d.result);
+                }
             },
             cCall : function(){
                 $waitDialog.hide();

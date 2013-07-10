@@ -1,5 +1,4 @@
 app.controller("shopGuestview", function ($scope,$routeParams,AJAX,fetchShopInfo,$pop,myshopInfo,$waitDialog) {
-    $scope.logobaseURL=appConfig.logobaseURL;
 
     var setshopid=function(){
         $scope.thisShopid=$routeParams.shopid;

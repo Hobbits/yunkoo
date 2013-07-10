@@ -1,0 +1,1 @@
+var servURL="http://yunku.4pu.com/";

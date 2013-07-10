@@ -2,7 +2,16 @@ $(document).on("vclick",".fakeSubmit",function(){
     $.mobile.activePage.find(".trueSubmit").click();
 });
 
+/*Panel*/
+$(document).on('pagebeforeshow', '[data-role="page"]', function(){
+    var tempHTML=$("#panelTemp").html();
+    $("div:jqmData(role='panel')").remove();
+    $(this).append(tempHTML);
+    var pn=$.mobile.activePage.find('.myPanel');
 
+    pn.panel();
+    pn.find(".panelul").listview();
+});
 $(document).on("swiperight","div:jqmData(role='page')",function(evt){
     $.mobile.activePage.find(".myPanel").panel("open");
 });
@@ -17,9 +26,12 @@ $(document).on("vclick",".gallery li",function(e){
     }
 });
 
-$(document).on("pageshow",function(){
-    $.mobile.activePage.find(".myPanel").trigger("create");
-})
+
+$.mobile.scrollBottom=function(){
+    var footerHeight=$.mobile.activePage.find('footer').height();
+    var distance=$.mobile.activePage.find('.ui-content').height()+footerHeight+900;
+    window.scrollTo(0,distance);
+}
 
 $(document).ready(function(){
      var prepareData=function(callback){

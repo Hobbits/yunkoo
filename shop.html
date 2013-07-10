@@ -18,22 +18,22 @@
 
 
 
-    <div data-role="panel" class="myPanel" data-position="left"  data-display="reveal">
-        <h1><img src="images/logo.png"/></h1>
-        <ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">
-            <li>
-                <a href="#!/">首页</a>
-            </li>
-            <li>
-                <a href="#!/account">管理中心</a>
-            </li>
-            <li>
-                <a href="#!/chatlist">新消息</a>
-                <span class="ui-li-count">55</span>
-            </li>
-        </ul>
+    <!--<div data-role="panel" class="myPanel" data-position="left"  data-display="overlay">-->
+        <!--<h1><img src="images/logo.png"/></h1>-->
+        <!--<ul class="panelul" data-role="listview" data-inset="false" data-split-theme="h">-->
+            <!--<li>-->
+                <!--<a href="#!/">首页</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#!/account">管理中心</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#!/chatlist">新消息</a>-->
+                <!--<span class="ui-li-count">55</span>-->
+            <!--</li>-->
+        <!--</ul>-->
 
-    </div>
+    <!--</div>-->
 
 
     <header data-role="header" data-position="fixed">
@@ -41,7 +41,7 @@
         <h1>店铺管理</h1>
         <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
             <button class="fakeSubmit" data-theme="c" data-role="button">提交</button>
-            <a data-rel="back" data-theme="e" data-role="button">取消</a>
+            <a templarlink="#!/account" data-theme="e" data-role="button">取消</a>
         </div>
     </header>
 
@@ -57,7 +57,7 @@
 
 
             <div data-role="fieldcontain" class="shoppic">
-                <label class="ui-input-text">选择照片:</label>
+                <label class="ui-input-text">商店标识(建议正方形):</label>
                 <a id="s_shoppic">
                    <img src="images/add_photo.png"/>
                 </a>

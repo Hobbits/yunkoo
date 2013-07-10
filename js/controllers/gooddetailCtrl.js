@@ -1,8 +1,6 @@
 app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,userInfo,$location,myshopInfo,$pop,$waitDialog) {
-    var goodowner=false;
-    $scope.getGoodowner=function(){
-        return goodowner;
-    };
+    $scope.isGoodowner=false;
+
     $scope.logobaseURL=appConfig.logobaseURL;
     $scope.goodInfo={};
     $scope.getgoodid=function(){
@@ -18,7 +16,7 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
 
     $scope.getitemInfo=function(){
         reset();
-        goodowner=false;
+        $scope.isGoodowner=false;
         var getInfo=function(itemID){
 
 
@@ -27,10 +25,11 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
                 var thisshopID=data.shopid;
                 var thisusersShop=myshopInfo.get('shop_id');
                 $scope.$apply(function(){
+
                     if(thisshopID == thisusersShop){
-                        goodowner=true
+                        $scope.isGoodowner=true
                     }else{
-                        goodowner=false
+                        $scope.isGoodowner=false
                     }
                 })
             }
@@ -87,7 +86,7 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
         menuIMG.popup("open",{
                 history: false,
                 overlayTheme: "a",
-                positionTo:"window",
+                positionTo:"origin",
                 transition:"slideup"
             });
 
