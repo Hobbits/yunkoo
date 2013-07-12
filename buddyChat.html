@@ -36,7 +36,7 @@
 
     <section data-role="content">
     
-        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="查找我的好友..." data-split-icon="plus" data-split-theme="c" class="ui-icon-alt">
+        <ul data-role="listview" data-inset="true" data-split-icon="plus" data-split-theme="c" class="ui-icon-alt">
             <li data-ng-repeat="friend in friendList | orderBy: 'addtime':false">
                 <a href="#!/dialogue/{{friend.user_id}}">
                     <img data-ng-src="{{logoURL + friend.logo_thumb}}" />
@@ -45,8 +45,6 @@
                 </a>
                 <a data-ng-click="openMenu(friend.user_id)">更多操作</a>
             </li>
-          
-
         </ul>
     </section> 
     

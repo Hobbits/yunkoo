@@ -38,8 +38,6 @@ $scope.hasNewsInformation = function(num){
 }
 
 
-
-
 var logMessage = null;
 $scope.openMenu=function(userid){
     logMessage=userid;
@@ -48,6 +46,7 @@ $scope.openMenu=function(userid){
         transition :'pop'
     });
 }
+
 
 
 //删除好友
@@ -69,7 +68,13 @@ $scope.deleteFriend = function(){
                         });
                     }, 1000);
                 } else {
-                    $pop.open(d.result);
+                    setTimeout(function(){
+                        flashTip.show(d.result ,1000,{
+                                width:'50%',
+                                height:'8em',
+                                color:'white'
+                        });
+                    }, 1000);
                 }
             }
         });

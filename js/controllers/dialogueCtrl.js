@@ -16,7 +16,7 @@ app.controller("dialogueCtrl", function ($scope,AJAX,$routeParams,$pop,userInfo,
 
     var senderID=userInfo.get().userid;
     var opposite_userid=$routeParams.targetid;
-    var opposite_name=$routeParams.targetName;
+    $scope.opposite_name=$routeParams.targetName;
 
     $scope.dialogueList=[];
     $scope.cssInner=null;
@@ -103,7 +103,7 @@ app.controller("dialogueCtrl", function ($scope,AJAX,$routeParams,$pop,userInfo,
 
             }else if(data.fromid==opposite_userid && data.toid==senderID){/*来自对方*/
                 o=data;
-                o.senderName= opposite_name || o.fromidname;
+                o.senderName= $scope.opposite_name || o.fromidname;
                 o.targetClassname="opposite";
 
             }

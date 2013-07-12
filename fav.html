@@ -23,9 +23,9 @@
         </div>
     </header>
 
-    <section data-role="content" ngm-if="isShop()">
+    <section data-role="content" >
 
-        <ul
+        <ul ngm-if="isShop()"
                 data-role="listview"
                 data-split-icon="delete"
                 data-split-theme="e" data-inset="true">
@@ -38,21 +38,17 @@
             </li>
         </ul>
 
-    </section>
-
-
-    <section data-role="content" ngm-if="!isShop()">
-    <ul  data-role="listview"
-         data-split-icon="delete"
-         data-split-theme="e" data-inset="true">
-        <li data-ng-repeat="f in favList">
-            <a ng-href="#!/gooddetail/{{f.goods_id}}/detail">
-                <img ng-src="{{logobaseURL+f.img_thumb}}">
-                <h2>{{f.goods_name}}</h2>
-                <p>{{f.goods_intro}}</p></a>
-            <a data-ngm-vclick="delFav(f.favorite_id)">删除</a>
-        </li>
-    </ul>
+        <ul ngm-if="!isShop()" data-role="listview"
+             data-split-icon="delete"
+             data-split-theme="e" data-inset="true">
+            <li data-ng-repeat="f in favList">
+                <a ng-href="#!/gooddetail/{{f.goods_id}}/detail">
+                    <img ng-src="{{logobaseURL+f.img_thumb}}">
+                    <h2>{{f.goods_name}}</h2>
+                    <p>{{f.goods_intro}}</p></a>
+                <a data-ngm-vclick="delFav(f.favorite_id)">删除</a>
+            </li>
+        </ul>
     </section>
 
 </div>

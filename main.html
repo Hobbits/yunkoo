@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
 
-    <script src="libs/cordova.js"></script>
+    <!--<script src="libs/cordova.js"></script>-->
 
     <script src="libs/jquery-1.10.1.min.js"></script>
     <script>
@@ -34,6 +34,10 @@
             //$.support.dynamicBaseTag=true;
 
             $.event.special.swipe.horizontalDistanceThreshold=50;
+
+            if($.support.touchOverflow){
+                $.mobile.touchOverflowEnabled = true;
+            }
         });
     </script>
     <script src="js/servURL.js"></script>
@@ -57,13 +61,15 @@
             <li>
                 <a href="#!/account">管理中心</a>
             </li>
+			<li>
+                <a href="#!/news">新闻中心</a>
+            </li>
             <li class="newMsg">
                 <a href="#!/chatlist">新消息</a>
                 <span class="ui-li-count">0</span>
             </li>
             <li>
                 <a href="#!/buy">我的订单</a>
-                <span class="ui-li-count">0</span>
             </li>
         </ul>
     </div>
@@ -110,7 +116,7 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <!--First Slide-->
-                <div class="swiper-slide" style="background: url(images/temp/banner/abstract_floral_banner_r1_c1.jpg) no-repeat;">
+                <div class="swiper-slide">
                     <a href="#"></a>
                 </div>
 
@@ -122,51 +128,51 @@
 
         <div class="ui-grid-c" id="navigator">
             <div class="ui-block-a">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
-                    <h3>行业资讯</h3>
+                <a href="#!/news">
+                    <img src="images/nav/hyzx.svg" />
+                    <h3>新闻分类</h3>
                 </a>
             </div>
             <div class="ui-block-b">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/goods">
+                    <img src="images/nav/cpgl.svg" />
                     <h3>产品管理</h3>
                 </a>
             </div>
             <div class="ui-block-c">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/buy">
+                    <img src="images/nav/ddgl.svg" />
                     <h3>订单管理</h3>
                 </a>
             </div>
             <div class="ui-block-d">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/fav/shop">
+                    <img src="images/nav/wdsc.svg" />
                     <h3>我的收藏</h3>
                 </a>
             </div>
             
             <div class="ui-block-a">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
-                    <h3>好友聊天</h3>
+                <a href="#!/buddyChat">
+                    <img src="images/nav/hylt.svg" />
+                    <h3>商友聊天</h3>
                 </a>
             </div>
             <div class="ui-block-b">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/chatlist">
+                    <img src="images/nav/wxjl.svg" />
                     <h3>问询记录</h3>
                 </a>
             </div>
             <div class="ui-block-c">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/near">
+                    <img src="images/nav/fjsh.svg" />
                     <h3>附近商户</h3>
                 </a>
             </div>
             <div class="ui-block-d">
-                <a href="#">
-                    <img src="http://192.168.1.111/shop/uploadfiles/shop/2013/07/05/2013070508290258.jpeg" />
+                <a href="#!/myqrcode">
+                    <img src="images/nav/zztg.svg" />
                     <h3>自主推广</h3>
                 </a>
             </div>
@@ -244,7 +250,8 @@
 <script src="js/controllers/chatlistCtrl.js"></script>
 <script src="js/controllers/favCtrl.js"></script>
 <script src="js/controllers/buddyChatCtrl.js"></script>  
-<script src="js/controllers/searchFriendCtrl.js"></script>  
+<script src="js/controllers/searchFriendCtrl.js"></script>
+<script src="js/controllers/newsCategoryCtrl.js"></script>    
 
 <script src="js/other/other.js"></script>
 </body>

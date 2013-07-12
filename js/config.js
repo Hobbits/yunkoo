@@ -38,15 +38,20 @@ var appConfig={
 	addFav:servURL+"shop/appdo.php?act=goods_add_favorite",
 	addFav:servURL+"shop/appdo.php?act=goods_add_favorite",/*添加收藏*/
     favList:servURL+"shop/appdo.php?act=favorite_lists",
-    favDel:servURL+"shop/appdo.php?act=favorite_del"/*删除收藏*/
-
+    favDel:servURL+"shop/appdo.php?act=favorite_del",/*删除收藏*/
+	newsCategoryURL:servURL+"shop/appdo.php?act=newcategory",/*新闻分类*/
+	newslistURL:servURL+"shop/appdo.php?act=appnews",/*新闻列表*/
+    newsInfoURL:servURL+"shop/appdo.php?act=newsinfo"/*新闻内容*/
 };
 appConfig.api={
     keys:{
-        baiduMap:"60425bb77caaa022eab2ef55c6ba8140"
+        baiduMap:"60425bb77caaa022eab2ef55c6ba8140",
+        sinaKey:"793276180",
+        sinaSecret:"955219e6933c5753c8e7ddef96bbceef"
     },
     url:{
-        geocodingURL:"http://api.map.baidu.com/geocoder/v2/"
+        geocodingURL:"http://api.map.baidu.com/geocoder/v2/",
+        sinaShare:"https://api.weibo.com/2/statuses/upload_url_text.json"
     }
 }
 

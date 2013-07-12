@@ -11,7 +11,19 @@ app.config(function($locationProvider,$httpProvider) {
 
 app.config(function($routeProvider) {
     $routeProvider.
-		when('/searchFriend', {
+		when('/news/:cat_id', {		
+            templateUrl: 'newsCategory2.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+		when('/news', {		
+            templateUrl: 'newsCategory1.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/article/:articleid', {
+            templateUrl: 'newsDetail.html',
+            jqmOptions: {transition: 'slide'}
+        }).
+        when('/searchFriend', {
             templateUrl: 'searchFriend.html',
             jqmOptions: {transition: 'slide'},
             resolve:validateLogon

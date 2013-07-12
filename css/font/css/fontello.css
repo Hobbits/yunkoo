@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?54940033');
-  src: url('../font/fontello.eot?54940033#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff?54940033') format('woff'),
-       url('../font/fontello.ttf?54940033') format('truetype'),
-       url('../font/fontello.svg?54940033#fontello') format('svg');
+  src: url('../font/fontello.eot?67794583');
+  src: url('../font/fontello.eot?67794583#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?67794583') format('woff'),
+       url('../font/fontello.ttf?67794583') format('truetype'),
+       url('../font/fontello.svg?67794583#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +14,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?54940033#fontello') format('svg');
+    src: url('../font/fontello.svg?67794583#fontello') format('svg');
   }
 }
 */
@@ -63,9 +63,11 @@
 .icon-info-circled:before { content: '\e818'; } /* '' */
 .icon-tag:before { content: '\e801'; } /* '' */
 .icon-tags:before { content: '\e815'; } /* '' */
+.icon-export:before { content: '\e82d'; } /* '' */
 .icon-comment:before { content: '\e80c'; } /* '' */
 .icon-chat:before { content: '\e80d'; } /* '' */
 .icon-location:before { content: '\e80e'; } /* '' */
+.icon-share:before { content: '\e82c'; } /* '' */
 .icon-basket:before { content: '\e811'; } /* '' */
 .icon-logout:before { content: '\e807'; } /* '' */
 .icon-down-circled2:before { content: '\e827'; } /* '' */
@@ -88,6 +90,9 @@
 .icon-info:before { content: '\e819'; } /* '' */
 .icon-lock-open-alt:before { content: '\e814'; } /* '' */
 .icon-yen:before { content: '\e809'; } /* '' */
+.icon-sort-alt-up:before { content: '\e830'; } /* '' */
+.icon-sort-alt-down:before { content: '\e82f'; } /* '' */
+.icon-weibo:before { content: '\e82e'; } /* '' */
 .icon-pin:before { content: '\e821'; } /* '' */
 .icon-phone:before { content: '\e824'; } /* '' */
 .icon-lock:before { content: '\e806'; } /* '' */

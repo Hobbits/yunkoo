@@ -21,8 +21,8 @@
 #navigator .ui-block-d {
     height:50%; text-align:center;
 }
-#navigator a { display:inline-block;  text-decoration:none; height:80%;}
-#navigator a img {max-width:100%; max-height:100%;}
+#navigator a { display:inline-block;  text-decoration:none; height:80%;width: 100%}
+#navigator a img {max-width:97%; max-height:100%;}
 #navigator a h3 {font-size:90%; color:#000; text-align:center; white-space:nowrap;}
 
 @media screen and (max-height:440px) {

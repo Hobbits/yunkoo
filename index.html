@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="application-name" content="Yunkoo" />
     <link rel="next" href="main.html">
-    <script src="libs/cordova.js"></script>
     <meta name="viewport"
           content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
     <style>
@@ -29,6 +28,16 @@
             border: none;
         }
     </style>
+    <script>
+        var jump=function(){
+            document.getElementById("jump").innerHTML="正在进入...";
+            try{
+                if(localStorage){localStorage.removeItem("app.userInfo");}
+            }catch(e){}
+
+            window.location='main.html';
+        }
+    </script>
 </head>
 
 <body>
@@ -36,7 +45,7 @@
 
 <div class="wrap">
 
-    <button onClick="window.location='main.html'">
+    <button id="jump" onClick="jump()">
 
         进入
 
