@@ -9,6 +9,11 @@
 
 <!--TODO 登录-->
 <div ng-controller="loginCtrl" id="pagelogin" data-role="page" ngm-pageshow="prefill()">
+    <style>
+        #otherLogin{height: 2em;text-align: center;}
+        #otherLogin a{text-decoration: none;}
+    </style>
+
     <header data-role="header" data-position="fixed">
         <a href="#!/" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>用户登录</h1>
@@ -44,6 +49,14 @@
 
         </form>
 
+        <div id="otherLogin">
+            <a data-role="none" data-ngm-vclick="otherLogin.tencent()">
+                <img style="max-height: 100%" src="images/social/txweiboicon32.png">
+            </a>
+            <a data-role="none" data-ngm-vclick="otherLogin.sina()">
+                <img style="max-height: 100%" src="images/social/sina32.png">
+            </a>
+        </div>
     </section>
 
 

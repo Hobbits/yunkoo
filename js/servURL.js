@@ -1,1 +1,1 @@
-var servURL="http://yunku.4pu.com/";
+var servURL="http://192.168.1.111/";

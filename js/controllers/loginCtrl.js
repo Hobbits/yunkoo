@@ -60,4 +60,28 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
 
     }
 
+
+
+    $scope.otherLogin={};
+    var d=new Date();
+    var randomStr=d.valueOf()+Math.random();
+
+    $scope.otherLogin.tencent=function(){
+        var loadStartCall=function(event){
+            console.log(event);
+        }
+        var exitCall=function(e){
+            alert(1);
+            ref.removeEventListener('loadstart', loadStartCall);
+            ref.removeEventListener('exit', exitCall);
+        }
+        var openurl=appConfig.api.url.txLogin+randomStr;
+        var ref = window.open(openurl, '_blank', 'location=yes');
+        ref.addEventListener('loadstart', loadStartCall);
+        ref.addEventListener('exit', exitCall);
+    }
+
+
+
+
 });
