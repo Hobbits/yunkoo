@@ -1,5 +1,24 @@
 app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,$window,myshopInfo,$timeout,$location,localStorageService,AJAX,$element,$pop) {
+
+
+
+    var doneAndjump=function(returnedObj,timeout){
+        var timeout=timeout || 0;
+        if(returnedObj && returnedObj.userid>0){
+            localStorageService.add("userInfo",returnedObj);
+
+            myshopInfo.delete();
+
+            $timeout(function(){
+                $location.path('/');
+            },timeout);
+
+        }
+    }
+
+
     $scope.prefill = function () {
+
         if(angular.isDefined($routeParams.code) && $routeParams.code==401){
             $scope.failedInfo=textStatus("error","帐号认证失败，请重新登录");
         }
@@ -28,13 +47,8 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
                 sCall: function (d) {
 
                     if(d && d.userid>0){
-                        localStorageService.add("userInfo",d);
                         changeBtn("登录成功...",false);
-                        $timeout(function(){
-                            myshopInfo.delete();
-                            $location.path('/');
-
-                        },500);
+                        doneAndjump(d,500);
                     }else{
                         $scope.$apply(function(){
                             $pop.open('帐号或密码错误!');
@@ -60,27 +74,76 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
 
     }
 
-
+    var ableBtn=true;/*是否没禁止*/
 
     $scope.otherLogin={};
-    var d=new Date();
-    var randomStr=d.valueOf()+Math.random();
+
+
+
 
     $scope.otherLogin.tencent=function(){
-        var loadStartCall=function(event){
-            console.log(event);
+        if(!ableBtn){
+            return
+        }else{
+            ableBtn=false;
         }
+
+        var makenewRandom=function(){
+            var d=new Date();
+            return d.valueOf()+Math.random();
+        }
+        var randomStr=makenewRandom();
+
+        var removeEvent=function(){
+            try{
+                ref.removeEventListener('exit', exitCall);
+                ref.removeEventListener('loadstart', jumpCall);
+            }catch(e){}
+        }
+
+        $scope.otherLogin.loginSuccess=function(){
+            ableBtn=true;
+            $("#isLoginDone").popup("close");
+            AJAX({
+                url:appConfig.api.url.Logincallback,
+                p:{random:randomStr},
+                sCall:function(d){
+                    if(d.status=="ok"){
+                        doneAndjump(d.result,"0");
+                    }else{
+                        $pop.open(d.result);
+                    }
+                }
+            })
+            removeEvent();
+
+        }
+
+        $scope.otherLogin.loginFail=function(){
+            ableBtn=true;
+            $("#isLoginDone").popup("close");
+            removeEvent()
+        }
+
+
+
+
+        var jumpCall=function(event){   /*被告诉可以关闭浏览器了*/
+            if(event.url.indexOf(appConfig.api.url.closeInAppbroCall)>=0){
+                ref.close();
+            }
+        }
+
         var exitCall=function(e){
-            alert(1);
-            ref.removeEventListener('loadstart', loadStartCall);
-            ref.removeEventListener('exit', exitCall);
+            $scope.otherLogin.loginSuccess();
         }
         var openurl=appConfig.api.url.txLogin+randomStr;
-        var ref = window.open(openurl, '_blank', 'location=yes');
-        ref.addEventListener('loadstart', loadStartCall);
-        ref.addEventListener('exit', exitCall);
-    }
+        var ref = window.open(openurl, '_blank', 'location=no');
 
+        $("#isLoginDone").popup("open");
+        ref.addEventListener('exit', exitCall);
+        ref.addEventListener('loadstart', jumpCall);
+    }
 
 
 

@@ -26,7 +26,6 @@ $scope.showNewslist = function(){
         url : appConfig.newslistURL,
         p : {'cat_id' : getcatid()},
         sCall : function(d){
-            console.log(d);
             if(d.status == 'ok'){
                 $scope.newslist = d.result;
                 $scope.headerName = d["addon"]["categoryname"];
@@ -45,7 +44,6 @@ $scope.showNewslist = function(){
          p:{article_id:a_id},
          bCall:function(){$waitDialog.show("加载新闻...")},
          sCall:function(d){
-            console.log(d);
              if(d && d.status=="ok"){
                  $scope.arti={
                      title: d.result.title ||"无内容",

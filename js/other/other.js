@@ -70,23 +70,25 @@ $(document).ready(function(){
                     }
 
                     resetContainer();
-                    var mySwiper = container.swiper({
-                        //Your options here:
+                    var threeDObj={
+                        rotate : 50,
+                        stretch :40,
+                        depth: 300,
+                        modifier : 1,
+                        shadows : true
+                    };
+                    var options={
                         mode:'horizontal',
                         speed:750,
                         autoplay:5000,
                         loop: true,
-                        tdFlow: {
-                            rotate : 50,
-                            stretch :40,
-                            depth: 300,
-                            modifier : 1,
-                            shadows : true
-                        }
-                    });
+                        tdFlow:threeDObj
+                    }
+                    window.template.mySwiper = container.swiper(options);
+
                     window.onresize=function(){
                         resetContainer();
-                        mySwiper.resizeFix();
+                        window.template.mySwiper.resizeFix();
                     }
 
                 };
@@ -98,12 +100,16 @@ $(document).ready(function(){
             }
 
             initSwiper();
-
-
-
-
         }
     );
+
+    $( "#pagemain" ).on( "pageshow", function( event, ui ) {
+        try{
+            if(window.template.mySwiper){
+                window.template.mySwiper.reInit();
+            }
+        }catch(e){}
+    });
 
 
 
