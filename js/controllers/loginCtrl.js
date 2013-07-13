@@ -138,7 +138,7 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
             $scope.otherLogin.loginSuccess();
         }
         var openurl=appConfig.api.url.txLogin+randomStr;
-        var ref = window.open(openurl, '_blank', 'location=no');
+        var ref = window.open(openurl, '_blank', 'location=yes');
 
         $("#isLoginDone").popup("open");
         ref.addEventListener('exit', exitCall);

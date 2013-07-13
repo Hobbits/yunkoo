@@ -23,6 +23,8 @@
     <script src="libs/jquery-1.10.1.min.js"></script>
     <script>
         $(document).bind("mobileinit", function() {
+            $.mobile.pageContainer = $('#pageContainer');
+
             // PhoneGap Support options
             $.mobile.allowCrossDomainPages = true;
             $.support.cors = true;
@@ -77,136 +79,142 @@
     <div id="blueline" class="bluelineShadow"> </div>
 </script>
 
-<!--TODO 首页-->
-<div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pageshow="pre()">
+<div id="pageContainer">
+    <!--TODO 首页-->
+    <div id="pagemain" ng-controller="mainCtrl" data-role="page" ngm-pageshow="pre()">
 
 
 
-    <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
-        <h1>云库商务</h1>
-        <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
+        <header data-role="header" data-position="fixed">
+            <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
+            <h1>云库商务</h1>
+            <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
 
-    </header>
+        </header>
 
-    <section data-role="content" id="mainContent" >
-        <div id="mainpageTop">
-        <form data-ajax="false" src="" ng-submit="mainsearch()">
-            <input data-mini="true" data-ng-model="mainSearch" type="search" value="" placeholder="搜索商品和商店"/>
+        <section data-role="content" id="mainContent" >
+            <div id="mainpageTop">
+                <form data-ajax="false" src="" ng-submit="mainsearch()">
+                    <input data-mini="true" data-ng-model="mainSearch" type="search" value="" placeholder="搜索商品和商店"/>
 
-        </form>
+                </form>
 
 
 
-        <link rel="stylesheet" href="libs/swiper/idangerous.swiper.css">
-        <link rel="stylesheet" href="libs/swiper/idangerous.swiper.3dflow.css">
-        <style>
-           .swiper-slide{
-               background-size: cover !important;
-               background-position: right !important;
-               cursor: pointer;
-           }
-           .swiper-slide a {
-                display:block; 
-                width:100%;
-                height:100%;
-               cursor: pointer;
-            }
-        </style>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <!--First Slide-->
-                <div class="swiper-slide">
-                    <a href="#"></a>
+                <link rel="stylesheet" href="libs/swiper/idangerous.swiper.css">
+                <link rel="stylesheet" href="libs/swiper/idangerous.swiper.3dflow.css">
+                <style>
+                    .swiper-slide{
+                        background-size: cover !important;
+                        background-position: right !important;
+                        cursor: pointer;
+                    }
+                    .swiper-slide a {
+                        display:block;
+                        width:100%;
+                        height:100%;
+                        cursor: pointer;
+                    }
+                </style>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!--First Slide-->
+                        <div class="swiper-slide">
+                            <a href="#"></a>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
-        </div>
-
-        </div>
 
 
-        <div class="ui-grid-c" id="navigator">
-            <div class="ui-block-a">
-                <a href="#!/news">
-                    <img src="images/nav/hyzx.svg" />
-                    <h3>新闻分类</h3>
-                </a>
-            </div>
-            <div class="ui-block-b">
-                <a href="#!/goods">
-                    <img src="images/nav/cpgl.svg" />
-                    <h3>产品管理</h3>
-                </a>
-            </div>
-            <div class="ui-block-c">
-                <a href="#!/buy">
-                    <img src="images/nav/ddgl.svg" />
-                    <h3>订单管理</h3>
-                </a>
-            </div>
-            <div class="ui-block-d">
-                <a href="#!/fav/shop">
-                    <img src="images/nav/wdsc.svg" />
-                    <h3>我的收藏</h3>
-                </a>
-            </div>
-            
-            <div class="ui-block-a">
-                <a href="#!/buddyChat">
-                    <img src="images/nav/hylt.svg" />
-                    <h3>商友聊天</h3>
-                </a>
-            </div>
-            <div class="ui-block-b">
-                <a href="#!/chatlist">
-                    <img src="images/nav/wxjl.svg" />
-                    <h3>问询记录</h3>
-                </a>
-            </div>
-            <div class="ui-block-c">
-                <a href="#!/near">
-                    <img src="images/nav/fjsh.svg" />
-                    <h3>附近商户</h3>
-                </a>
-            </div>
-            <div class="ui-block-d">
-                <a href="#!/myqrcode">
-                    <img src="images/nav/zztg.svg" />
-                    <h3>自主推广</h3>
-                </a>
-            </div>
-        </div><!-- /grid -->
+            <div class="ui-grid-c" id="navigator">
+                <div class="ui-block-a">
+                    <a href="#!/news">
+                        <img src="images/nav/hyzx.svg" />
+                        <h3>新闻分类</h3>
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#!/goods">
+                        <img src="images/nav/cpgl.svg" />
+                        <h3>产品管理</h3>
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <a href="#!/buy">
+                        <img src="images/nav/ddgl.svg" />
+                        <h3>订单管理</h3>
+                    </a>
+                </div>
+                <div class="ui-block-d">
+                    <a href="#!/fav/shop">
+                        <img src="images/nav/wdsc.svg" />
+                        <h3>我的收藏</h3>
+                    </a>
+                </div>
+
+                <div class="ui-block-a">
+                    <a href="#!/buddyChat">
+                        <img src="images/nav/hylt.svg" />
+                        <h3>商友聊天</h3>
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#!/chatlist">
+                        <img src="images/nav/wxjl.svg" />
+                        <h3>问询记录</h3>
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <a href="#!/near">
+                        <img src="images/nav/fjsh.svg" />
+                        <h3>附近商户</h3>
+                    </a>
+                </div>
+                <div class="ui-block-d">
+                    <a href="#!/myqrcode">
+                        <img src="images/nav/zztg.svg" />
+                        <h3>自主推广</h3>
+                    </a>
+                </div>
+            </div><!-- /grid -->
 
 
-</section>
+        </section>
 
 
 
-<!--<div data-role="footer" data-position="fixed">-->
-    <!--<div data-role="navbar">-->
+        <!--<div data-role="footer" data-position="fixed">-->
+        <!--<div data-role="navbar">-->
         <!--<ul>-->
-            <!--<li><a href="#" data-icon="grid">Summary</a></li>-->
-            <!--<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>-->
-            <!--<li><a href="#!/shop" data-icon="gear">管理店铺</a></li>-->
+        <!--<li><a href="#" data-icon="grid">Summary</a></li>-->
+        <!--<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>-->
+        <!--<li><a href="#!/shop" data-icon="gear">管理店铺</a></li>-->
         <!--</ul>-->
-    <!--</div>-->
-<!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!--首页结束-->
+
+
+
+
+
+
+
+
+
+    <div id="popup" data-role="popup" class="ui-content" style="max-width:80%;display: none;">
+        <a ngm-vclick="closepop()" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        <p id="poptext">pop</p>
+    </div>
 </div>
-<!--首页结束-->
 
 
 
 
-
-
-
-
-
-<div id="popup" data-role="popup" class="ui-content" style="max-width:80%;display: none;">
-<a ngm-vclick="closepop()" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-    <p id="poptext">pop</p>
-</div>
 
 
 
