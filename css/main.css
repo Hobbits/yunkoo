@@ -21,9 +21,9 @@
 #navigator .ui-block-d {
     height:50%; text-align:center;
 }
-#navigator a { display:inline-block;  text-decoration:none; height:80%;width: 100%}
+#navigator a { display:inline-block;  text-decoration:none;height: 80%; width: 100%}
 #navigator a img {max-width:97%; max-height:100%;}
-#navigator a h3 {font-size:90%; color:#000; text-align:center; white-space:nowrap;}
+#navigator a h3 {font-size:90%; color:#64605D;height: 20%; text-align:center; white-space:nowrap;}
 
 @media screen and (max-height:440px) {
 	#pagemain #mainContent{position: initial;top: initial;bottom: initial;left: initial;right: initial;}
@@ -33,6 +33,10 @@
 .my .bluelineShadow{
     -webkit-box-shadow: inset .5em 0 1em rgba(82, 168, 236, 0.6);
     box-shadow: inset .5em 0 1em rgba(82, 168, 236, 0.6);
+}
+.my .blueSurroundShadow{
+    -webkit-box-shadow: 0 0 1em rgba(82, 168, 236, 1);
+    box-shadow: 0 0 1em rgba(82, 168, 236, 1);
 }
 .my #blueline{
     position: fixed;
@@ -45,6 +49,11 @@
 .panelShadow #blueline{
     display: block;
 }
+
+.panelShadow .ui-panel-display-overlay{
+    -webkit-box-shadow: .5em 0 1em rgba(82, 168, 236, 0.6);
+    box-shadow: .5em 0 1em rgba(82, 168, 236, 0.6);
+}
 .my #flashTip{
     position: fixed;
     width: 50%;
@@ -54,7 +63,6 @@
     max-width: 90%;
     top:50%;
     left: 50%;
-    display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;
     background-color:rgba(43,43,43,0.5);
     border-radius: 1em;
 }

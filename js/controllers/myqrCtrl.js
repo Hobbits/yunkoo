@@ -9,7 +9,6 @@ app.controller("myqrCtrl", function ($scope,textStatus,myshopInfo,AJAX,$location
             url:appConfig.getqrCodeURL,
             sCall:function(d){
                 if(d.status=="ok"){
-                    console.log(d.result);
                     var imgurl=appConfig.logobaseURL+d.result.codeurl;
                     $scope.imgsrc=imgurl;
                     $scope.downloadsrc=appConfig.logobaseURL+d.result.downloadurl;

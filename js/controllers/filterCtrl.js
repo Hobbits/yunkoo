@@ -18,7 +18,6 @@ app.controller("filterCtrl", function ($scope,$routeParams,$pop,$waitDialog,$loc
                         $waitDialog.show("正在查询...");
                     },
                     sCall: function (d) {
-                        console.log(d);
                         if(d && d.status=="ok"){
                             $scope.showList= d.result.good || d.result.shop ;
                         }else{
@@ -42,7 +41,6 @@ app.controller("filterCtrl", function ($scope,$routeParams,$pop,$waitDialog,$loc
                 sCall: function (d) {
                     if(typeof(d)=="object" || typeof(d)=="array"){
                         $scope.lvList=d;
-                        console.log(d);
                     }
                 },
                 eCall:function(){

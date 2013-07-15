@@ -35,7 +35,6 @@ app.controller("addgoodCtrl", function ($scope,$pop,userInfo,myshopInfo,AJAX,loc
    }
 
     $scope.getcat2List=function(e){
-        console.log(e);
         AJAX({
             url: appConfig.goodCatURL,
             p:{"cat_id":$scope.cat1.cat_id||null},
@@ -53,7 +52,6 @@ app.controller("addgoodCtrl", function ($scope,$pop,userInfo,myshopInfo,AJAX,loc
 
 
     $scope.changeGoodlogo=function(e){
-        console.log(e);
         var target=$("#trueAddgoodpic")[0];
             getimageDataURL(target,function(o){
                 localStorageService.add("goodPic",o);

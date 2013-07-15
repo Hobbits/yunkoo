@@ -18,7 +18,7 @@ app.controller("goodslistCtrl", function ($scope,AJAX,$location,userInfo,myshopI
                         if(!data.goods_thumb){
                             $scope.default_thumb=myshopInfo.get("shop_logo");
                         }
-                        console.log(data);
+
                         $scope.goodList= data;
                     }else{
                         $pop.open(d.result);

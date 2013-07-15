@@ -289,7 +289,7 @@ app.factory('flashTip',function(){
                 var that=this;
                 var styleJqO=styleJqO || {};
                 if(!document.getElementById(that.idName)){
-                    that.targeto=$("<div/>").attr({'id':that.idName}).css(styleJqO).html(innerHTML);
+                    that.targeto=$("<div/>").attr({'id':that.idName,'class':'flexbox-center'}).css(styleJqO).html(innerHTML);
                     that.targeto.appendTo(".my");
                 }else{
                     that.targeto=$("#"+that.idName);

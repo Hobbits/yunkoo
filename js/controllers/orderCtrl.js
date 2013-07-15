@@ -1,5 +1,5 @@
 app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDialog,$pop) {
-    console.log("传入参数:",$routeParams);
+
     $scope.orderInfo = {};
     $scope.unChange = {};
     $scope.orderDetail = {};
@@ -22,7 +22,6 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
                 $waitDialog.show("正在获取订单信息...");
             },
             sCall : function(d){
-                console.log(d);
                 if(d.status == "ok"){
                     var r = d.result;
                     $scope.orderDetail.goods_name = r.goods_name;
@@ -82,7 +81,6 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
                 $waitDialog.show("正在获取信息...");
             },
             sCall : function(d){
-                console.log(d);
                 if(d.status == "ok"){
                     var r = d.result;
                     $scope.unChange.goods_name = r.name;

@@ -16,7 +16,6 @@ var searchFriendAct = function(){
             $waitDialog.show("正在搜索...");
         },
         sCall : function(d){
-            console.log(d);
             if(d.status == "ok"){
                 $scope.searchResult = d.result;
             } else {
@@ -57,7 +56,6 @@ $scope.addFriend = function(){
             url : appConfig.addFriendURL,
             p : {'friendid' :logMessage},
             sCall:function(d){
-                console.log(d);
                 $("#moreActions2").popup('close');
                 if(d.status == "ok"){
                     setTimeout(function(){

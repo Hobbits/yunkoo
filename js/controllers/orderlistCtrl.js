@@ -10,7 +10,6 @@ app.controller("orderlistCtrl", function ($scope,AJAX,userInfo,$waitDialog,$pop)
                 $waitDialog.show("正在获取订单列表...");
             },
             sCall : function(d){
-                console.log(d);
                 if(d.status == 'ok'){
                     var r = d.result.buy;
                     $scope.orderlist = r;

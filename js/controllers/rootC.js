@@ -1,4 +1,4 @@
-app.controller("rootC", function (dataChannel,$scope,flashTip,userInfo,$history,$location,$pop,AJAX,$rootScope) {
+app.controller("rootC", function (notification,dataChannel,$scope,flashTip,userInfo,$history,$location,$pop,AJAX,$rootScope) {
 
 //    $rootScope.linkTo=function(str){
 //        $location.url(str);
@@ -41,11 +41,13 @@ app.controller("rootC", function (dataChannel,$scope,flashTip,userInfo,$history,
 
     $scope.$on("appLive", function(event, message){
         try{
-            console.log("appLive:",message);
             if(message && message.newChatMsg){
-                $('.newMsg .ui-li-count').text(message.newChatMsg);
+                $('.newMsg .ui-li-count').text(message.newChatMsg).addClass("blueSurroundShadow");
                 if(message.newChatMsg>0){
                     $.mobile.activePage.addClass("panelShadow");
+
+                    /*震动*/
+                    notification.vibrate(500);
                 }else{
                     $.mobile.activePage.removeClass("panelShadow");
                 }

@@ -2,9 +2,11 @@
 var app = angular.module("app", []);
 
 
-app.config(function($locationProvider,$httpProvider) {
+app.config(function($locationProvider,$httpProvider,$compileProvider) {
     $locationProvider.html5Mode(false);
     $httpProvider.defaults.useXDomain = true;
+    $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 });

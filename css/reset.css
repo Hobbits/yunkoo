@@ -5,7 +5,7 @@ body{margin:0}
     height: 100%;
 }
 #ajaxBusy{display: none !important;}
-/*.ui-page {-webkit-backface-visibility: hidden;}*/
+.ui-page {-webkit-backface-visibility: hidden;}
 
 div,ul,li,h3,img,a {margin:0; padding:0;}
 img {border:none;}
@@ -109,4 +109,26 @@ img{max-width: 100%;}
     border-radius: 4px;
     background-color: #f2dede;
     color: #b94a48;
+}
+
+.flexbox-center{
+    /* Internet Explorer 10 */
+    display:-ms-flexbox;
+    -ms-flex-pack:center;
+    -ms-flex-align:center;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari, Opera, and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
 }

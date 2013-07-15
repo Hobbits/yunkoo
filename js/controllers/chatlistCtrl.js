@@ -9,7 +9,6 @@ $scope.getTalkedFriends = function(){
         },
         url : appConfig.charlistURL,
         sCall : function(d){
-            console.log(d);
             if(d.status == "ok"){
                 var r = d.result;
                 $scope.friendList = r;
@@ -29,7 +28,6 @@ $scope.deleteChatRecord=function(userid_chat){
         url:appConfig.deleteChatRecordURL,
         p:{"friendid" : userid_chat},
         sCall:function(d){
-            console.log(d);
             if(d.status=="ok"){
                 flashTip.show("删除成功",1000,{
                     height:'5em',

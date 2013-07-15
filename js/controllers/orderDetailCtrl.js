@@ -15,7 +15,6 @@ app.controller("orderDetailCtrl", function ($scope,AJAX,$routeParams,$location,$
             url : appConfig.orderDetailURL,
             p : {"payid" : $scope.getpayid()},
             sCall : function(d){
-                console.log(d);
                 if(d.status == "ok"){
                     var r = d.result;
                     $scope.orderDetails = r;

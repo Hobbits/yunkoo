@@ -29,7 +29,6 @@ app.controller("dialogueCtrl", function ($scope,AJAX,$routeParams,$pop,userInfo,
             p:{toid:opposite_userid,last:lastnum},
             sCall:function(d){
                 if(d.status=="ok"){
-                    console.log("first:",d);
                     if(angular.isDefined(d.addon)){
                         if(!$scope.cssInner){
                             var oppositeImg=appConfig.logobaseURL+d.addon.toidicon;
@@ -134,7 +133,6 @@ app.controller("dialogueCtrl", function ($scope,AJAX,$routeParams,$pop,userInfo,
                 selfID:senderID
             },
             sCall:function(d){
-               console.log(d);
                 if(d.status=="ok"){
                     if(angular.isArray(d.result)){
                         handleSendcallback(d.result);

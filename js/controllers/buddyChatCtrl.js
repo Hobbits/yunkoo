@@ -10,7 +10,6 @@ $scope.getFriends = function(){
         },
         url : appConfig.friendslistURL,
         sCall : function(d){
-            console.log(d);
             if(d.status == "ok"){
                 var r = d.result;
                 $scope.friendList = r;
@@ -56,7 +55,6 @@ $scope.deleteFriend = function(){
             url : appConfig.deleteFriendURL,
             p : {'friendid' :logMessage},
             sCall:function(d){
-                console.log(d);
                 $("#moreActions").popup('close');
                 if(d.status == "ok"){
                     $scope.friendList = d.result;

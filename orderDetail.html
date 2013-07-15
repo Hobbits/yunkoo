@@ -20,8 +20,8 @@
                 <li>单价：{{orderDetails.goods_price}}</li>
                 <li>运费：{{orderDetails.transport_price}}</li>
                 <li>支付总金额：{{orderDetails.order_amount}}</li>
-                <li>联系人：{{orderDetails.consignee}}</li>
-                <li>联系电话：{{orderDetails.mobile}}</li>
+                <li>收货人：{{orderDetails.consignee}}</li>
+                <li>联系电话：<div class="inline"><a ng-href="tel:{{orderDetails.mobile}}">{{orderDetails.mobile}}</a></div></li>
                 <li>收货地址：{{orderDetails.address}}</li>
                 <li data-ngm-if="isSelf()">买家留言：{{orderDetails.message}}</li>
                 <li>发货地址：{{orderDetails.goodaddress}}</li>

@@ -3,11 +3,19 @@ app.controller("mainCtrl", function ($scope,$location,localStorageService,userIn
     $scope.pre=function(){
         if(userInfo.get()){
             $scope.islogged=true;
-            $scope.mainpageContent="你已经登录。"
         }else{
             $scope.islogged=false;
-            $scope.mainpageContent="你还没登录。"
         }
+
+        try{
+            if($.mobile.activePage.attr("id")=="pagemain" && window.template.mySwiper){
+                setTimeout(function(){
+                    $(window).trigger("resize");
+                    window.template.mySwiper.resizeFix();
+                },250);
+            }
+        }catch(e){}
+
     };
 
     $scope.mainsearch=function(){

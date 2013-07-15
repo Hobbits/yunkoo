@@ -42,7 +42,6 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
                 url: appConfig.goodInfoURL,
                 p:{'goodsid':itemID},
                 sCall: function (d) {
-                    console.log(d);
                     if(d.status=="ok"){
                         if(d.result.imgs && d.result.imgs.length>0){
                             d.result.imgs[0].img_thumb=d.result.imgs[0].img_thumb || myshopInfo.get("shop_logo");
@@ -117,14 +116,12 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
         /*查看原图*/
         if(menuAct==1 && targetObj.img_url){
             var trueurl=appConfig.logobaseURL+targetObj.img_url;
-             console.log(targetObj);
 
             var targetimg=popupIMG.find(".popphoto");
-
+            targetimg.prop({src:"libs/images/ajax-loader.gif"});
             try{
                 targetimg.css({
-                    "width":targetObj.orwidth+"px",
-//                  "height":targetObj.orheight+"px"
+                    "width":targetObj.orwidth+"px"
                 });
             }catch(e){}
             targetimg.prop({src:trueurl});
