@@ -120,11 +120,10 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
              console.log(targetObj);
 
             var targetimg=popupIMG.find(".popphoto");
-
+            targetimg.prop({src:"libs/images/ajax-loader.gif"});
             try{
                 targetimg.css({
-                    "width":targetObj.orwidth+"px",
-//                  "height":targetObj.orheight+"px"
+                    "width":targetObj.orwidth+"px"
                 });
             }catch(e){}
             targetimg.prop({src:trueurl});

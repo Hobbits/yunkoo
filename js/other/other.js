@@ -39,7 +39,7 @@ $(document).ready(function(){
             if(data.status == "ok"){
                 var strHTML = '';
                 $.each(data.result, function(InfoIndex, Info) {
-                    strHTML += "<div class='swiper-slide' style='background:url(http://yunku.4pu.com/shop/" +Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";            
+                    strHTML += "<div class='swiper-slide' style='background:url("+servURL+"shop/" +Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";
                 });
                 $(".swiper-wrapper").empty().html(strHTML);
                 if(callback && typeof(callback)=='function'){
@@ -103,18 +103,33 @@ $(document).ready(function(){
         }
     );
 
-    $( "#pagemain" ).on( "pageshow", function( event, ui ) {
-        try{
-            if(window.template.mySwiper){
-                window.template.mySwiper.reInit();
-            }
-        }catch(e){}
-    });
+//    $( "#pagemain" ).on( "pageshow", function( event, ui ) {
+//        try{
+//            if(window.template.mySwiper){
+//                window.template.mySwiper.reInit();
+//            }
+//        }catch(e){}
+//    });
 
 
 
 })
 
+
+document.addEventListener("backbutton", function(e){
+    e.preventDefault();
+    return false;
+}, false);
+
+document.addEventListener("menubutton", function(e){
+    e.preventDefault();
+    try{
+        $.mobile.activePage.find(".myPanel").panel("toggle");
+    }catch(e){}
+}, false);
+document.addEventListener("searchbutton", function(){
+    window.location.href="#!/search/";
+}, false);
 
 
 //$(document).on("touchmove",function(evt){
