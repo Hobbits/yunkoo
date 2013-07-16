@@ -81,7 +81,7 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
 
 
 
-    $scope.otherLogin.tencent=function(){
+    $scope.otherLogin.loginAct=function(target){
         if(!ableBtn){
             return
         }else{
@@ -137,7 +137,14 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
         var exitCall=function(e){
             $scope.otherLogin.loginSuccess();
         }
-        var openurl=appConfig.api.url.txLogin+randomStr;
+
+        if(target=="tencent"){
+            var openurl=appConfig.api.url.txLogin+randomStr;
+        }else if(target=="sina"){
+            var openurl=appConfig.api.url.sinaLogin+randomStr;
+        }
+
+
         var ref = window.open(openurl, '_blank', 'location=yes');
 
         $("#isLoginDone").popup("open");

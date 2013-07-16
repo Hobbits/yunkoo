@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
 
-    <!--<script src="libs/cordova.js"></script>-->
+    <!--<script src="libs/cordova_android.js"></script>-->
+    <script src="libs/cordova_ios.js"></script>
 
     <script src="libs/jquery-1.10.1.min.js"></script>
     <script>
@@ -36,6 +37,10 @@
             //$.support.dynamicBaseTag=true;
 
             $.event.special.swipe.horizontalDistanceThreshold=50;
+
+            $.mobile.loader.prototype.options.text = "加载中...";
+            $.mobile.loader.prototype.options.textonly=true;
+            $.mobile.loader.prototype.options.textVisible = true;
 
             if($.support.touchOverflow){
                 $.mobile.touchOverflowEnabled = true;
@@ -130,28 +135,28 @@
 
 
             <div class="ui-grid-c" id="navigator">
-                <div class="ui-block-a flexbox-center">
+				<div class="ui-block-a flexbox-center">
+                    <a href="#!/filterlv1/%7B%22search_type%22:%22good%22,%22lv%22:%221%22%7D">
+                        <h3>浏览商品</h3>
+                        <img src="images/nav/llsp.svg" />
+                    </a>
+                </div>
+                <div class="ui-block-b flexbox-center">
                     <a href="#!/news">
                         <h3>新闻分类</h3>
                         <img src="images/nav/hyzx.svg" />
                     </a>
                 </div>
-                <div class="ui-block-b flexbox-center">
+                <div class="ui-block-c flexbox-center">
                     <a href="#!/goods">
                         <h3>产品管理</h3>
                         <img src="images/nav/cpgl.svg" />
                     </a>
                 </div>
-                <div class="ui-block-c flexbox-center">
+                <div class="ui-block-d flexbox-center">
                     <a href="#!/buy">
                         <h3>订单管理</h3>
                         <img src="images/nav/ddgl.svg" />
-                    </a>
-                </div>
-                <div class="ui-block-d flexbox-center">
-                    <a href="#!/fav/shop">
-                        <h3>我的收藏</h3>
-                        <img src="images/nav/wdsc.svg" />
                     </a>
                 </div>
 

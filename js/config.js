@@ -53,6 +53,7 @@ appConfig.api={
         geocodingURL:"http://api.map.baidu.com/geocoder/v2/",
         sinaShare:"https://api.weibo.com/2/statuses/upload_url_text.json",
         txLogin:servURL+"appdo.php?act=tencent&random=",/*腾讯登录*/
+        sinaLogin:servURL+"appdo.php?act=sina&random=",/*新浪登录*/
         Logincallback:servURL+"appdo.php?act=3rdLogincallback",
         closeInAppbroCall:"closewindow"/*关闭窗口*/
     }

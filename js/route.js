@@ -32,7 +32,7 @@ app.config(function($routeProvider) {
         }).
 		when('/buddyChat', {
             templateUrl: 'buddyChat.html',
-            jqmOptions: {transition: 'slideup'},
+            jqmOptions: {transition: 'slide'},
             resolve:validateLogon
         }).
 		when('/orderDetail/:payid',{
