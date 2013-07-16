@@ -78,7 +78,7 @@ app.factory('userInfo', function(localStorageService){
     }
 });
 
-app.factory('logout', function(userInfo,$http,$window,localStorageService,$waitDialog){
+app.factory('logout', function(userInfo,$http,localStorageService,$waitDialog){
     return function(path){
         try{
             var uinfo={"name":userInfo.get().username,"psw":""};
@@ -89,7 +89,7 @@ app.factory('logout', function(userInfo,$http,$window,localStorageService,$waitD
         $http.jsonp(appConfig.logoutURL);
         if(angular.isDefined(path) && path.length>0){
             setTimeout(function(){
-                $window.location.replace("#!"+path);
+                window.location.replace("#!"+path);
             },200)
         }
         $waitDialog.hide();
@@ -139,7 +139,7 @@ app.factory('AJAX', function($http,logout,dataChannel){
 
                       if(angular.isDefined(data) && angular.isDefined(data.status) && data.status=="401"){
                           logout('/login401');
-                          return;
+                          return false;
                       }
 
                       if(typeof(o.sCall)=="function"){
