@@ -10,7 +10,7 @@ var appConfig={
     shop_area:servURL+"appdo.php?act=applocation",/*地区获取*/
     shop_ind:servURL+"appdo.php?act=appbusiness",/*所在行业*/
     shop_get:servURL+"appdo.php?act=appshopinfo",/*获取店铺信息*/
-    logobaseURL:servURL+"shop/",/*图片baseurl*/
+    logobaseURL:servURL,/*图片baseurl*/
     goodCatURL:servURL+"appdo.php?act=goodcategory",/*商品类别*/
     goodAddURL:servURL+"appdo.php?act=appgoodsadd",
     goodListURL:servURL+"appdo.php?act=appgoodslist",/*商品列表*/
@@ -62,13 +62,3 @@ appConfig.api={
 var template={
     logo:{}
 }
-//
-//<script>
-//window.isPhone = !document.URL.match(/^https?:/);
-//if (window.isPhone) {
-//    var head = document.getElementsByTagName('head')[0];
-//    var base = document.createElement('base')
-//    base.href = window.location.href;
-//    head.appendChild(base);
-//    }
-//</script>

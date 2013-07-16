@@ -39,7 +39,7 @@ $(document).ready(function(){
             if(data.status == "ok"){
                 var strHTML = '';
                 $.each(data.result, function(InfoIndex, Info) {
-                    strHTML += "<div class='swiper-slide' style='background:url("+servURL+"shop/" +Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";
+                    strHTML += "<div class='swiper-slide' style='background:url("+servURL+Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";
                 });
                 $(".swiper-wrapper").empty().html(strHTML);
                 if(callback && typeof(callback)=='function'){
