@@ -36,14 +36,14 @@
 
     <section data-role="content">
     
-        <ul data-role="listview" data-inset="true" data-split-icon="plus" data-split-theme="c" class="ui-icon-alt">
+        <ul data-role="listview" data-inset="true" data-split-icon="gear" data-split-theme="c" class="ui-icon-alt">
             <li data-ng-repeat="friend in friendList | orderBy: 'addtime':false">
                 <a href="#!/dialogue/{{friend.user_id}}">
                     <img data-ng-src="{{logoURL + friend.logo_thumb}}" />
                     <h2>{{friend.user_name}}</h2>
                     <span class="ui-li-count" data-ng-show="hasNewsInformation(friend.records_num)">{{friend.records_num}}</span>
                 </a>
-                <a data-ng-click="openMenu(friend.user_id)">更多操作</a>
+                <a data-theme="e" data-ng-click="openMenu(friend.user_id)">更多操作</a>
             </li>
         </ul>
     </section> 

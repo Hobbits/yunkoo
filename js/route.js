@@ -148,7 +148,7 @@ app.config(function($routeProvider) {
             templateUrl: 'shopGusetviewinfo.html',
             jqmOptions: {transition: 'slide'}
         }).
-        when('/shop', {
+        when('/shop:code', {
             templateUrl: 'shop.html',
             jqmOptions: {transition: 'none'},
             resolve:validateLogon
@@ -171,13 +171,12 @@ app.config(function($routeProvider) {
 
 
 var validateLogon = {
-    storge: function($q,$rootScope,userInfo,$window) {
+    storge: function($q,$rootScope,userInfo) {
         var deferred = $q.defer();
         if(userInfo.get()){
-            deferred.resolve(userInfo.get().userid);
+            deferred.resolve();
         }else{
             deferred.reject("notlogin");
-            $window.location.replace('#!/login');
         };
         return deferred.promise;
     }
@@ -192,10 +191,7 @@ var hasShop = {
                 if(d.status=="ok"){
                     deferred.resolve();
                 }else{
-                    alert("您需要先创建店铺");
                     deferred.reject("needaShop");
-                    $location.path("/shop");
-
                 }
 
             });

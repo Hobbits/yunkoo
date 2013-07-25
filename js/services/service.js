@@ -120,7 +120,7 @@ app.factory('dataChannel', function($rootScope){
 
 app.factory('AJAX', function($http,logout,dataChannel){
     /*url p bCall sCall eCall*/
-      var send=function(o){
+      var send=function(o,timeout){
           var sendmethod=o.method || "JSONP";
           if(typeof(o.bCall)=="function"){o.bCall();}
 
@@ -135,6 +135,7 @@ app.factory('AJAX', function($http,logout,dataChannel){
               httpPatams.method =sendmethod;
               httpPatams.data=o.p || null;
           }
+              httpPatams.timeout=timeout || 15000;
               $http(httpPatams).success(function(data, status, headers, config){
 
                       if(angular.isDefined(data) && angular.isDefined(data.status) && data.status=="401"){

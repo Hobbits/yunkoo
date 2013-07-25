@@ -23,13 +23,21 @@
 
              </div>
 
-             <div ng-if="imgsrc">
+             <div class="qr" ng-if="imgsrc">
                  <img data-ng-src="{{imgsrc}}"/>
              </div>
 
-
+             <button data-ngm-vclick="shopqrShare()">分享到微博</button>
          </section>
 
+         <div data-role="popup" class="sharePop" data-ng-controller="shareCtrl">
+             <link rel="stylesheet" href="css/font/css/social.css"/>
+             <ul data-role="listview" data-inset="true">
+                 <li data-role="list-divider"><i class="icon-share"></i>分享</li>
+                 <li ><a data-ngm-vclick="share('sina',shareObj)"><i class="hs-icon-sina-s"></i>新浪微博</a></li>
+                 <li ><a data-ngm-vclick="share('tx',shareObj)"><i class="hs-icon-twb-s"></i>腾讯微博</a></li>
+             </ul>
+         </div>
      </div>
 </body>
 </html>

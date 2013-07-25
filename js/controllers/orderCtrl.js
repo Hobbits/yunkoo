@@ -34,6 +34,9 @@ app.controller("orderCtrl", function ($scope,AJAX,$routeParams,$location,$waitDi
                     $scope.orderDetail.address = r.address;
                     $scope.orderDetail.goodaddress = r.goodaddress;
                     $scope.orderDetail.payid = $scope.getPayid();
+                    $scope.orderDetail.alipayOn = r.alipayOn;
+
+
                 } else {
                     $pop.open(d.result);
                 }

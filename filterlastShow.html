@@ -6,14 +6,16 @@
 </head>
 <body>
     <div data-role="page" ng-controller="filterCtrl"
-     data-id="filterHeader" ngm-pageshow="setShow()">
+     data-id="filterHeader" ngm-pagebeforeshow="setShow()">
         <header data-role="header" data-position="fixed">
             <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
             <h1>{{headerName}}</h1>
         </header>
 
         <section data-role="content">
-
+            <div ngm-if="!showList" class="textbox-warning">
+                暂无货物
+            </div>
             <ul
                 ng-show="showList" data-role="listview" data-divider-theme="d" data-split-theme="e" data-split-icon="grid">
 

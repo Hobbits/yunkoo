@@ -220,6 +220,21 @@ app.controller("gooddetailCtrl", function ($scope,$routeParams,$window,AJAX,user
         reset();
     }
 
+    $scope.goodShare=function(){
+        $.mobile.activePage.find(".sharePop").popup("open");
+
+
+        var targetObj=$.mobile.activePage.find('.goodth');
+
+        $scope.shareObj={
+            sUrl:servURL+'shop.php?app=product&productid='+$scope.getgoodid(),
+            pics:appConfig.getPicString(targetObj),
+            title:$scope.goodInfo.name,
+            content:$scope.goodInfo.introduction,
+            ralateUid:appConfig.api.sinaRalateUid||''
+        }
+    }
+
 });
 
 

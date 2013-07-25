@@ -8,6 +8,7 @@
 <div id="articlePage" ng-controller="newsCategoryCtrl" data-role="page" ngm-pagebeforeshow="getNewsDetial()">
     <link rel="stylesheet" href="css/article.css"/>
     <link rel="stylesheet" href="css/font/css/fontello.css"/>
+
     <header data-role="header" data-position="fixed">
         <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>新闻详情</h1>
@@ -31,20 +32,16 @@
 
            </div>
 
-        <div data-role="popup" id="sharePop">
-            <ul data-role="listview" data-inset="true">
-                <li data-role="list-divider"><i class="icon-share"></i>分享</li>
-                <li ><a><i class="icon-weibo"></i>新浪微博</a></li>
-            </ul>
-        </div>
-
     </article>
 
-
-
-
-
-
+    <div data-role="popup" class="sharePop" data-ng-controller="shareCtrl">
+        <link rel="stylesheet" href="css/font/css/social.css"/>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider"><i class="icon-share"></i>分享</li>
+            <li ><a data-ngm-vclick="share('sina',shareObj)"><i class="hs-icon-sina-s"></i>新浪微博</a></li>
+            <li ><a data-ngm-vclick="share('tx',shareObj)"><i class="hs-icon-twb-s"></i>腾讯微博</a></li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>

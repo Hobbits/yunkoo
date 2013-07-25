@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
 
     <title>云库商务</title>
-
+    <meta content="云库商务"/>
     <!--<link rel="apple-touch-icon-precomposed" href="icon.png">-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
 
-    <!--<script src="libs/cordova_android.js"></script>-->
-    <script src="libs/cordova_ios.js"></script>
+    <script src="libs/cordova_android.js"></script>
+    <!--<script src="libs/cordova_ios.js"></script>-->
 
-    <script src="libs/jquery-1.10.1.min.js"></script>
+    <script src="libs/jquery-2.0.3.min.js"></script>
     <script>
         $(document).bind("mobileinit", function() {
             $.mobile.pageContainer = $('#pageContainer');
@@ -29,6 +29,8 @@
             // PhoneGap Support options
             $.mobile.allowCrossDomainPages = true;
             $.support.cors = true;
+            $.mobile.phonegapNavigationEnabled = true;
+
             // Setting default page and dialog transition to none
             $.mobile.defaultPageTransition = 'none';
             $.mobile.defaultDialogTransition = 'none';
@@ -42,9 +44,7 @@
             $.mobile.loader.prototype.options.textonly=true;
             $.mobile.loader.prototype.options.textVisible = true;
 
-            if($.support.touchOverflow){
-                $.mobile.touchOverflowEnabled = true;
-            }
+            if($.support.touchOverflow){$.mobile.touchOverflowEnabled = true;}
         });
     </script>
     <script src="js/servURL.js"></script>
@@ -234,7 +234,7 @@
 <script src="js/route.js"></script>
 
 <script src="js/directives.js"></script>
-
+<script src="js/filters.js"></script>
 <!--浏览器里要注释掉-->
 <script src="js/services/phonegapReady.js"></script>
 <script src="js/services/notification.js"></script>
@@ -242,6 +242,7 @@
 <script src="js/services/localStorageService.js"></script>
 <script src="js/services/geo.js"></script>
 <script src="js/services/service.js"></script>
+<script src="js/services/share.js"></script>
 
 <script src="js/controllers/rootC.js"></script>
 <script src="js/controllers/mainCtrl.js"></script>
@@ -269,8 +270,10 @@
 <script src="js/controllers/favCtrl.js"></script>
 <script src="js/controllers/buddyChatCtrl.js"></script>  
 <script src="js/controllers/searchFriendCtrl.js"></script>
-<script src="js/controllers/newsCategoryCtrl.js"></script>    
+<script src="js/controllers/newsCtrl.js"></script>
 
+
+<script src="js/controllers/shareCtrl.js"></script>
 <script src="js/other/other.js"></script>
 </body>
 </html>

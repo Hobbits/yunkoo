@@ -16,12 +16,16 @@ app.controller("loginCtrl", function ($scope,$routeParams,textStatus,$rootScope,
         }
     }
 
-
-    $scope.prefill = function () {
-
-        if(angular.isDefined($routeParams.code) && $routeParams.code==401){
+    if(angular.isDefined($routeParams.code)){
+        if($routeParams.code==401){
             $scope.failedInfo=textStatus("error","帐号认证失败，请重新登录");
         }
+        if($routeParams.code==403){
+            $scope.failedInfo=textStatus("error","需要登陆");
+        }
+    }
+
+    $scope.prefill = function () {
 
         var userLogininfo = localStorageService.get('userLogininfo');
         if (userLogininfo) {

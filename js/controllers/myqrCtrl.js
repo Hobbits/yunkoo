@@ -28,5 +28,21 @@ app.controller("myqrCtrl", function ($scope,textStatus,myshopInfo,AJAX,$location
         window.open($scope.downloadsrc, '_system');
     }
 
+    $scope.shopqrShare=function(){
+        $.mobile.activePage.find(".sharePop").popup("open");
+
+
+        var targetObj=$.mobile.activePage.find('.qr');
+        var picArr= appConfig.getPicString(targetObj);
+         picArr.push(appConfig.logobaseURL+myshopInfo.get("shop_logo"));
+
+        $scope.shareObj={
+            sUrl:servURL+'shop.php?shopid='+myshopInfo.get("shop_id"),
+            pics:picArr,
+            title:myshopInfo.get("shop_name"),
+            content:myshopInfo.get("shop_intro"),
+            ralateUid:appConfig.api.sinaRalateUid||''
+        }
+    }
 
 })

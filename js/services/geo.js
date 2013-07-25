@@ -22,13 +22,7 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
                 },
                 options);
         },
-        getGeocoding:function(coords,cb){
-             var p={
-                 ak:appConfig.api.keys.baiduMap,
-                 coordtype:'wgs84ll',
-                 location:coords.latitude+','+coords.longitude,
-                 output:'json'
-             };
+        codingAjax:function(p,cb,timeout,completeCb){
             AJAX({
                 url:appConfig.api.url.geocodingURL,
                 p:p,
@@ -41,12 +35,35 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
                             cb(d.result);
                         }
                     }else{
-                        alert("API出错:"+d.msg);
+                        console.log("API出错:",d.msg);
                     }
 
                 },
-                cCall:function(){$waitDialog.hide();}
-            })
+                cCall:function(){
+                    if(completeCb && typeof(completeCb)=="function"){
+                        completeCb();
+                    }
+                    $waitDialog.hide();
+                }
+            },timeout)
+        },
+        getGeocoding:function(coords,cb){ /*根据坐标解析地址*/
+             var p={
+                 ak:appConfig.api.keys.baiduMap,
+                 coordtype:'wgs84ll',
+                 location:coords.latitude+','+coords.longitude,
+                 output:'json'
+             };
+             this.codingAjax(p,cb);
+        },
+        getGeodecode:function(address,city,cb,completeCb){
+             var p={
+                 ak:appConfig.api.keys.baiduMap,
+                 output:'json',
+                 address:address,
+                 city:city || ''
+             };
+            this.codingAjax(p,cb,6000,completeCb);
         }
     }
 });

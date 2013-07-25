@@ -37,7 +37,7 @@
     </header>
 
     <section data-role="content">
-        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="查找好友..." data-split-icon="delete" data-split-theme="e">
+        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="查找本页好友..." data-split-icon="delete" data-split-theme="e">
             <li data-ng-repeat="friend in friendList | orderBy:'last_timestamp':true"  >
                 <a href="#!/dialogue/{{friend.userid_chat}}">
                     <img data-ng-src="{{logoURL + friend.icon}}"/>

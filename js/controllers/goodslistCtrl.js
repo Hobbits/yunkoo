@@ -28,8 +28,7 @@ app.controller("goodslistCtrl", function ($scope,AJAX,$location,userInfo,myshopI
                 cCall:function(){$waitDialog.hide();}
             })
         }else{
-            alert("您还没创建店铺!");
-            $location.path("/shop");
+            $location.path("/shop412");
         }
 
 

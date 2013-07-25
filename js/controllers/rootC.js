@@ -3,6 +3,16 @@ app.controller("rootC", function (notification,dataChannel,$scope,flashTip,userI
 //    $rootScope.linkTo=function(str){
 //        $location.url(str);
 //    }
+    $rootScope.$on("$routeChangeError",function(event,current,previous,rejection){
+
+        if(rejection=="notlogin"){
+            setTimeout(function(){window.location.replace('#!/login403');},500)
+        }
+        if(rejection=="needaShop"){
+            setTimeout(function(){window.location.replace('#!/shop412');},500)
+        }
+    })
+
     $scope.closepop=function(){
         $pop.close();
     }

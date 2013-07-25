@@ -1,4 +1,4 @@
-app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageService,userInfo,myshopInfo,$waitDialog,$pop,$timeout,geo){
+app.controller("shopCtrl",function($q,$scope,AJAX,$routeParams,textStatus,$location,Obj2Arr,localStorageService,userInfo,myshopInfo,$waitDialog,$pop,$timeout,geo){
     $scope.provList={};$scope.ind1list={};
     $scope.shopPrams={};
     localStorageService.remove("shopPic");
@@ -12,8 +12,13 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
         return -1;
     };
 
-    $scope.preGet=function(){
+    if(angular.isDefined($routeParams.code)){
+        if($routeParams.code==412){
+            $scope.failedInfo=textStatus("error","请先创建店铺：");
+        }
+    }
 
+    $scope.preGet=function(){
 
         var aftergetShopinfo=function(d){
             if(d.status!="ok"){return}/*没店铺*/
@@ -51,49 +56,56 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
                 $scope.shopPrams.ind1 = $scope.ind1List[mcatIndex];
                 $scope.getin2List(d.result.shop_categories);
             }
+
+            $scope.bindalipay=d.result.alipay;
+            //$scope.bindalipay.alipayOn=true;
+            //$("input[type='checkbox']").checkboxradio("refresh");
+
         };
 
 
+        var getProvandInd=function(){
+             var provDef=$q.defer();
+            var indDef=$q.defer();
 
-        var done = 0;
-        function checkIfDone() {
-            done++;
-            if (done==2){
-                myshopInfo.refresh(aftergetShopinfo);
+            /*与获取省*/
+            var prolist=localStorageService.get('shop_province');
+            if (!prolist) {
+                AJAX({
+                    url: appConfig.shop_area,
+                    sCall: function (d) {
+                        $scope.provList=Obj2Arr(d,"provID","provName");
+                        localStorageService.add("shop_province", $scope.provList);
+                    },
+                    cCall:function(){provDef.resolve();}
+                })
+            }else{
+                $scope.provList=prolist;
+                //$("#area").trigger("create");
+                provDef.resolve();
             };
+
+            /*与获取行业*/
+            AJAX({
+                url: appConfig.shop_ind,
+                sCall: function (d) {
+                    $scope.ind1List=Obj2Arr(d,"ind1ID","ind1Name");
+                    //$scope.shopPrams.ind1 = $scope.ind1List[0];
+                },
+                eCall:function(){
+                    alert("获取行业列表失败");
+                },
+                cCall:function(){indDef.resolve();}
+            })
+
+
+            return $q.all([provDef.promise,indDef.promise]);
+
         }
 
-        /*与获取省*/
-        var prolist=localStorageService.get('shop_province');
-        if (!prolist) {
-            AJAX({
-                url: appConfig.shop_area,
-                sCall: function (d) {
-                    $scope.provList=Obj2Arr(d,"provID","provName");
-                    localStorageService.add("shop_province", $scope.provList);
-                    checkIfDone();
-                }
-            })
-        }else{
-            $scope.provList=prolist;
-            $("#area").trigger("create");
-            checkIfDone();
-        };
-
-
-        /*与获取行业*/
-        AJAX({
-            url: appConfig.shop_ind,
-            sCall: function (d) {
-                $scope.ind1List=Obj2Arr(d,"ind1ID","ind1Name");
-                //$scope.shopPrams.ind1 = $scope.ind1List[0];
-                checkIfDone();
-            },
-            eCall:function(){
-                alert("获取行业列表失败")
-            }
+        getProvandInd().then(function(){
+            myshopInfo.refresh(aftergetShopinfo);
         })
-
     };
 
 
@@ -193,7 +205,8 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
             logo: picPrams.code,
             imageType:picPrams.imageType,
             address: shopPrams.address,
-            coords:shopPrams.coords
+            coords:shopPrams.coords,
+            alipay:$scope.bindalipay
         };
 
 //        $http
@@ -206,40 +219,66 @@ app.controller("shopCtrl",function($scope,AJAX,$location,Obj2Arr,localStorageSer
             btn.trigger('create');
         };
 
-        AJAX({
-            url:appConfig.shop_newShop,
-            p:p,
-            method:"POST",
-            bCall:function(){
-                  $waitDialog.show("正在提交...");
-                changeBtn("提交中",true);
 
-            },
-            sCall:function(d){
-                if(typeof(d)=="object" && angular.isDefined(d.shop_name)){
-                    $pop.open( '提交成功!');
-                    myshopInfo.set(d);
-                    $timeout(function(){
-                        $pop.close();
-                        $location.path('/');
-                    },1000);
-                }else if(d==2){
-                    $pop.open( '店铺重名!');
-                    changeBtn("提交",false);
+        var sendAct=function(){
+            AJAX({
+                url:appConfig.shop_newShop,
+                p:p,
+                method:"POST",
+                bCall:function(){
+                    $waitDialog.show("正在提交...");
+                    changeBtn("提交中",true);
 
-                }else if(d==-1){
-                    $pop.open( '添加失败!');
-                    changeBtn("提交",false);
+                },
+                sCall:function(d){
+                    if(typeof(d)=="object" && angular.isDefined(d.shop_name)){
+                        $pop.open( '提交成功!');
+                        myshopInfo.set(d);
+                        $timeout(function(){
+                            $pop.close();
+                            $location.path('/account');
+                        },1000);
+                    }else if(d==2){
+                        $pop.open( '店铺重名!');
+                        changeBtn("提交",false);
+
+                    }else if(d==-1){
+                        $pop.open( '添加失败!');
+                        changeBtn("提交",false);
+                    }
+                },
+                eCall:function(){
+                    $pop.open( '<p>提交失败，</p><p>文件过大,</p><p>或服务器配置有问题</p>');
+                    changeBtn("提交",true);
+                },
+                cCall:function(){
+                    $waitDialog.hide();
                 }
-            },
-            eCall:function(){
-                $pop.open( '<p>提交失败，</p><p>文件过大,</p><p>或服务器配置有问题</p>');
-                changeBtn("提交",true);
-            },
-            cCall:function(){
-                $waitDialog.hide();
-            }
-        })
+            })
+        };
+
+
+
+        if($scope.geovalid=="geoStandby" || $scope.geovalid=="geoinvalid"){
+            var cityname=('city' in shopPrams)?shopPrams.city.cityName:null;
+            geo.getGeodecode(p.address, cityname,function(r){
+                try{
+                    if(r && angular.isDefined(r.location)){
+                        p.coords= {
+                            latitude:r.location.lat,
+                            longitude: r.location.lng
+                        }
+                    }
+                }catch(e){}
+
+             },sendAct);
+        }else{
+            sendAct();
+        }
+
+
+
+
 
     }
 

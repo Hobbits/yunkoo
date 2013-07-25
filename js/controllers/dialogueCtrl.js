@@ -55,7 +55,7 @@ app.controller("dialogueCtrl", function ($scope,AJAX,$routeParams,$pop,userInfo,
             }
             $scope.Loadmore.last++;
         });
-        $scope.periodicityGetunread=$window.setInterval(dialog_fetchUnread,10000);
+        $scope.periodicityGetunread=$window.setInterval(dialog_fetchUnread,appConfig.default.chatPollingcycle);
     }
 
     $scope.out=function(){

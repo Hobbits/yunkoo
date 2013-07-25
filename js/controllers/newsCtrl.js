@@ -49,7 +49,8 @@ $scope.showNewslist = function(){
                      title: d.result.title ||"无内容",
                      content:d.result.content ||"无内容",
                      add_time:d.result.add_time,
-                     author:d.result.admin_name
+                     author:d.result.admin_name,
+                     sUrl:(servURL+'article.php?id='+a_id)||''
                  }
              }
          },
@@ -59,38 +60,18 @@ $scope.showNewslist = function(){
 
 
     $scope.newsShare=function(){
-//        AJAX({
-//            url:appConfig.api.url.sinaShare,
-//            method:"POST",
-//            p:{
-//                access_token:appConfig.api.keys.sinaKey,
-//                status:"HeyHey!"
-//            },
-//            sCall:function(d){
-//                console.log(d);
-//            }
-//        })
-
-        $("#sharePop").popup("open");
+        $.mobile.activePage.find(".sharePop").popup("open");
 
 
-//        (function(s, d, e, r, l, p, t, z, c) {
-//            var f = 'http://v.t.sina.com.cn/share/share.php?appkey=真实的appkey',
-//                u = z || d.location,
-//                p = ['&url=', e(u), '&title=', e(t || d.title), '&source=', e(r), '&sourceUrl=', e(l), '&content=', c || 'gb2312', '&pic=', e(p || '')].join('');
-//            function a() {
-//                link= [f, p].join('');
-//                console.log(link);
-//                $("#sharePop").popup("open");
-//                $("#shareWindow")[0].src= link;
-//            };
-//            a();
-//        })(screen, document, encodeURIComponent, '', '', '图片链接|默认为空', '标题|默认当前页标题', 'http://www.baidu.com', '页面编码gb2312|utf-8默认gb2312')
-//
+        var targetObj=$.mobile.activePage.find('article');
 
-
-
-
+        $scope.shareObj={
+            sUrl:$scope.arti.sUrl,
+            pics:appConfig.getPicString(targetObj),
+            title:$scope.arti.title,
+            content:targetObj.find('.articleText').text(),
+            ralateUid:appConfig.api.sinaRalateUid||''
+        }
     }
 
 

@@ -1,6 +1,8 @@
 var appConfig={
     default:{
-        shopthumb:"images/shop-open-icon.png"
+        chatPollingcycle:15000,/*单位，毫秒*/
+        shopthumb:"images/shop-open-icon.png",
+		headerThumb:"images/7-1.jpg" 
     },
     bannerURL:servURL+"appdo.php?act=slide",
     loginURL:servURL+"appdo.php?act=applogin",
@@ -47,7 +49,8 @@ appConfig.api={
     keys:{
         baiduMap:"60425bb77caaa022eab2ef55c6ba8140",
         sinaKey:"793276180",
-        sinaSecret:"955219e6933c5753c8e7ddef96bbceef"
+        txAccount:"740593884",/*腾讯帐号*/
+        txappKey:"801384522"
     },
     url:{
         geocodingURL:"http://api.map.baidu.com/geocoder/v2/",
@@ -56,7 +59,8 @@ appConfig.api={
         sinaLogin:servURL+"appdo.php?act=sina&random=",/*新浪登录*/
         Logincallback:servURL+"appdo.php?act=3rdLogincallback",
         closeInAppbroCall:"closewindow"/*关闭窗口*/
-    }
+    },
+    sinaRalateUid:""
 }
 
 
