@@ -34,13 +34,13 @@
     <!--<script src="libs/cordova_ios.js"></script>-->
 
     <script>
-        var jump=function(){
-            document.getElementById("jump").innerHTML="正在进入...";
+        var jump=function(o){
+            o.innerHTML="正在进入...";
             try{
                 if(localStorage){localStorage.removeItem("app.userInfo");}
             }catch(e){}
 
-            window.location='main.html';
+            window.location.replace('main.html');
         }
     </script>
 </head>
@@ -50,7 +50,7 @@
 
 <div class="wrap">
 
-    <button id="jump" onClick="jump()">
+    <button id="jump" onClick="jump(this)">
 
         进入
 
