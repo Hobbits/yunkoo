@@ -42,7 +42,7 @@
         <div>
             <ul data-role="listview" data-inset="true">        
                 <li data-ng-repeat="s in searchResult">
-                    <a class="newMenu" data-ng-click="openMenu(s.user_id)">
+                    <a class="newMenu" data-ngm-vclick="openMenu(s.user_id)">
                         <img data-ng-src="{{logoURL + s.logo_thumb}}" />
                         <h2>{{s.user_name}}</h2>
                     </a>
@@ -57,8 +57,8 @@
 
         <div id="moreActions2" data-role="popup" data-theme="d" data-overlay-theme="a">
             <ul data-role="listview" data-inset="true">
-                <li><a data-ng-click="addFriend()">加为好友</a></li>
-                <li><a data-ng-click="getBuddyShop()">查看店铺</a></li>
+                <li><a data-ngm-vclick="addFriend()">加为好友</a></li>
+                <li><a data-ngm-vclick="getBuddyShop()">查看店铺</a></li>
             </ul>
         </div>
        

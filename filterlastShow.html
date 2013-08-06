@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title></title>
+    <title>最后一级</title>
 </head>
 <body>
     <div data-role="page" ng-controller="filterCtrl"
@@ -23,7 +23,7 @@
                     <a class="goodItem" ng-href="#!/gooddetail/{{item.goodsid}}/detail">
                         <!--<img class="shopThum" ng-src="{{logobaseURL+r.img[0].img_thumb}}">-->
                         <h4>{{item.goodsname}}</h4>
-                        <p>{{item.intro}}</p>
+                        <p>{{item.intro | htmlToPlaintext}}</p>
                         <span class="ui-li-count">{{item.price}}</span>
                     </a>
                 </li>

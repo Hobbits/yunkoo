@@ -22,7 +22,7 @@
     <section data-role="content">
         <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索此店铺商品..." data-inset="true">
             <li data-ng-repeat="item in goodList">
-                <a data-ng-href="#!/gooddetail/{{item.goods_id}}/detail"><img data-ng-src="{{logobaseURL + item.goods_thumb}}" /><h2>{{item.goods_name}}</h2><p>{{item.goods_intro}}</p></a>
+                <a data-ng-href="#!/gooddetail/{{item.goods_id}}/detail"><img data-ng-src="{{logobaseURL + item.goods_thumb}}" /><h2>{{item.goods_name}}</h2><p>{{item.goods_intro | htmlToPlaintext}}</p></a>
             </li>
         </ul>
     </section>

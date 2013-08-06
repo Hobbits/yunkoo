@@ -43,7 +43,7 @@
                     <h2>{{friend.user_name}}</h2>
                     <span class="ui-li-count" data-ng-show="hasNewsInformation(friend.records_num)">{{friend.records_num}}</span>
                 </a>
-                <a data-theme="e" data-ng-click="openMenu(friend.user_id)">更多操作</a>
+                <a data-theme="e" data-ngm-vclick="openMenu(friend.user_id)">更多操作</a>
             </li>
         </ul>
     </section> 
@@ -51,9 +51,9 @@
 
    <div id="moreActions" data-role="popup" data-theme="d" data-overlay-theme="a">
         <ul data-role="listview" data-inset="true">
-            <li><a ng-click="deleteFriend()">删除好友</a></li>
-            <li><a ng-click="watchFriendShop()">好友店铺</a></li>
-            <li><a ng-click="getDialogue()">聊天记录</a></li>
+            <li><a data-ngm-vclick="deleteFriend()">删除好友</a></li>
+            <li><a data-ngm-vclick="watchFriendShop()">好友店铺</a></li>
+            <li><a data-ngm-vclick="getDialogue()">聊天记录</a></li>
         </ul>
     </div>
 

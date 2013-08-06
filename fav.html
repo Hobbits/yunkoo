@@ -45,7 +45,7 @@
                 <a ng-href="#!/gooddetail/{{f.goods_id}}/detail">
                     <img ng-src="{{logobaseURL+f.img_thumb}}">
                     <h2>{{f.goods_name}}</h2>
-                    <p>{{f.goods_intro}}</p></a>
+                    <p>{{f.goods_intro | htmlToPlaintext}}</p></a>
                 <a data-ngm-vclick="delFav(f.favorite_id)">删除</a>
             </li>
         </ul>

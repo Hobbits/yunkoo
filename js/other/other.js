@@ -34,33 +34,30 @@ $.mobile.scrollBottom=function(){
 }
 
 $(document).ready(function(){
-     var prepareData=function(callback){
-        $.getJSON(appConfig.bannerURL+"&callback=?", function(data){
-            if(data.status == "ok"){
-                var strHTML = '';
-                $.each(data.result, function(InfoIndex, Info) {
-                    strHTML += "<div class='swiper-slide' style='background:url("+servURL+Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";
-                });
-                $(".swiper-wrapper").empty().html(strHTML);
-                if(callback && typeof(callback)=='function'){
-                    callback();
-                }
-            }
-           
-        })
+     var prepareData=function(){
+         var df=$.Deferred();
+         $.getJSON(appConfig.bannerURL+"&callback=?")
+             .done(function(data){
+                 if(data.status == "ok"){
+                     var strHTML = '';
+                     $.each(data.result, function(InfoIndex, Info) {
+                         strHTML += "<div class='swiper-slide' style='background:url("+servURL+Info["images_url"] +") no-repeat;'>" + "<a href='" +Info["images_link"] + "'></a></div>";
+                     });
+                     $(".swiper-wrapper").empty().html(strHTML);
+                     df.resolve();
+                 }else{
+                     df.reject();
+                 }
+             })
+             .fail(function(){df.reject();});
+         return df;
     }
 
     $.when(
             $.getScript("libs/swiper/idangerous.swiper-2.0.min.js"),
             $.getScript("libs/swiper/idangerous.swiper.3dflow-2.0.js"),
-            $.Deferred(function( deferred ){
-                prepareData(function(){
-                    $( deferred.resolve );
-                })
-
-            })
+            prepareData()
         ).done(function(){
-
             var initSwiper=function(){
                 var container=$(".swiper-container");
                 var init=function(){

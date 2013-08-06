@@ -110,7 +110,7 @@
             <div data-role="fieldcontain" id="shopLocation">
                 <label for="s_dz">公司地址:</label>
                     <input id="s_dz" ng-model="shopPrams.address" type="text" />
-                    <a ng-click="getGeo($event)" class="locationBtn {{geovalid}}" data-inline="true" data-role="none">
+                    <a data-ngm-vclick="getGeo($event)" class="locationBtn {{geovalid}}" data-inline="true" data-role="none">
                         <i class="icon-location"></i>
                     </a>
 

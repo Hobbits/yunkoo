@@ -39,9 +39,9 @@
 
         <div id="imgmenu" data-role="popup" data-overlay-theme="a" data-theme="d">
             <ul data-role="listview" data-inset="true">
-                <li><a ng-click="menuAct(1)">查看原图</a></li>
-                <li ngm-if="isGoodowner"><a ng-click="menuAct(2)">设为主图</a></li>
-                <li ngm-if="isGoodowner"><a ng-click="menuAct(3)">删除此图</a></li>
+                <li><a data-ngm-vclick="menuAct(1)">查看原图</a></li>
+                <li ngm-if="isGoodowner"><a data-ngm-vclick="menuAct(2)">设为主图</a></li>
+                <li ngm-if="isGoodowner"><a data-ngm-vclick="menuAct(3)">删除此图</a></li>
             </ul>
         </div>
 

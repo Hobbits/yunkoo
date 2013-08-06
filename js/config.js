@@ -47,7 +47,7 @@ var appConfig={
 };
 appConfig.api={
     keys:{
-        baiduMap:"60425bb77caaa022eab2ef55c6ba8140",
+        baiduMap:"AA656d80c0b5f0f0c7845a101d0e55f4",
         sinaKey:"793276180",
         txAccount:"740593884",/*腾讯帐号*/
         txappKey:"801384522"
@@ -67,3 +67,11 @@ appConfig.api={
 var template={
     logo:{}
 }
+
+var isAndroid=(function(){
+    return navigator.userAgent.indexOf("Android") > 0;
+})();
+
+var isiOS=(function(){
+    return ( navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("iPad") > 0 || navigator.userAgent.indexOf("iPod") > 0);
+})();

@@ -113,7 +113,7 @@
                     <a class="goodItem" ng-href="#!/gooddetail/{{r.goodsid}}/detail">
                         <!--<img class="shopThum" ng-src="{{logobaseURL+r.img[0].img_thumb}}">-->
                         <h4>{{r.goodsname}}</h4>
-                        <p>{{r.intro}}</p>
+                        <p>{{r.intro | htmlToPlaintext}}</p>
                         <span class="ui-li-count">{{r.price}}</span>
                     </a>
                 </li>
@@ -126,7 +126,7 @@
                     <a class="shopItem" ng-href="#!/shopGuest/{{r.shopid}}/info">
                         <img class="shopThum" ng-src="{{logobaseURL+r.thumb_logo}}">
                         <h4>{{r.shopname}}</h4>
-                        <p>{{r.shopmanagement}}</p>
+                        <p>{{r.shopmanagement | htmlToPlaintext}}</p>
                     </a>
                 </li>
             </ul>

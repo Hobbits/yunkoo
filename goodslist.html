@@ -39,7 +39,7 @@
                 <a ng-href="#!/gooddetail/{{goodItem.goods_id}}/detail">
                 <img ng-src="{{logobaseURL+(goodItem.goods_thumb || default_thumb)}}">
                 <h2>{{goodItem.goods_name}}</h2>
-                <p>{{goodItem.goods_intro}}</p></a>
+                <p>{{goodItem.goods_intro | htmlToPlaintext}}</p></a>
             </li>
         </ul>
 
