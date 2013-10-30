@@ -20,7 +20,17 @@ angular.module('btford.phonegap.geolocation',
               onSuccess.apply(that, args);
             });
           }
-        });
+        }, function () {
+          var that = this,
+            args = arguments;
+
+          if (onError) {
+            $rootScope.$apply(function () {
+              onError.apply(that, args);
+            });
+          }
+        },
+        options);
       })
     };
   });
