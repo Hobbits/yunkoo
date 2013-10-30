@@ -1,4 +1,4 @@
-app.controller("rootC", function (notification,dataChannel,$scope,flashTip,userInfo,$history,$location,$pop,AJAX,$rootScope) {
+app.controller("rootC", function (dataChannel,$scope,flashTip,userInfo,$history,$location,$pop,AJAX,$rootScope,notification) {
 
 //    $rootScope.linkTo=function(str){
 //        $location.url(str);

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'HiccSocial';
-    src: url('../social/HiccSocialIcon.eot'),
+    src: url('../social/HiccSocialIcon.eot') format('eot'),
     url('../social/HiccSocialIcon.woff') format('woff'),
     url('../social/HiccSocialIcon.ttf') format('truetype'),
     url('../social/HiccSocialIcon.svg') format('svg');

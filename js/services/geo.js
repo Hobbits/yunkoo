@@ -1,6 +1,7 @@
-app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
+app.factory('geo', function ($rootScope,AJAX,$waitDialog,phonegapReady) {
     return {
         get: function (onSuccess, onError, options) {
+            phonegapReady(function(){
             navigator.geolocation.getCurrentPosition(function () {
                     var that = this,
                         args = arguments;
@@ -21,6 +22,7 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
                     }
                 },
                 options);
+            });
         },
         codingAjax:function(p,cb,timeout,completeCb){
             AJAX({

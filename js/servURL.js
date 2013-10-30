@@ -1,4 +1,4 @@
-var servURL="http://yunku.4pu.com/yunkuApp/shop/";
+var servURL="http://yk.no-ip.biz/yunkuApp/shop/";
 
 /*
 * 1.修改服务器地址
