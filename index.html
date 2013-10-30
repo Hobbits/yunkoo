@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>中国零售市场</title>
-    <meta content="中国零售市场"/>
+    <title>云库商务</title>
+    <meta content="云库商务"/>
     <!--<link rel="apple-touch-icon-precomposed" href="icon.png">-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="application-name" content="中国零售市场" />
+    <meta name="application-name" content="云库商务" />
     <meta name="format-detection" content="telephone-no"/>
 
     <meta name="viewport" content="target-densitydpi=medium-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="css/main.css"/>
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
 
-
-    <!--<script src="phonegap.js"></script>-->
-    <script src="libs/cordova_android.js"></script>
+    <!--<script src="libs/cordova_android.js"></script>-->
+    <!--<script src="libs/cordova_ios.js"></script>-->
+    <script src="phonegap.js"></script>
 
     <script src="libs/jquery-2.0.3.min.js"></script>
     <script src="js/servURL.js"></script>
@@ -96,7 +96,7 @@
 
     <header data-role="header" data-position="fixed">
         <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
-        <h1>中国汽配市场</h1>
+        <h1>云库商务</h1>
         <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
 
     </header>
@@ -234,18 +234,16 @@
 <script src="libs/angular.min.js"></script>
 
 <script src="libs/jquery-mobile-angular-adapter.min.js"></script>
-<script src="js/services/ready.js"></script>
-<script src="js/services/geolocation.js"></script>
 
 <script src="js/route.js"></script>
 
 <script src="js/directives.js"></script>
 <script src="js/filters.js"></script>
 <!--浏览器里要注释掉-->
+<script src="js/services/phonegapReady.js"></script>
 <script src="js/services/notification.js"></script>
 
 <script src="js/services/localStorageService.js"></script>
-
 <script src="js/services/service.js"></script>
 <script src="js/services/geo.js"></script>
 <script src="js/services/share.js"></script>

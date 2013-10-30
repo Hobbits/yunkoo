@@ -1,6 +1,27 @@
-app.factory('geo', function ($rootScope,AJAX,$waitDialog,geolocation) {
+app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
     return {
-        get: geolocation.getCurrentPosition,
+        get: function (onSuccess, onError, options) {
+            navigator.geolocation.getCurrentPosition(function () {
+                    var that = this,
+                        args = arguments;
+
+                    if (onSuccess) {
+                        $rootScope.$apply(function () {
+                            onSuccess.apply(that, args);
+                        });
+                    }
+                }, function () {
+                    var that = this,
+                        args = arguments;
+
+                    if (onError) {
+                        $rootScope.$apply(function () {
+                            onError.apply(that, args);
+                        });
+                    }
+                },
+                options);
+        },
         codingAjax:function(p,cb,timeout,completeCb){
             AJAX({
                 url:appConfig.api.url.geocodingURL,

@@ -113,13 +113,13 @@ $(document).ready(function(){
 })
 
 document.addEventListener("deviceready", function(){
-//    document.addEventListener("backbutton", function(e){
+    document.addEventListener("backbutton", function(e){
 //        e.preventDefault();
 //        return false;
-//    }, false);
+    }, false);
 
     document.addEventListener("menubutton", function(e){
-//        e.preventDefault();
+        e.preventDefault();
         try{
             $.mobile.activePage.find(".myPanel").panel("toggle");
         }catch(e){}
