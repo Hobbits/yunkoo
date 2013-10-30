@@ -1,27 +1,6 @@
-app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
+app.factory('geo', function ($rootScope,AJAX,$waitDialog,geolocation) {
     return {
-        get: function (onSuccess, onError, options) {
-            navigator.geolocation.getCurrentPosition(function () {
-                    var that = this,
-                        args = arguments;
-
-                    if (onSuccess) {
-                        $rootScope.$apply(function () {
-                            onSuccess.apply(that, args);
-                        });
-                    }
-                }, function () {
-                    var that = this,
-                        args = arguments;
-
-                    if (onError) {
-                        $rootScope.$apply(function () {
-                            onError.apply(that, args);
-                        });
-                    }
-                },
-                options);
-        },
+        get: geolocation.getCurrentPosition,
         codingAjax:function(p,cb,timeout,completeCb){
             AJAX({
                 url:appConfig.api.url.geocodingURL,
@@ -48,21 +27,21 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
             },timeout)
         },
         getGeocoding:function(coords,cb){ /*根据坐标解析地址*/
-            var p={
-                ak:appConfig.api.keys.baiduMap,
-                coordtype:'wgs84ll',
-                location:coords.latitude+','+coords.longitude,
-                output:'json'
-            };
-            this.codingAjax(p,cb);
+             var p={
+                 ak:appConfig.api.keys.baiduMap,
+                 coordtype:'wgs84ll',
+                 location:coords.latitude+','+coords.longitude,
+                 output:'json'
+             };
+             this.codingAjax(p,cb);
         },
         getGeodecode:function(address,city,cb,completeCb){
-            var p={
-                ak:appConfig.api.keys.baiduMap,
-                output:'json',
-                address:address,
-                city:city || ''
-            };
+             var p={
+                 ak:appConfig.api.keys.baiduMap,
+                 output:'json',
+                 address:address,
+                 city:city || ''
+             };
             this.codingAjax(p,cb,6000,completeCb);
         }
     }
