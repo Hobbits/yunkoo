@@ -1,7 +1,6 @@
-app.factory('geo', function ($rootScope,AJAX,$waitDialog,phonegapReady) {
+app.factory('geo', function ($rootScope,AJAX,$waitDialog) {
     return {
         get: function (onSuccess, onError, options) {
-            phonegapReady(function(){
             navigator.geolocation.getCurrentPosition(function () {
                     var that = this,
                         args = arguments;
@@ -22,7 +21,6 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog,phonegapReady) {
                     }
                 },
                 options);
-            });
         },
         codingAjax:function(p,cb,timeout,completeCb){
             AJAX({
@@ -50,21 +48,21 @@ app.factory('geo', function ($rootScope,AJAX,$waitDialog,phonegapReady) {
             },timeout)
         },
         getGeocoding:function(coords,cb){ /*根据坐标解析地址*/
-             var p={
-                 ak:appConfig.api.keys.baiduMap,
-                 coordtype:'wgs84ll',
-                 location:coords.latitude+','+coords.longitude,
-                 output:'json'
-             };
-             this.codingAjax(p,cb);
+            var p={
+                ak:appConfig.api.keys.baiduMap,
+                coordtype:'wgs84ll',
+                location:coords.latitude+','+coords.longitude,
+                output:'json'
+            };
+            this.codingAjax(p,cb);
         },
         getGeodecode:function(address,city,cb,completeCb){
-             var p={
-                 ak:appConfig.api.keys.baiduMap,
-                 output:'json',
-                 address:address,
-                 city:city || ''
-             };
+            var p={
+                ak:appConfig.api.keys.baiduMap,
+                output:'json',
+                address:address,
+                city:city || ''
+            };
             this.codingAjax(p,cb,6000,completeCb);
         }
     }
