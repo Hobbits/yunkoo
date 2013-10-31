@@ -297,7 +297,8 @@ app.controller("shopCtrl",function($q,$scope,AJAX,$routeParams,textStatus,$locat
         }
 
         var ongeoError=function(data){
-            $pop.open("GEO定位服务权限不足");
+            var em=data.message || "GEO定位服务权限不足"
+            $pop.open(em);
             $scope.geovalid="geoinvalid";
         }
 

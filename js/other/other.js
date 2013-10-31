@@ -129,6 +129,10 @@ document.addEventListener("deviceready", function(){
     }, false);
 }, false);
 
+document.addEventListener("deviceready", function(){
+    setTimeout(function(){navigator.splashscreen.hide();},3000);
+}, false);
+
 
 //$(document).on("touchmove",function(evt){
 //    evt.preventDefault();

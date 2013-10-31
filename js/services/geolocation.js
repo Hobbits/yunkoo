@@ -12,9 +12,10 @@ angular.module('btford.phonegap.geolocation',
     return {
       getCurrentPosition: phonegapReady(function (onSuccess, onError, options) {
           var options=options || {
+              frequency:5000,
               enableHighAccuracy: true,
-              timeout: 3000,
-              maximumAge: 30000
+              timeout: 10000,
+              maximumAge: 0
           };
           navigator.geolocation.getCurrentPosition(function () {
           var that = this,
