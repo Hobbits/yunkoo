@@ -1,5 +1,5 @@
 
-var app = angular.module("app", []);
+var app = angular.module("app", ['btford.phonegap.geolocation']);
 
 
 app.config(function($locationProvider,$httpProvider,$compileProvider) {

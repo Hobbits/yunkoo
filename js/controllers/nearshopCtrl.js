@@ -48,8 +48,9 @@ app.controller("nearshopCtrl", function ($scope,geo,$waitDialog,textStatus,AJAX,
                 }
             })
         };
-        var ongeoError=function(){
-            $scope.userpos=textStatus("error",'获取座标失败');
+        var ongeoError=function(err){
+            var msg=err.message || '获取座标失败';
+            $scope.userpos=textStatus("error",msg);
         };
 
         geo.get(ongeoSuccess,ongeoError);
