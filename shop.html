@@ -37,7 +37,8 @@
 
 
     <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
+        <!--<a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>-->
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>店铺管理</h1>
         <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
             <button class="fakeSubmit" data-theme="c" data-role="button">提交</button>
@@ -132,32 +133,32 @@
 
 
 
-            <ul data-role="listview" data-inset="true">
+            <!--<ul data-role="listview" data-inset="true">-->
 
-                <li data-role="fieldcontain" style="color:#333">
-                    <legend>交易支付方式设定:</legend>
-                    <input data-ng-model="bindalipay.alipayOn" type="checkbox" id="checkbox-bindalipay" />
-                    <label for="checkbox-bindalipay">启用支付宝担保</label>
-                </li>
+                <!--<li data-role="fieldcontain" style="color:#333">-->
+                    <!--<legend>交易支付方式设定:</legend>-->
+                    <!--<input data-ng-model="bindalipay.alipayOn" type="checkbox" id="checkbox-bindalipay" />-->
+                    <!--<label for="checkbox-bindalipay">启用支付宝担保</label>-->
+                <!--</li>-->
 
-                <li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">
-                    <label for="alipay-intro">简介:</label>
-                    <textarea id="alipay-intro" data-ng-model="bindalipay.intro" required placeholder="该信息会在买家付款时看到，建议填写"></textarea>
-                </li>
-                <li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">
-                    <label for="alipay-partner">合作伙伴:</label>
-                    <input type="text" id="alipay-partner" data-ng-model="bindalipay.partner" />
-                </li>
-                <li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">
-                    <label for="alipay-certCode">*安全检验码:</label>
-                    <input type="text" id="alipay-certCode" data-ng-model="bindalipay.certCode" required/>
-                </li>
-                <li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">
-                    <label for="alipay-account">*卖家支付宝账户:</label>
-                    <input type="text" id="alipay-account" data-ng-model="bindalipay.account" required/>
-                </li>
+                <!--<li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">-->
+                    <!--<label for="alipay-intro">简介:</label>-->
+                    <!--<textarea id="alipay-intro" data-ng-model="bindalipay.intro" required placeholder="该信息会在买家付款时看到，建议填写"></textarea>-->
+                <!--</li>-->
+                <!--<li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">-->
+                    <!--<label for="alipay-partner">合作伙伴:</label>-->
+                    <!--<input type="text" id="alipay-partner" data-ng-model="bindalipay.partner" />-->
+                <!--</li>-->
+                <!--<li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">-->
+                    <!--<label for="alipay-certCode">*安全检验码:</label>-->
+                    <!--<input type="text" id="alipay-certCode" data-ng-model="bindalipay.certCode" required/>-->
+                <!--</li>-->
+                <!--<li ngm-if="bindalipay.alipayOn" data-role="fieldcontain">-->
+                    <!--<label for="alipay-account">*卖家支付宝账户:</label>-->
+                    <!--<input type="text" id="alipay-account" data-ng-model="bindalipay.account" required/>-->
+                <!--</li>-->
 
-            </ul>
+            <!--</ul>-->
 
         </form>
 

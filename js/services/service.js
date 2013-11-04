@@ -5,13 +5,13 @@ app.factory('fetchShopInfo', function(AJAX,$waitDialog){
                 url:appConfig.shop_get,
                 p:{'shopid':shopid},
                 bCall:function(){
-                    $waitDialog.show("正在获取店铺信息...");
+//                    $waitDialog.show("正在获取店铺信息...");
                 },
                 sCall:function(d){
                         if(typeof(callback)=="function"){callback(d);}
                 },
                 cCall:function(){
-                    $waitDialog.hide();
+//                    $waitDialog.hide();
                 }
             }
         );
@@ -86,7 +86,7 @@ app.factory('logout', function(userInfo,$http,localStorageService,$waitDialog){
         }catch(e){}
         userInfo.delete();
         localStorageService.remove('shop_info');
-        $http.jsonp(appConfig.logoutURL);
+        $http.jsonp(appConfig.logoutURL + '&callback=JSON_CALLBACK');
         if(angular.isDefined(path) && path.length>0){
             setTimeout(function(){
                 window.location.replace("#!"+path);

@@ -38,6 +38,7 @@ app.config(function($routeProvider) {
             resolve:validateLogon
         }).
 		when('/buddyChat', {
+            footerPointer:'nav4',
             templateUrl: 'buddyChat.html',
             jqmOptions: {transition: transOrganizer('slide')},
             resolve:validateLogon
@@ -48,16 +49,19 @@ app.config(function($routeProvider) {
 			resolve:validateLogon
 		}).
 		when('/buyRev', {
+            footerPointer:'nav3',
 			templateUrl: 'orderlist.html',
             jqmOptions: {transition: transOrganizer('slide'),reverse:true},
 			resolve:validateLogon
 		}).
 		when('/buy', {
+            footerPointer:'nav3',
 			templateUrl: 'orderlist.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
 			resolve:validateLogon
 		}).
 		when('/sell', {
+            footerPointer:'nav3',
 			templateUrl: 'orderlistSell.html',
             jqmOptions: {transition: transOrganizer('slide')},
 			resolve:validateLogon
@@ -87,24 +91,28 @@ app.config(function($routeProvider) {
             jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/filterlast/:object', {
+            footerPointer:'nav2',
             templateUrl: 'filterlastShow.html',
             jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/filterlv2/:object', {
+            footerPointer:'nav2',
             templateUrl: 'filterlv2.html',
             jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/filterlv1/:object', {
+            footerPointer:'nav2',
             templateUrl: 'filterlv1.html',
             jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/search/:object', {
+            footerPointer:'nav2',
             templateUrl: 'search.html',
             jqmOptions: {allowSamePageTransition: true,transition: transOrganizer('flip')}
         }).
         when('/uploadmore/:goodid', {
             templateUrl: 'uploadmore.html',
-            jqmOptions: {transition: transOrganizer('slideup')}
+            jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/gooddetail/:goodid/gallery', {
             templateUrl: 'goodgallery.html',
@@ -120,27 +128,28 @@ app.config(function($routeProvider) {
         }).
         when('/addgood', {
             templateUrl: 'addgood.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
             resolve:validateLogon
         }).
         when('/goods', {
             templateUrl: 'goodslist.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
             resolve:hasShop
         }).
         when('/dialogue:targetName/:targetid/', {
             templateUrl: 'dialogue.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
             resolve:validateLogon
         }).
         when('/chatlist', {
             templateUrl: 'chatlist.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
             resolve:validateLogon
         }).
         when('/account', {
+            footerPointer:'nav4',
             templateUrl: 'account.html',
-            jqmOptions: {transition: transOrganizer('slideup')},
+            jqmOptions: {transition: transOrganizer('slide')},
             resolve:validateLogon
         }).
         when('/shopGuest/:shopid/goods', {
@@ -162,13 +171,14 @@ app.config(function($routeProvider) {
         }).
         when('/reg', {
             templateUrl: 'reg.html',
-            jqmOptions: {transition: transOrganizer('flip')}
+            jqmOptions: {transition: transOrganizer('slide')}
         }).
         when('/login:code', {
         templateUrl: 'login.html',
-        jqmOptions: {transition: transOrganizer('flip')}
+        jqmOptions: {transition: transOrganizer('slide')}
     }).
         when('/', {
+            footerPointer:'nav1',
             templateUrl: '#pagemain',
             jqmOptions: {transition: transOrganizer('none')}
         }).

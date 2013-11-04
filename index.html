@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>中国汽配市场</title>
-    <meta content="中国汽配市场"/>
+    <title>中国零售市场</title>
+    <meta content="中国零售市场"/>
     <!--<link rel="apple-touch-icon-precomposed" href="icon.png">-->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="application-name" content="中国汽配市场" />
+    <meta name="application-name" content="中国零售市场" />
     <meta name="format-detection" content="telephone-no"/>
 
     <meta name="viewport" content="target-densitydpi=medium-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="libs/jquery.mobile-1.3.2.min.css"/>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <!--<link rel="stylesheet" href="css/icon/jqm-icon-pack-fa.css"/>-->
     <!--<link rel="stylesheet" href="css/nganimate.css"/>-->
 
 
     <script src="phonegap.js"></script>
+
+    <script type="text/javascript" src="js/plugins/SocialSharing.js"></script>
 
     <script src="libs/jquery-2.0.3.min.js"></script>
     <script src="js/servURL.js"></script>
@@ -60,7 +63,7 @@
 <script id="panelTemp" type="text/ng-template">
     <div data-role="panel" class="myPanel inject" data-position-fixed="true"
          data-position="left"  data-display="overlay">
-        <h1><img src="images/logo.gif"/></h1>
+        <!--<h1><img src="images/logo.gif"/></h1>-->
         <ul class="panelul" data-role="listview" data-inset="false">
             <li>
                 <a href="#!/">首页</a>
@@ -94,8 +97,8 @@
 
 
     <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
-        <h1>中国汽配市场</h1>
+        <!--<a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>-->
+        <h1>中国零售市场</h1>
         <a href="#!/login" ng-show="!islogged" id="goLogin" class="ui-btn-right" data-icon="arrow-u" data-role="button">登录</a>
 
     </header>
@@ -106,8 +109,6 @@
                 <input data-mini="true" data-ng-model="mainSearch" type="search" value="" placeholder="搜索商品和商店"/>
 
             </form>
-
-
 
             <link rel="stylesheet" href="libs/swiper/idangerous.swiper.css">
             <link rel="stylesheet" href="libs/swiper/idangerous.swiper.3dflow.css">
@@ -141,71 +142,60 @@
             <div class="ui-block-a flexbox-center">
                 <a href="#!/filterlv1/%7B%22search_type%22:%22good%22,%22lv%22:%221%22%7D">
                     <h3>浏览商品</h3>
-                    <img src="images/nav/llsp.svg" />
+                    <img src="images/nav/llsp.png" />
                 </a>
             </div>
             <div class="ui-block-b flexbox-center">
                 <a href="#!/news">
                     <h3>新闻分类</h3>
-                    <img src="images/nav/hyzx.svg" />
+                    <img src="images/nav/hyzx.png" />
                 </a>
             </div>
             <div class="ui-block-c flexbox-center">
                 <a href="#!/goods">
                     <h3>产品管理</h3>
-                    <img src="images/nav/cpgl.svg" />
+                    <img src="images/nav/cpgl.png" />
                 </a>
             </div>
             <div class="ui-block-d flexbox-center">
                 <a href="#!/buy">
                     <h3>订单管理</h3>
-                    <img src="images/nav/ddgl.svg" />
+                    <img src="images/nav/ddgl.png" />
                 </a>
             </div>
 
             <div class="ui-block-a flexbox-center">
                 <a href="#!/buddyChat">
                     <h3>商友聊天</h3>
-                    <img src="images/nav/hylt.svg" />
+                    <img src="images/nav/hylt.png" />
                 </a>
             </div>
             <div class="ui-block-b flexbox-center">
                 <a href="#!/chatlist">
                     <h3>问询记录</h3>
-                    <img src="images/nav/wxjl.svg" />
+                    <img src="images/nav/wxjl.png" />
                 </a>
             </div>
             <div class="ui-block-c flexbox-center">
                 <a href="#!/near">
                     <h3>附近商户</h3>
-                    <img src="images/nav/fjsh.svg" />
+                    <img src="images/nav/fjsh.png" />
                 </a>
             </div>
             <div class="ui-block-d flexbox-center">
                 <a href="#!/account">
                     <h3>管理中心</h3>
-                    <img src="images/nav/zztg.svg" />
+                    <img src="images/nav/zztg.png" />
                 </a>
             </div>
         </div><!-- /grid -->
-
-
     </section>
 
 
 
-    <!--<div data-role="footer" data-position="fixed">-->
-    <!--<div data-role="navbar">-->
-    <!--<ul>-->
-    <!--<li><a href="#" data-icon="grid">Summary</a></li>-->
-    <!--<li><a href="#" data-icon="star" class="ui-btn-active">Favs</a></li>-->
-    <!--<li><a href="#!/shop" data-icon="gear">管理店铺</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
+    <appfooter footeractive="nav1"></appfooter>
 </div>
 <!--首页结束-->
-
 
 
 
@@ -244,7 +234,6 @@
 <script src="js/services/notification.js"></script>
 
 <script src="js/services/localStorageService.js"></script>
-
 <script src="js/services/service.js"></script>
 <script src="js/services/geo.js"></script>
 <script src="js/services/share.js"></script>

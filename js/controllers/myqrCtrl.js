@@ -29,7 +29,7 @@ app.controller("myqrCtrl", function ($scope,textStatus,myshopInfo,AJAX,$location
     }
 
     $scope.shopqrShare=function(){
-        $.mobile.activePage.find(".sharePop").popup("open");
+//        $.mobile.activePage.find(".sharePop").popup("open");
 
 
         var targetObj=$.mobile.activePage.find('.qr');
@@ -43,6 +43,9 @@ app.controller("myqrCtrl", function ($scope,textStatus,myshopInfo,AJAX,$location
             content:myshopInfo.get("shop_intro"),
             ralateUid:appConfig.api.sinaRalateUid||''
         }
+
+        window.plugins.socialsharing.share($scope.shareObj.title, null,  $scope.shareObj.pics[0],  $scope.shareObj.sUrl);
+
     }
 
 })

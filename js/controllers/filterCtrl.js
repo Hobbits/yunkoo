@@ -1,14 +1,16 @@
 app.controller("filterCtrl", function ($scope,$routeParams,$pop,$waitDialog,$location,AJAX) {
 
     var getObj=function(){
-        return JSON.parse($routeParams.object);
+        var res=null;
+        try{res=JSON.parse($routeParams.object);}catch(e){res={}}
+        return res;
     };
     $scope.setShow=function(){
-        if(getObj().headerName){
+        if(getObj() && 'headerName' in getObj()){
             $scope.headerName=getObj().headerName;
         }
 
-        if(getObj().last){
+        if(getObj() && getObj().last){
             /*搜索动作*/
             var searchAct=function(p){
                 AJAX({
@@ -33,7 +35,7 @@ app.controller("filterCtrl", function ($scope,$routeParams,$pop,$waitDialog,$loc
             searchAct(getObj());
         }
 
-        if(getObj().search_type=="good" && !getObj().last){
+        if(getObj() && getObj().search_type=="good" && !getObj().last){
             /*获取商品一级分类*/
             AJAX({
                 url: appConfig.goodCatURL,
@@ -44,7 +46,7 @@ app.controller("filterCtrl", function ($scope,$routeParams,$pop,$waitDialog,$loc
                     }
                 },
                 eCall:function(){
-                    alert("获取商品分类失败")
+                    $pop.open("获取商品分类失败");
                 }
             });
         }

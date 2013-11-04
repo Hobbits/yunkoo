@@ -30,7 +30,8 @@
 
 
     <header data-role="header" data-position="fixed">
-        <a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>
+        <!--<a ngm-vclick="openPanel()" class="ui-btn-left" data-icon="bars" data-role="button">快速链接</a>-->
+        <a data-rel="back" class="ui-btn-left" data-direction="reverse" data-icon="arrow-l" data-role="button">后退</a>
         <h1>管理中心</h1>
 
     </header>
@@ -64,6 +65,7 @@
             <li><a href="#!/myqrcode">自助推广</a></li>
         </ul>
     </section>
+    <appfooter></appfooter>
 
 
 </div>

@@ -15,7 +15,9 @@ app.controller("searchCtrl", function ($scope,$routeParams,$waitDialog,$location
 
 
     var getObj=function(){
-        return JSON.parse($routeParams.object);
+        var res=null;
+        try{res=JSON.parse($routeParams.object)}catch(e){res={};};
+        return res;
     };
     $scope.getKey=function(){
         return getObj().k;

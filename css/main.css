@@ -10,10 +10,17 @@
     font-size: 1em;
 }
 
+.ui-icon-shopping-cart {
+    background-image: url("../images/icon-shopping-cart.png");
+}
+
 #mainpageTop{height: 49%;min-height: 210px}
 /*导航*/
 #pagemain .ui-panel-content-wrap{position: relative}
-#pagemain #mainContent{position: absolute;top:0;bottom: 0;left: 0;right: 0;}
+#pagemain #mainContent{
+    position: absolute;padding:0;top:0;bottom: 0;left: 0;right: 0;
+    overflow-y:hidden;
+}
 #navigator {height:50%;min-height: 210px;}
 #navigator .ui-block-a,
 #navigator .ui-block-b,
@@ -25,8 +32,9 @@
 #navigator a img {max-width:97%; max-height:100%;}
 #navigator a h3 {font-size:90%; color:#64605D;height: 20%; text-align:center; white-space:nowrap;}
 
-@media screen and (max-height:440px) {
+@media screen and (max-height:500px) {
 	#pagemain #mainContent{position: initial;top: initial;bottom: initial;left: initial;right: initial;}
+    #mainContent{overflow-y:scroll;}
 }
 /*导航结束*/
 
@@ -230,3 +238,4 @@
     max-width: 100%;
     max-height: 99%;
 }
+

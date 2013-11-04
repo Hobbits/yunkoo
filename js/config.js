@@ -2,7 +2,7 @@ var appConfig={
     default:{
         chatPollingcycle:15000,/*单位，毫秒*/
         shopthumb:"images/shop-open-icon.png",
-		headerThumb:"images/7-1.jpg" 
+		headerThumb:"images/thumbdefault.png"
     },
     bannerURL:servURL+"appdo.php?act=slide",
     loginURL:servURL+"appdo.php?act=applogin",

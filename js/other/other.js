@@ -2,8 +2,8 @@ $(document).on("vclick",".fakeSubmit",function(){
     $.mobile.activePage.find(".trueSubmit").click();
 });
 
-/*Panel*/
-$(document).on('pagebeforeshow', '[data-role="page"]', function(){
+/*Panel 目前只留给安卓*/
+$(document).on('pagebeforeshow', '[data-role="page"]', function(event){
     var tempHTML=$("#panelTemp").html();
     $(".inject").remove();
     $(this).append(tempHTML);
@@ -11,10 +11,11 @@ $(document).on('pagebeforeshow', '[data-role="page"]', function(){
 
     pn.panel();
     pn.find(".panelul").listview();
+
 });
-$(document).on("swiperight","div:jqmData(role='page')",function(evt){
-    $.mobile.activePage.find(".myPanel").panel("open");
-});
+//$(document).on("swiperight","div:jqmData(role='page')",function(evt){
+//    $.mobile.activePage.find(".myPanel").panel("open");
+//});
 
 $(document).on("vclick",".gallery li",function(e){
     var choseLi=$(this);
@@ -133,6 +134,14 @@ document.addEventListener("deviceready", function(){
     setTimeout(function(){navigator.splashscreen.hide();},3000);
 }, false);
 
+
+$('body').on('click',"[href]",function(event){
+    event.preventDefault();
+    var url=$(this).attr('href');
+    if(url.indexOf("http") >= 0){
+        window.open(url, '_blank', 'location=yes');
+    }
+});
 
 //$(document).on("touchmove",function(evt){
 //    evt.preventDefault();
